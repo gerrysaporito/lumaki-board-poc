@@ -1,0 +1,51 @@
+@media only screen and (max-width: 812px) {
+    .hidden {
+        display: none  !important;
+    }
+
+    .navbar {
+        display: flex;
+        z-index: 1;
+        margin: 0 !important;
+        flex-direction: row  !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .navbar img {
+        width: 15px !important;
+        height: 30px !important;
+    }
+}
+
+.navbar {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color:rgb(44,44,44);
+    height: 100vh;
+}
+
+.hidden {
+    display: block;
+}
+
+.navbar img {
+    width: 30px;
+    height: 75px;
+}
+
+.active-link {
+    font-weight: bold;
+}
+
+.navbar-toggler-icon {
+    color: blue;
+}
+
+.navbar a {
+    width: 100%;
+    color: white;
+}

@@ -9,6 +9,8 @@ import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 import Navbar from './Navbar';
 import Main from './Main';
 
+import './css/App.css';
+
 const store = configureStore();
 
 if(localStorage.jwtToken) {
@@ -23,7 +25,7 @@ if(localStorage.jwtToken) {
 const App = () => (
   <Provider store={store}>
     <Router>
-      <div className='onboarding'>
+      <div className='app'>
         <Navbar />
         <Main />
       </div>

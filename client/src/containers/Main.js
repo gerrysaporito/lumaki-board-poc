@@ -8,39 +8,43 @@ import withAuth from '../hocs/WithAuth'
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 
+import './css/Main.css';
+
 const Main = props => {
     const {authUser, errors, removeError, currentUser} = props;
     return(
-        <div className='container'>
-            <Switch>
-                <Route exact path='/' render={props =>
-                    <Homepage
-                        currentUser={currentUser}
-                        {...props}
-                    />}
-                />
-                <Route exact path='/login' render={props =>
-                    <AuthForm
+        <div className='main'>
+            <div className='content'>
+                <Switch>
+                    <Route exact path='/' render={props =>
+                        <Homepage
+                            currentUser={currentUser}
+                            {...props}
+                        />}
+                    />
+                    <Route exact path='/login' render={props =>
+                        <AuthForm
+                            removeError={removeError}
+                            errors={errors}
+                            onAuth={authUser}
+                            buttonText='Log in'
+                            heading='Welcome Back.'
+                            {...props}
+                        />}
+                    />
+                    <Route exact path='/register' render={props =>
+                        <AuthForm
                         removeError={removeError}
                         errors={errors}
                         onAuth={authUser}
-                        buttonText='Log in'
-                        heading='Welcome Back.'
-                        {...props}
-                    />}
-                />
-                <Route exact path='/register' render={props =>
-                    <AuthForm
-                    removeError={removeError}
-                    errors={errors}
-                    onAuth={authUser}
-                        buttonText='Sign me up!'
-                        heading='Join Warbler Today.'
-                        register
-                        {...props}
-                    />}
-                />
-            </Switch>
+                            buttonText="Let's go!"
+                            heading='Apply for your next internship today.'
+                            register
+                            {...props}
+                        />}
+                    />
+                </Switch>
+            </div>
         </div>
     )
 };

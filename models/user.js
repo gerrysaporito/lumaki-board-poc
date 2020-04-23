@@ -2,12 +2,15 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-    email: {
+    firstName: {
         type: String,
         required: true,
-        unique: true,
     },
-    username: {
+    lastName: {
+        type: String,
+        required: true,
+    },
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -23,6 +26,12 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Profile',
     },
+    jobs: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Profile',
+        }
+    ]
 });
 
 UserSchema.pre('save', async function(next) {
@@ -30,7 +39,7 @@ UserSchema.pre('save', async function(next) {
         if(!this.isModified('password')) {
             return next();
         }
-        
+
         let hashedPassword = await bcrypt.hash(this.password, 12);
         this.password = hashedPassword;
         return next();

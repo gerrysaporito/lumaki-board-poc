@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
 import LOGO from '../images/LumakiLabs_whitelogo.png';
-import './css/AuthForm.css';
+import './css/ProfileForm.css';
 
-class AuthForm extends Component {
+class ProfileForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            username: '',
-            password: '',
-            profileImageUrl: '',
+            school: '',
+            program: '',
+            graduation_year: '',
+            gender: '',
         }
     }
 
@@ -26,9 +24,7 @@ class AuthForm extends Component {
         e.preventDefault();
         const authType = this.props.register ? 'register' : 'login';
         this.props.onAuth(authType, this.state)
-        .then(() => {
-            this.props.history.push(authType === 'register' ? '/profile': '/jobs');
-        })
+        .then(() => {})
         .catch(() => {
             return;
         })
@@ -43,15 +39,11 @@ class AuthForm extends Component {
 
         return(
             <div>
-                <div className='row justify-content-md-center text-center' id='authform'>
+                <div className='row justify-content-md-center text-center mt-5' id='authform'>
                     <img src={LOGO} alt='LumakiBoard Logo' />
-                    <h6 className='mb-5'>{heading}</h6>
+                    <h4 className='mb-5'>{heading}</h4>
                     {errors.message && (
-                        <div className='error'>
-                            <div className='alert alert-danger container'>
-                                {errors.message.message}
-                            </div>
-                        </div>
+                        <div className='alert alert-danger'>{errors.message.message}</div>
                     )}
                     <form onSubmit={this.handleSubmit}>
                         {register && (
@@ -74,4 +66,4 @@ class AuthForm extends Component {
     }
 }
 
-export default AuthForm;
+export default ProfileForm;
