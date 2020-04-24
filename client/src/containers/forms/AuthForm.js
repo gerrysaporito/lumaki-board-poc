@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { authUser } from '../store/actions/auth';
+import { authUser } from '../../store/actions/auth';
 
-import LOGO from '../images/LumakiLabs_whitelogo.png';
+import LOGO from '../../images/LumakiLabs_whitelogo.png';
+import { ERROR } from '../../store/actionTypes';
 import './css/AuthForm.css';
-import { ERROR } from '../store/actionTypes';
 
 class AuthForm extends Component {
     constructor(props) {
@@ -60,15 +60,15 @@ class AuthForm extends Component {
                     {register && (
                         <div>
                             <label htmlFor='first_name'>First Name:</label>
-                            <input className='form-control' id='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' />
+                            <input className='form-control' id='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' required />
                             <label htmlFor='lastName'>Last Name:</label>
-                            <input className='form-control' id='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' />
+                            <input className='form-control' id='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' required />
                         </div>
                     )}
                     <label htmlFor='email'>Email:</label>
-                    <input className='form-control' id='email' name='email' onChange={this.handleChange} value={email} type='text' />
+                    <input className='form-control' id='email' name='email' onChange={this.handleChange} value={email} type='text' required />
                     <label htmlFor='password'>Password:</label>
-                    <input className='form-control' id='password' onChange={this.handleChange} name='password' type='password' />
+                    <input className='form-control' id='password' onChange={this.handleChange} name='password' type='password' required />
                     <button className='btn lumaki-btn btn-md mt-3' type='submit'>{buttonText}</button>
                 </form>
             </div>

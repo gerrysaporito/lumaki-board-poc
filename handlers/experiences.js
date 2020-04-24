@@ -3,21 +3,19 @@ const db = require('../models');
 exports.createExperience = async function(req, res, next) {
     try {
         let experience = await db.Experience.create({
-            company: req.params.company,
-            role: req.params.role, 
-            description: req.params.description,
-            start: req.params.start,
-            end: req.params.end,
-            user: req.params.id,
+            ...req.body,
+            user: req.body.id,
         });
         let foundUser = await db.User.findById(req.params.id);
-        foundUser.profile.experience.push(experience.id);
+        foundUser.experiences.push(experience.id);
         await foundUser.save();
-        let foundExperience = await db.Experience
-        .findById(experience._id);
+        let foundExperience = await db.Experience.findById(experience._id);
         return res.status(200).json(foundExperience);
     } catch(e) {
-        return next(e)
+        return next({
+            status: 400,
+            message: req.body.company
+        })
     }
 };
 

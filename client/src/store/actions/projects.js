@@ -1,5 +1,5 @@
 import { apiCall } from '../../services/api';
-import { LOAD_PROJECTS, REMOVE_PROJECT } from '../actionTypes';
+import { LOAD_PROJECTS, REMOVE_PROJECT, ERROR } from '../actionTypes';
 import { addAlert } from './alerts';
 
 export const loadProjects = projects => ({
@@ -20,10 +20,10 @@ export const fetchProjects = () => {
     };
 };
 
-export const postNewProject = text => (dispatch, getState) => {
+export const postNewProject = project => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
-    return apiCall('post', `/api/users/${id}/projects`, {text})
+    return apiCall('post', `/api/users/${id}/projects/`, {...project})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

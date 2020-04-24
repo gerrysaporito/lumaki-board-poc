@@ -1,5 +1,5 @@
 import { apiCall } from '../../services/api';
-import { LOAD_SKILLS, REMOVE_SKILL } from '../actionTypes';
+import { LOAD_SKILLS, REMOVE_SKILL, ERROR } from '../actionTypes';
 import { addAlert } from './alerts';
 
 export const loadSkills = skills => ({
@@ -28,10 +28,10 @@ export const fetchSkills = () => {
     };
 };
 
-export const postNewSkill = text => (dispatch, getState) => {
+export const postNewSkill = skill => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
-    return apiCall('post', `/api/users/${id}/skills`, {text})
+    return apiCall('post', `/api/users/${id}/skills/`, {...skill})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

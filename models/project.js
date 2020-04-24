@@ -5,12 +5,11 @@ const ProjectSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxLength: 2000,
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-    },  
+    },
 }, {timestamp: true});
 
 ProjectSchema.pre('remove', async function(next) {
@@ -22,7 +21,7 @@ ProjectSchema.pre('remove', async function(next) {
     } catch(e) {
         next(e.message);
     }
-}); 
+});
 
 const Project = mongoose.model('Project', ProjectSchema);
 module.exports = Project;

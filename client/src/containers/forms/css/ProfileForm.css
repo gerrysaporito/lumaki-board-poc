@@ -5,23 +5,13 @@
     }
 }
 
-.name {
-    color: rgb(57,168,147);
-}
-
 #profileform {
-    display: flex;
-    flex-direction: column;
-    width:100%;
-    padding: 5% 0;
-}
-
-.profileform {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     max-width: 400px;
+    padding-bottom: 30px;
 }
 
 #profileform label {

@@ -20,10 +20,10 @@ export const fetchExperiences = () => {
     };
 };
 
-export const postNewExperience = text => (dispatch, getState) => {
+export const postNewExperience = experience => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
-    return apiCall('post', `/api/users/${id}/experiences`, {text})
+    return apiCall('post', `/api/users/${id}/experiences/`, {...experience})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

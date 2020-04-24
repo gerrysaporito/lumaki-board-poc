@@ -11,24 +11,24 @@ const ExperienceSchema = new mongoose.Schema({
         type: String,
         required: true,
         maxLength: 150,
-    },  
+    },
     description: {
         type: String,
         required: true,
         maxLength: 1500,
     },
-    start: {
+    start_date: {
         type: Date,
         required: true,
     },
-    end: {
+    end_date: {
         type: Date,
         required: true,
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-    },  
+    },
 }, {timestamp: true});
 
 ExperienceSchema.pre('remove', async function(next) {
@@ -40,7 +40,7 @@ ExperienceSchema.pre('remove', async function(next) {
     } catch(e) {
         next(e.message);
     }
-}); 
+});
 
 const Experience = mongoose.model('Experience', ExperienceSchema);
 module.exports = Experience;

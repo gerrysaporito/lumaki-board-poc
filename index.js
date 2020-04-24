@@ -15,6 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
 // ROUTES
 app.use('/api/auth', AUTH_ROUTES);
 app.use('/api/users/:id/experiences', loginRequired, ensureCorrectUser, EXPERIENCES_ROUTES);

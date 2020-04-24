@@ -20,8 +20,8 @@ class Navbar extends Component {
                 <div className='navbar-header mb-lg-4 mt-lg-3'>
                     <NavLink to='/' className='navbar-brand'>
                         <img src={LOGO} alt='LumakiBoard Logo' />
-                        <h1 className='hidden mb-0'>lumaki</h1>
-                        <h1 className='hidden'>board</h1>
+                        <h2 className='hidden mb-0'>lumaki</h2>
+                        <h2 className='hidden'>board</h2>
                     </NavLink>
                 </div>
                 <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>

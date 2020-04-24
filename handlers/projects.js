@@ -3,17 +3,19 @@ const db = require('../models');
 exports.createProject = async function(req, res, next) {
     try {
         let project = await db.Project.create({
-            description: req.body.description,
+            ...req.body,
             user: req.params.id,
         });
         let foundUser = await db.User.findById(req.params.id);
-        foundUser.profile.projects.push(project.id);
+        foundUser.projects.push(project.id);
         await foundUser.save();
-        let foundProject = await db.Project
-        .findById(project._id)
+        let foundProject = await db.Project.findById(project._id)
         return res.status(200).json(foundProject);
     } catch(e) {
-        return next(e)
+        return next({
+            status: 400,
+            message: e.message
+        })
     }
 };
 
