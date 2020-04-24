@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import LOGO from '../images/LumakiLabs_whitelogo.png';
+import { SUCCESS } from '../store/actionTypes';
+import { fetchUserProfile, updateUserProfile } from '../store/actions/auth';
+
 import './css/ProfileForm.css';
 
 class ProfileForm extends Component {
@@ -14,6 +17,17 @@ class ProfileForm extends Component {
         }
     }
 
+    componentDidMount(){
+        this.props.fetchUserProfile(this.props.currentUser.user.id)
+        .then(() => this.setState({
+            school: this.props.currentUser.user.school || '',
+            program: this.props.currentUser.user.program || '',
+            graduation_year: formatDate(this.props.currentUser.user.graduation_year) || '',
+            gender: this.props.currentUser.user.gender || '',
+        }))
+        .catch(() => {});
+    }
+
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -22,43 +36,42 @@ class ProfileForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const authType = this.props.register ? 'register' : 'login';
-        this.props.onAuth(authType, this.state)
+        console.log(this.state)
+        this.props.updateUserProfile({...this.state})
         .then(() => {})
         .catch(() => {
             return;
-        })
+        });
     }
 
     render() {
-        const {email, firstName, lastName} = this.state;
-        const {heading, buttonText, register, errors, history, removeError} = this.props;
+        const {school, program, graduation_year, gender} = this.state;
+        const {alerts, history, removeAlert, currentUser} = this.props;
         history.listen(() => {
-            removeError();
+            removeAlert();
         });
-
         return(
             <div>
-                <div className='row justify-content-md-center text-center mt-5' id='authform'>
-                    <img src={LOGO} alt='LumakiBoard Logo' />
-                    <h4 className='mb-5'>{heading}</h4>
-                    {errors.message && (
-                        <div className='alert alert-danger'>{errors.message.message}</div>
-                    )}
-                    <form onSubmit={this.handleSubmit}>
-                        {register && (
-                            <div>
-                                <label htmlFor='firstName'>First Name:</label>
-                                <input className='form-control' id='firstName' name='firstName' onChange={this.handleChange} value={firstName} type='text' />
-                                <label htmlFor='lastName'>Last Name:</label>
-                                <input className='form-control' id='lastName' name='lastName' onChange={this.handleChange} value={lastName} type='text' />
-                            </div>
+                <div className='mt-5' id='profileform'>
+                    <h4 className='mb-5'>Welcome <span className='name'>{currentUser.user.first_name}</span>!</h4>
+                    <form onSubmit={this.handleSubmit} className='profileform'>
+                        {alerts.alert === SUCCESS && alerts.message && (
+                            <div className='alert alert-success'>{alerts.message}</div>
                         )}
-                        <label htmlFor='email'>Email:</label>
-                        <input className='form-control' id='email' name='email' onChange={this.handleChange} value={email} type='text' />
-                        <label htmlFor='password'>Password:</label>
-                        <input className='form-control' id='password' onChange={this.handleChange} name='password' type='password' />
-                        <button className='btn btn-outline-light btn-md mt-3' type='submit'>{buttonText}</button>
+                        <label htmlFor='school'>School:</label>
+                        <input className='form-control' id='school' name='school' onChange={this.handleChange} value={school} type='text' />
+                        <label htmlFor='program'>Program:</label>
+                        <input className='form-control' id='program' name='program' onChange={this.handleChange} value={program} type='text' />
+                        <label htmlFor='graduation_year'>Graduation Year:</label>
+                        <input className='form-control' id='graduation_year' name='graduation_year' onChange={this.handleChange} value={graduation_year} type='date' />
+                        <label htmlFor='gender'>Gender:</label>
+                        <select className="btn btn-outline-dark dropdown-toggle" id="gender" name='gender' onChange={this.handleChange} value={gender}>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                            <option value="not_specified">Prefer not to specify</option>
+                        </select>
+                        <button className='btn lumaki-btn btn-md mt-3' type='submit'>Save</button>
                     </form>
                 </div>
             </div>
@@ -66,4 +79,22 @@ class ProfileForm extends Component {
     }
 }
 
-export default ProfileForm;
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+function mapStateToProps(state) {
+    return {}
+}
+
+export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile })(ProfileForm);

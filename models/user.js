@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-    firstName: {
+    first_name: {
         type: String,
         required: true,
     },
-    lastName: {
+    last_name: {
         type: String,
         required: true,
     },
@@ -19,13 +19,36 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    imageUrl:{
+    school: {
         type: String,
     },
-    profile: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile',
+    program: {
+        type: String,
     },
+    graduation_year: {
+        type: Date,
+    },
+    gender:{
+        type: String,
+    },
+    experiences: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Experience',
+        }
+    ],
+    projects: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Project',
+        }
+    ],
+    skills: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Skill',
+        }
+    ],
     jobs: [
         {
             type: mongoose.Schema.Types.ObjectId,

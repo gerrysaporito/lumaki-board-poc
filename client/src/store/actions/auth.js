@@ -1,6 +1,6 @@
 import { apiCall, setTokenHeader } from '../../services/api';
-import { SET_CURRENT_USER } from '../actionTypes';
-import { addError, removeError } from './errors';
+import { SET_CURRENT_USER, ERROR, SUCCESS } from '../actionTypes';
+import { addAlert, removeAlert } from './alerts';
 
 export function setCurrentUser(user) {
     return {
@@ -14,7 +14,6 @@ export function setAuthorizationToken(token) {
 }
 
 export function logout() {
-    console.log()
     return dispatch => {
         localStorage.clear();
         setAuthorizationToken(false);
@@ -26,17 +25,38 @@ export function authUser(type, userData) {
     return dispatch => {
         return new Promise((resolve, reject) => {
             return apiCall('post', `/api/auth/${type}`, userData)
-            .then(({token, ...user}) => {
-                localStorage.setItem('jwtToken', token);
-                setAuthorizationToken(token);
+            .then((user) => {
+                localStorage.setItem('jwtToken', user.token);
+                setAuthorizationToken(user.token);
                 dispatch(setCurrentUser(user));
-                dispatch(removeError());
+                dispatch(removeAlert());
                 resolve();
             })
             .catch(e => {
-                dispatch(addError(e));
+                dispatch(addAlert(e, ERROR));
                 reject();
             });
         });
     };
+};
+
+export const fetchUserProfile = user_id => {
+    return dispatch => {
+        return apiCall('get', `/api/auth/users/${user_id}`)
+        .then(res => {
+            dispatch(setCurrentUser({...res}))
+        })
+        .catch(err => addAlert(err.message, ERROR));
+    };
+};
+
+export const updateUserProfile = profile => (dispatch, getState) => {
+    let { currentUser } = getState();
+    const id = currentUser.user.id;
+    return apiCall('post', `/api/auth/users/${id}`, {profile})
+    .then(res => {
+        let msg = 'Success! We just updated your profile for you.';
+        dispatch(addAlert(msg, SUCCESS));
+    })
+    .catch(err => dispatch(addAlert(err.message, ERROR)));
 };

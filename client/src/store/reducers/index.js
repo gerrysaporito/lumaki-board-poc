@@ -1,15 +1,13 @@
 import { combineReducers } from 'redux';
 import currentUser from './currentUser';
-import errors from './errors';
-import profile from './profile';
+import alerts from './alerts';
 import experiences from './experiences';
 import projects from './projects';
 import skills from './skills';
 
 const rootReducer = combineReducers ({
     currentUser,
-    errors,
-    profile,
+    alerts,
     experiences,
     projects,
     skills,

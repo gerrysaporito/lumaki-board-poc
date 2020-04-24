@@ -26,6 +26,7 @@
     text-align: center;
     background-color:rgb(44,44,44);
     height: 100vh;
+    width: 19.5%;
 }
 
 .hidden {
@@ -37,6 +38,9 @@
     height: 75px;
 }
 
+.navbar-header {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
 .active-link {
     font-weight: bold;
 }
@@ -45,7 +49,17 @@
     color: blue;
 }
 
+.navbar li {
+    margin: 5px 0;
+}
+
 .navbar a {
     width: 100%;
+    color: white;
+}
+
+.navbar button {
+    background-color: rgba(0,0,0,0);
+    border: none;
     color: white;
 }

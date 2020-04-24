@@ -11,15 +11,16 @@ class Navbar extends Component {
     logout = e => {
         e.preventDefault();
         this.props.logout();
+        this.props.history.push('/')
     }
 
     render() {
         return(
             <nav className='navbar navbar-expand-lg navbar-dark'>
-                <div className='navbar-header'>
+                <div className='navbar-header mb-lg-4 mt-lg-3'>
                     <NavLink to='/' className='navbar-brand'>
                         <img src={LOGO} alt='LumakiBoard Logo' />
-                        <h1 className='hidden'>lumaki</h1>
+                        <h1 className='hidden mb-0'>lumaki</h1>
                         <h1 className='hidden'>board</h1>
                     </NavLink>
                 </div>
@@ -41,9 +42,9 @@ class Navbar extends Component {
                                     </NavLink>
                                 </li>
                                 <li className='nav-item'>
-                                    <a onClick={this.logout} href='#'>
+                                    <button onClick={this.logout} href='#'>
                                         Log out
-                                    </a>
+                                    </button>
                                 </li>
                             </React.Fragment>)
                         :

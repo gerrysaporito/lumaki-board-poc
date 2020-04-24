@@ -1,0 +1,42 @@
+@media only screen and (max-width: 812px) {
+    #profileform {
+        width: 90% !important;
+        margin: auto !important;
+    }
+}
+
+.name {
+    color: rgb(57,168,147);
+}
+
+#profileform {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    padding: 5% 0;
+}
+
+.profileform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+#profileform label {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#profileform input {
+    background-color: rgba(255,255,255,0.7);
+    color: black;
+    width: 100%;
+}
+
+#profileform select {
+    background-color: rgba(255,255,255,0.7);
+    color: black;
+    width: 100%;
+}

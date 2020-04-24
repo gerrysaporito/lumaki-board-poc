@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { authUser } from '../store/actions/auth';
 
 import LOGO from '../images/LumakiLabs_whitelogo.png';
 import './css/AuthForm.css';
+import { ERROR } from '../store/actionTypes';
 
 class AuthForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
             username: '',
             password: '',
@@ -25,9 +29,9 @@ class AuthForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const authType = this.props.register ? 'register' : 'login';
-        this.props.onAuth(authType, this.state)
-        .then(() => {
-            this.props.history.push(authType === 'register' ? '/profile': '/jobs');
+        this.props.authUser(authType, this.state)
+        .then(res => {
+            this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user.id}`: '/jobs');
         })
         .catch(() => {
             return;
@@ -35,43 +39,45 @@ class AuthForm extends Component {
     }
 
     render() {
-        const {email, firstName, lastName} = this.state;
-        const {heading, buttonText, register, errors, history, removeError} = this.props;
+        const {email, first_name, last_name} = this.state;
+        const {heading, buttonText, register, alerts, history, removeAlert} = this.props;
         history.listen(() => {
-            removeError();
+            removeAlert();
         });
 
         return(
-            <div>
-                <div className='row justify-content-md-center text-center' id='authform'>
-                    <img src={LOGO} alt='LumakiBoard Logo' />
-                    <h6 className='mb-5'>{heading}</h6>
-                    {errors.message && (
-                        <div className='error'>
-                            <div className='alert alert-danger container'>
-                                {errors.message.message}
-                            </div>
+            <div id='authform'>
+                <img src={LOGO} alt='LumakiBoard Logo' />
+                <h6 className='mb-5'>{heading}</h6>
+                {alerts.alert === ERROR && alerts.message && (
+                    <div className='error'>
+                        <div className='alert alert-danger'>
+                            {alerts.message.message}
+                        </div>
+                    </div>
+                )}
+                <form onSubmit={this.handleSubmit}>
+                    {register && (
+                        <div>
+                            <label htmlFor='first_name'>First Name:</label>
+                            <input className='form-control' id='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' />
+                            <label htmlFor='lastName'>Last Name:</label>
+                            <input className='form-control' id='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' />
                         </div>
                     )}
-                    <form onSubmit={this.handleSubmit}>
-                        {register && (
-                            <div>
-                                <label htmlFor='firstName'>First Name:</label>
-                                <input className='form-control' id='firstName' name='firstName' onChange={this.handleChange} value={firstName} type='text' />
-                                <label htmlFor='lastName'>Last Name:</label>
-                                <input className='form-control' id='lastName' name='lastName' onChange={this.handleChange} value={lastName} type='text' />
-                            </div>
-                        )}
-                        <label htmlFor='email'>Email:</label>
-                        <input className='form-control' id='email' name='email' onChange={this.handleChange} value={email} type='text' />
-                        <label htmlFor='password'>Password:</label>
-                        <input className='form-control' id='password' onChange={this.handleChange} name='password' type='password' />
-                        <button className='btn btn-outline-light btn-md mt-3' type='submit'>{buttonText}</button>
-                    </form>
-                </div>
+                    <label htmlFor='email'>Email:</label>
+                    <input className='form-control' id='email' name='email' onChange={this.handleChange} value={email} type='text' />
+                    <label htmlFor='password'>Password:</label>
+                    <input className='form-control' id='password' onChange={this.handleChange} name='password' type='password' />
+                    <button className='btn lumaki-btn btn-md mt-3' type='submit'>{buttonText}</button>
+                </form>
             </div>
         )
     }
 }
 
-export default AuthForm;
+function mapStateToProps(state) {
+    return {}
+}
+
+export default connect(mapStateToProps, { authUser })(AuthForm);

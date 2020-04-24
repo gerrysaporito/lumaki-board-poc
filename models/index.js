@@ -10,7 +10,6 @@ mongoose.connect(DB_CONNECTION, {
 });
 
 module.exports.User = require('./user');
-module.exports.Profile = require('./profile');
 module.exports.Experience = require('./experience');
 module.exports.Project = require('./project');
 module.exports.Skill = require('./skill');

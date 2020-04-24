@@ -22,10 +22,11 @@
     align-items: center;
     width: 100%;
     overflow-y: scroll;
-    margin: 0 3%;
+    margin: 0;
+    padding: 0 5%;
     height: 100%;
 }
 
 .content {
-    /* background-color: blue; */
+    width: 100%;
 }

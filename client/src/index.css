@@ -1,0 +1,9 @@
+.lumaki-btn {
+    background-color: rgb(56,180,157);
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    width: 150px;
+    margin: auto;
+    text-align: center;
+}

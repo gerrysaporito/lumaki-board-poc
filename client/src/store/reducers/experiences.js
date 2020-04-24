@@ -1,6 +1,8 @@
 import { LOAD_EXPERIENCES, REMOVE_EXPERIENCE } from '../actionTypes';
 
-const experiences = (state = [], action) => {
+const DEFAULT_STATE = [];
+
+const experiences = (state = DEFAULT_STATE, action) => {
     switch(action.type) {
         case LOAD_EXPERIENCES: {
             return [...action.experiences]

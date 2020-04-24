@@ -1,6 +1,8 @@
 import { LOAD_SKILLS, REMOVE_SKILL } from '../actionTypes';
 
-const skills = (state = [], action) => {
+const DEFAULT_STATE = [];
+
+const skills = (state = DEFAULT_STATE, action) => {
     switch(action.type) {
         case LOAD_SKILLS: {
             return [...action.skills]

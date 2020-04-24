@@ -1,6 +1,8 @@
 import { LOAD_PROJECTS, REMOVE_PROJECT } from '../actionTypes';
 
-const projects = (state = [], action) => {
+const defaultState = [];
+
+const projects = (state = defaultState, action) => {
     switch(action.type) {
         case LOAD_PROJECTS: {
             return [...action.projects]

@@ -6,7 +6,6 @@ import jwtDecode from 'jwt-decode';
 
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 
-import Navbar from './Navbar';
 import Main from './Main';
 
 import './css/App.css';
@@ -26,7 +25,6 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <div className='app'>
-        <Navbar />
         <Main />
       </div>
     </Router>
