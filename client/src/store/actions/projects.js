@@ -12,9 +12,9 @@ export const remove = id => ({
     id
 });
 
-export const fetchProjects = () => {
+export const fetchProjects = id => {
     return dispatch => {
-        return apiCall('get', '/api/projects')
+        return apiCall('get', `/api/users/${id}/projects/`)
         .then(res => dispatch(loadProjects(res)))
         .catch(e => addAlert(e.message, ERROR));
     };

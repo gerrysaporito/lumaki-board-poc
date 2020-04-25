@@ -53,7 +53,7 @@ export const fetchUserProfile = user_id => {
 export const updateUserProfile = profile => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
-    return apiCall('post', `/api/auth/users/${id}`, {profile})
+    return apiCall('post', `/api/auth/users/${id}`, {...profile})
     .then(res => {
         let msg = 'Success! We just updated your profile for you.';
         dispatch(addAlert(msg, SUCCESS));

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ProfileForm from '../forms/ProfileForm';
+import ExperienceList from '../ExperienceList';
 import './css/Profile.css';
 
 class Profile extends Component {
@@ -16,6 +17,7 @@ class Profile extends Component {
                 <div className='section'>
                     <h5>Your Experiences</h5>
                     <Link to={`/users/${currentUser.user.id}/experiences/new`}>+ Add Experience</Link>
+                    <ExperienceList currentUser={currentUser}/>
                 </div>
                 <div className='hr' />
                 <div className='section'>

@@ -74,6 +74,9 @@ exports.fetchUser = async function(req, res, next) {
             program: user.program,
             graduation_year: user.graduation_year,
             gender: user.gender,
+            country: user.country,
+            state: user.state,
+            city: user.city,
             token,
         });
     } catch(e) {
@@ -91,22 +94,14 @@ exports.updateUser = async function(req, res, next) {
         let token = jwt.sign({
             id,
         }, process.env.SECRET_KEY);
-
-        user.school = req.body.profile.school;
-        user.program = req.body.profile.program;
-        user.graduation_year = req.body.profile.graduation_year;
-        user.gender = req.body.profile.gender;
+        Object.keys(req.body).map(key => {
+            user[key] = req.body[key];
+        });
         await user.save();
-
+        copyUser = JSON.parse(JSON.stringify(user));
+        delete copyUser.password;
         res.status(200).json({
-            id: user._id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-            school: user.school,
-            program: user.program,
-            graduation_year: user.graduation_year,
-            gender: user.gender,
+            ...copyUser,
             token,
         });
     } catch(e) {

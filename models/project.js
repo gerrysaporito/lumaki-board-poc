@@ -15,7 +15,7 @@ const ProjectSchema = new mongoose.Schema({
 ProjectSchema.pre('remove', async function(next) {
     try {
         let user = await User.findById(this.user);
-        user.profile.projects.remove(this.id);
+        user.projects.remove(this.id);
         await user.save();
         return next();
     } catch(e) {

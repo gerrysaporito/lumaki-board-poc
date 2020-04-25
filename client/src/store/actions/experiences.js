@@ -12,9 +12,9 @@ export const remove = id => ({
     id
 });
 
-export const fetchExperiences = () => {
+export const fetchExperiences = id => {
     return dispatch => {
-        return apiCall('get', '/api/experiences')
+        return apiCall('get', `/api/users/${id}/experiences/`)
         .then(res => dispatch(loadExperiences(res)))
         .catch(e => addAlert(e.message, ERROR));
     };

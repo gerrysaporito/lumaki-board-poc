@@ -1,0 +1,34 @@
+.experience-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    list-style-type: none;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(60,60,60);
+    font-size:12px;
+    border-radius: 10px;
+}
+
+.experience-list-item-area {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.experience-list-item p {
+    padding: 2px 0;
+    margin: 0;
+}
+
+.experience-list-item .description {
+    padding-top: 15px;
+}
+
+.experience-list-item .function-tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

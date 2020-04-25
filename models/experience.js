@@ -34,7 +34,7 @@ const ExperienceSchema = new mongoose.Schema({
 ExperienceSchema.pre('remove', async function(next) {
     try {
         let user = await User.findById(this.user);
-        user.profile.experiences.remove(this.id);
+        user.experiences.remove(this.id);
         await user.save();
         return next();
     } catch(e) {

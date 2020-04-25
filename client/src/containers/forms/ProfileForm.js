@@ -14,6 +14,9 @@ class ProfileForm extends Component {
             program: '',
             graduation_year: '',
             gender: '',
+            country: '',
+            state: '',
+            city: '',
         }
     }
 
@@ -24,6 +27,9 @@ class ProfileForm extends Component {
             program: this.props.currentUser.user.program || '',
             graduation_year: formatDate(this.props.currentUser.user.graduation_year) || '',
             gender: this.props.currentUser.user.gender || '',
+            country: this.props.currentUser.user.country || '',
+            state: this.props.currentUser.user.state || '',
+            city: this.props.currentUser.user.city || '',
         }))
         .catch(() => {});
     }
@@ -44,7 +50,7 @@ class ProfileForm extends Component {
     }
 
     render() {
-        const {school, program, graduation_year, gender} = this.state;
+        const {school, program, graduation_year, gender, country, state, city} = this.state;
         const {alerts, history, removeAlert} = this.props;
         history.listen(() => {
             removeAlert();
@@ -54,20 +60,26 @@ class ProfileForm extends Component {
                 {alerts.alert === SUCCESS && alerts.message && (
                     <div className='alert alert-success'>{alerts.message}</div>
                 )}
-                <label htmlFor='school'>School:</label>
-                <input className='form-control' id='school' name='school' onChange={this.handleChange} value={school} type='text' required />
-                <label htmlFor='program'>Program:</label>
-                <input className='form-control' id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
-                <label htmlFor='graduation_year'>Graduation Year:</label>
-                <input className='form-control' id='graduation_year' name='graduation_year' onChange={this.handleChange} value={graduation_year} type='date' required />
-                <label htmlFor='gender'>Gender:</label>
-                <select className="btn btn-outline-dark dropdown-toggle" id="gender" name='gender' onChange={this.handleChange} defaultValue={gender} required >
+                <label htmlFor='school'>School *:</label>
+                <input id='school' name='school' onChange={this.handleChange} value={school} type='text' required />
+                <label htmlFor='program'>Program *:</label>
+                <input id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
+                <label htmlFor='graduation_year'>Graduation Year *:</label>
+                <input id='graduation_year' name='graduation_year' onChange={this.handleChange} value={graduation_year} type='date' required />
+                <label htmlFor='gender'>Gender *:</label>
+                <select id="gender" name='gender' onChange={this.handleChange} value={gender} required >
                     <option disabled value=''>--Please choose an option--</option>
                     <option value="female">Female</option>
                     <option value="male">Male</option>
                     <option value="other">Other</option>
                     <option value="not_specified">Prefer not to specify</option>
                 </select>
+                <label htmlFor='country'>Country *:</label>
+                <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
+                <label htmlFor='state'>State *:</label>
+                <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
+                <label htmlFor='city'>City *:</label>
+                <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
                 <button className='btn lumaki-btn btn-md mt-3' type='submit'>Save</button>
             </form>
         )

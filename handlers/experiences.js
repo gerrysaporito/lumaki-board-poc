@@ -4,7 +4,7 @@ exports.createExperience = async function(req, res, next) {
     try {
         let experience = await db.Experience.create({
             ...req.body,
-            user: req.body.id,
+            user: req.params.id,
         });
         let foundUser = await db.User.findById(req.params.id);
         foundUser.experiences.push(experience.id);
@@ -18,6 +18,20 @@ exports.createExperience = async function(req, res, next) {
         })
     }
 };
+
+exports.fetchExperiences = async function(req, res, next) {
+    try {
+        let user = await db.User.findById(req.params.id);
+        let experiences = await db.Experience.find({
+            '_id': {
+                $in: user.experiences
+            }
+        });
+        res.status(200).json(experiences);
+    } catch(e) {
+        return next(e);
+    }
+}
 
 exports.getExperience = async function(req, res, next) {
     try {

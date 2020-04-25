@@ -10,19 +10,19 @@ const SkillSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-    },  
+    },
 }, {timestamp: true});
 
 SkillSchema.pre('remove', async function(next) {
     try {
         let user = await User.findById(this.user);
-        user.profile.skills.remove(this.id);
+        user.skills.remove(this.id);
         await user.save();
         return next();
     } catch(e) {
         next(e.message);
     }
-}); 
+});
 
 const Skill = mongoose.model('Skill', SkillSchema);
 module.exports = Skill;

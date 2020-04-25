@@ -20,9 +20,9 @@ export const removeSkill = (user_id, skill_id) => {
     };
 };
 
-export const fetchSkills = () => {
+export const fetchSkills = id => {
     return dispatch => {
-        return apiCall('get', '/api/skills')
+        return apiCall('get', `/api/users/${id}/skills/`)
         .then(res => dispatch(loadSkills(res)))
         .catch(e => addAlert(e.message, ERROR));
     };

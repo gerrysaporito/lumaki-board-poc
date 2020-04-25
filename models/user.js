@@ -31,6 +31,15 @@ const UserSchema = new mongoose.Schema({
     gender:{
         type: String,
     },
+    country: {
+        type: String,
+    },
+    state: {
+        type: String,
+    },
+    city: {
+        type: String,
+    },
     experiences: [
         {
             type: mongoose.Schema.Types.ObjectId,
