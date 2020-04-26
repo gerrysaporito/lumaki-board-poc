@@ -22,7 +22,7 @@ exports.createProject = async function(req, res, next) {
 exports.fetchProjects = async function(req, res, next) {
     try {
         let user = await db.User.findById(req.params.id);
-        let projects = await db.Projects.find({
+        let projects = await db.Project.find({
             '_id': {
                 $in: user.projects
             }

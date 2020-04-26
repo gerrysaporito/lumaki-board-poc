@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { authUser } from '../../store/actions/auth';
+import { removeAlert } from '../../store/actions/alerts';
 
 import LOGO from '../../images/LumakiLabs_whitelogo.png';
 import { ERROR } from '../../store/actionTypes';
@@ -77,7 +78,10 @@ class AuthForm extends Component {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        alerts: state.alerts,
+        currentUser: state.currentUser,
+    }
 }
 
-export default connect(mapStateToProps, { authUser })(AuthForm);
+export default connect(mapStateToProps, { authUser, removeAlert })(AuthForm);

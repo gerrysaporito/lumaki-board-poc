@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { removeAlert } from '../store/actions/alerts';
+import Content from '../common/Content';
 import withAuth from '../hocs/WithAuth'
 import Navbar from './Navbar';
 import Homepage from '../components/Homepage';
@@ -15,25 +15,17 @@ import SkillForm from './forms/SkillForm';
 import './css/Main.css';
 
 const Main = props => {
-    const {alerts, removeAlert, currentUser} = props;
+    const {Content} = props;
     return(
         <React.Fragment>
             <Navbar {...props} />
             <div className='main'>
                 <div className='content'>
                     <Switch>
-                        <Route exact path='/login' render={props =>
-                            <AuthForm removeAlert={removeAlert} alerts={alerts} buttonText='Log in' heading='Welcome Back.' {...props} />}
-                        />
-                        <Route exact path='/register' render={props =>
-                            <AuthForm currentUser={currentUser} removeAlert={removeAlert} alerts={alerts} buttonText="Let's go!" heading='Apply for your next internship today.' register {...props} />}
-                        />
-                        <Route exact path='/' render={props =>
-                            <Homepage currentUser={currentUser} {...props} />}
-                        />
-                        <Route exact path='/users/:id' render={props =>
-                            <Profile removeAlert={removeAlert} alerts={alerts} currentUser={currentUser} {...props} />}
-                        />
+                        <Route exact path='/login' render={props => <AuthForm {...Content.login} {...props} />} />
+                        <Route exact path='/register' render={props => <AuthForm {...Content.register} {...props} />} />
+                        <Route exact path='/' render={props => <Homepage {...props} />} />
+                        <Route exact path='/users/:id' render={props => <Profile {...props} />} />
                         <Route path='/users/:id/experiences/new' component={withAuth(ExperienceForm)}/>
                         <Route path='/users/:id/projects/new' component={withAuth(ProjectForm)}/>
                         <Route path='/users/:id/skills/new' component={withAuth(SkillForm)}/>
@@ -46,9 +38,8 @@ const Main = props => {
 
 function mapStateToProps(state) {
     return {
-        currentUser: state.currentUser,
-        alerts: state.alerts,
+        Content: Content,
     }
 }
 
-export default withRouter(connect(mapStateToProps, { removeAlert })(Main));
+export default withRouter(connect(mapStateToProps, {})(Main));

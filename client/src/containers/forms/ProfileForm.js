@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { SUCCESS } from '../../store/actionTypes';
 import { fetchUserProfile, updateUserProfile } from '../../store/actions/auth';
+import { removeAlert } from '../../store/actions/alerts';
 
 import './css/ProfileForm.css';
 
@@ -104,4 +105,4 @@ function mapStateToProps(state) {
     return {}
 }
 
-export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile })(ProfileForm);
+export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile, removeAlert })(ProfileForm);

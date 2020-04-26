@@ -1,4 +1,4 @@
-.experience-list-item {
+.project-list-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,22 +11,19 @@
     border-radius: 10px;
 }
 
-.experience-list-item-area {
+.project-list-item-area {
     display: block;
     position: relative;
     width: 100%;
 }
 
-.experience-list-item p {
-    padding: 2px 0;
+.project-list-item .description {
+    padding: 25px 0 0 0;
     margin: 0;
+    white-space: normal;
 }
 
-.experience-list-item .description {
-    padding-top: 15px;
-}
-
-.experience-list-item .function-tools {
+.project-list-item .function-tools {
     position: absolute;
     top: 0;
     right: 0;

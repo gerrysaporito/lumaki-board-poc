@@ -1,0 +1,27 @@
+.skill-list-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 10px 20px;
+    padding: 15px 20px;
+    background-color: rgb(60,60,60);
+    font-size:12px;
+    border-radius: 10px;
+}
+
+.skill-list-item-area {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.skill-list-item .skill {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.skill-list-item button {
+    display: inline-block;
+}

@@ -23,3 +23,11 @@ button {
     border: none;
     color: white;
 }
+
+.fa-trash-alt {
+    color: rgb(216, 88, 68);
+}
+
+.fa-pencil-alt {
+    color: rgb(190, 188, 42)
+}
