@@ -11,23 +11,9 @@
     text-align: center;
     margin: 0 auto;
     padding: 10% 0;
+    max-width: 300px;
 }
 
 .error {
     padding: 0 10%;
-}
-
-#authform label {
-    text-align: left;
-    width: 100%;
-}
-
-#authform input {
-    background-color: rgba(0,0,0,0);
-    color: white;
-    border: 1px solid #FFFFFF66;
-}
-
-#authform input:focus {
-    background-color: rgba(0,0,0,0);
 }

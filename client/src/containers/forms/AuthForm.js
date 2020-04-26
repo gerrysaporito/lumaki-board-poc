@@ -61,15 +61,15 @@ class AuthForm extends Component {
                     {register && (
                         <div>
                             <label htmlFor='first_name'>First Name:</label>
-                            <input className='form-control' id='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' required />
+                            <input projectid='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' required />
                             <label htmlFor='lastName'>Last Name:</label>
-                            <input className='form-control' id='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' required />
+                            <input projectid='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' required />
                         </div>
                     )}
                     <label htmlFor='email'>Email:</label>
-                    <input className='form-control' id='email' name='email' onChange={this.handleChange} value={email} type='text' required />
+                    <input projectid='email' name='email' onChange={this.handleChange} value={email} type='text' required />
                     <label htmlFor='password'>Password:</label>
-                    <input className='form-control' id='password' onChange={this.handleChange} name='password' type='password' required />
+                    <input projectid='password' onChange={this.handleChange} name='password' type='password' required />
                     <button className='btn lumaki-btn btn-md mt-3' type='submit'>{buttonText}</button>
                 </form>
             </div>

@@ -18,6 +18,15 @@ input, textarea, select {
     font-size: 12px;
 }
 
+label {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
 button {
     background-color: rgba(0,0,0,0);
     border: none;
