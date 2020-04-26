@@ -4,6 +4,7 @@ h3 {
 
 .form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -54,4 +55,9 @@ h3 {
 
 .form textarea {
     min-height: 200px;
+}
+
+.form button.return {
+    text-align: left;
+    transform: translateY(15px);
 }

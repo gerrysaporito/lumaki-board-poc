@@ -20,10 +20,26 @@ export const fetchProjects = id => {
     };
 };
 
+export const getProject = (user_id, project_id) => {
+    return dispatch => {
+        return apiCall('get', `/api/users/${user_id}/projects/${project_id}`)
+        .then(res => res)
+        .catch(e => addAlert(e.message, ERROR));
+    };
+};
+
 export const postNewProject = project => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
     return apiCall('post', `/api/users/${id}/projects/`, {...project})
+    .then(res => {})
+    .catch(e => dispatch(addAlert(e.message, ERROR)));
+};
+
+export const updateProject = (project, project_id) => (dispatch, getState) => {
+    let { currentUser } = getState();
+    const user_id = currentUser.user.id;
+    return apiCall('post', `/api/users/${user_id}/projects/${project_id}`, {...project})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

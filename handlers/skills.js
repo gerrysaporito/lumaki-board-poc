@@ -32,7 +32,7 @@ exports.fetchSkills = async function(req, res, next) {
 
 exports.getSkill = async function(req, res, next) {
     try {
-        let skill = await db.Skill.find(req.params.skill_id);
+        let skill = await db.Skill.findById(req.params.skill_id);
         res.status(200).json(skill);
     } catch(e) {
         return next(e)

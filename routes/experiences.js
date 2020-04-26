@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
-const { createExperience, getExperience, deleteExperience, fetchExperiences } = require('../handlers/experiences');
+const { createExperience, getExperience, deleteExperience, fetchExperiences, updateExperience } = require('../handlers/experiences');
 
 router.route('/')
     .get(fetchExperiences)
@@ -8,6 +8,7 @@ router.route('/')
 
 router.route('/:experience_id')
     .delete(deleteExperience)
+    .post(updateExperience)
     .get(getExperience);
 
 module.exports = router;

@@ -29,21 +29,29 @@ class ExperienceForm extends Component {
         })
     }
 
+    handleBackClick = e => {
+        e.preventDefault();
+        this.props.history.goBack();
+    }
+
     render() {
         return(
             <div className='form'>
-                <form onSubmit={this.handleNewExperience} >
-                    <p>{this.props.Content.forms.skill.note}</p>
-                    <h3>{this.props.Content.forms.skill.title}</h3>
-                    {this.props.alerts === ERROR && this.props.alerts.message && (
-                        <div className='alert alert-danger'>
-                            {this.props.alerts.message}
-                        </div>
-                    )}
-                    <label htmlFor='skill'>Skill:</label>
-                    <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill} type='text' required />
-                    <button className='btn lumaki-btn btn-md mt-3' type='submit'>{this.props.Content.forms.skill.buttonText}</button>
-                </form>
+                <div>
+                    <form onSubmit={this.handleNewExperience} >
+                        <p>{this.props.Content.forms.skill.note}</p>
+                        <h3>{this.props.Content.forms.skill.title}</h3>
+                        {this.props.alerts === ERROR && this.props.alerts.message && (
+                            <div className='alert alert-danger'>
+                                {this.props.alerts.message}
+                            </div>
+                        )}
+                        <label htmlFor='skill'>Skill:</label>
+                        <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill} type='text' required />
+                        <button className='btn lumaki-btn btn-md mt-3' type='submit'>{this.props.Content.forms.skill.buttonText}</button>
+                    </form>
+                    <button onClick={this.handleBackClick} className='return'>Go back</button>
+                </div>
             </div>
         )
     }

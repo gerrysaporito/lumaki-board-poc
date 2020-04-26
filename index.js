@@ -24,7 +24,7 @@ app.use('/api/users/:id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES
 
 // ERROR HANDLER
 app.use(function(req, res, next) {
-    let msg = `Sorry, we can't find the page you're looking for!`;
+    let msg = `Sorry, we can't find the endpoint you're looking for!`;
     let e = new Error(msg);
     e.status = 404;
     next(e);

@@ -35,8 +35,25 @@ exports.fetchProjects = async function(req, res, next) {
 
 exports.getProject = async function(req, res, next) {
     try {
-        let project = await db.Project.find(req.params.project_id);
+        let project = await db.Project.findById(req.params.project_id);
         res.status(200).json(project);
+    } catch(e) {
+        return next(e)
+    }
+};
+
+exports.updateProject = async function(req, res, next) {
+    try {
+        let project = await db.Project.findById(req.params.project_id);
+        res.status(200).json(project);
+        Object.keys(req.body).map(key => {
+            project[key] = req.body[key];
+        });
+        await project.save();
+        res.status(200).json({
+            ...project,
+            token,
+        });
     } catch(e) {
         return next(e)
     }

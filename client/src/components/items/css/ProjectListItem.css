@@ -28,3 +28,7 @@
     top: 0;
     right: 0;
 }
+
+.project-list-item a {
+    background-color: rgba(0,0,0,0) !important;
+}

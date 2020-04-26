@@ -80,10 +80,7 @@ exports.fetchUser = async function(req, res, next) {
             token,
         });
     } catch(e) {
-        return next({
-            status: 400,
-            message:  e.message,
-        });
+        return next(e);
     }
 };
 
@@ -105,9 +102,6 @@ exports.updateUser = async function(req, res, next) {
             token,
         });
     } catch(e) {
-        return next({
-            status: 400,
-            message:  e.message,
-        })
+        return next(e)
     }
 };

@@ -33,7 +33,12 @@ exports.ensureCorrectUser = function(req, res, next) {
             } else {
                 return next({
                     status: 401,
-                    message: 'Unauthorized.'
+                    message: 'Unauthorized.',
+                    // {
+                    //     decoded: decoded,
+                    //     decoded_id: decoded.id,
+                    //     rea: req.params.id
+                    // }
                 });
             }
         })

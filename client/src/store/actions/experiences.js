@@ -20,10 +20,26 @@ export const fetchExperiences = id => {
     };
 };
 
+export const getExperience = (user_id, experience_id) => {
+    return dispatch => {
+        return apiCall('get', `/api/users/${user_id}/experiences/${experience_id}`)
+        .then(res => res)
+        .catch(e => addAlert(e.message, ERROR));
+    };
+};
+
 export const postNewExperience = experience => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
     return apiCall('post', `/api/users/${id}/experiences/`, {...experience})
+    .then(res => {})
+    .catch(e => dispatch(addAlert(e.message, ERROR)));
+};
+
+export const updateExperience = (experience, experience_id) => (dispatch, getState) => {
+    let { currentUser } = getState();
+    const user_id = currentUser.user.id;
+    return apiCall('post', `/api/users/${user_id}/experiences/${experience_id}`, {...experience})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

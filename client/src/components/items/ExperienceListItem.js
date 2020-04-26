@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './css/ExperienceListItem.css';
 
-const ExperienceListItem = ({company, role, description, start_date, end_date, removeExperience, isCorrectUser}) => (
+const ExperienceListItem = ({_id, company, role, description, start_date, end_date, removeExperience, currentUser, isCorrectUser}) => (
     <div className='experience-list-item'>
         <div className='experience-list-item-area'>
             <p><strong>{company}</strong></p>
@@ -12,7 +13,7 @@ const ExperienceListItem = ({company, role, description, start_date, end_date, r
             {isCorrectUser && (
                 <div className='function-tools'>
                     <button onClick={removeExperience}><i className="far fa-trash-alt" /></button>
-                    <button ><i className="fas fa-pencil-alt" /></button>
+                    <Link to={`/users/${currentUser.user.id}/experiences/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
                 </div>
             )}
         </div>

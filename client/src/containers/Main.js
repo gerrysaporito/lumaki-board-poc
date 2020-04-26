@@ -25,10 +25,13 @@ const Main = props => {
                         <Route exact path='/login' render={props => <AuthForm {...Content.login} {...props} />} />
                         <Route exact path='/register' render={props => <AuthForm {...Content.register} {...props} />} />
                         <Route exact path='/' render={props => <Homepage {...props} />} />
-                        <Route exact path='/users/:id' component={withAuth(Profile)} />
-                        <Route path='/users/:id/experiences/new' component={withAuth(ExperienceForm)}/>
-                        <Route path='/users/:id/projects/new' component={withAuth(ProjectForm)}/>
-                        <Route path='/users/:id/skills/new' component={withAuth(SkillForm)}/>
+                        <Route exact path='/users/:user_id' component={withAuth(Profile)} />
+                        <Route path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm)}/>
+                        <Route path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm)}/>
+                        <Route path='/users/:user_id/projects/new' component={withAuth(ProjectForm)}/>
+                        <Route path='/users/:user_id/projects/:project_id/edit' component={withAuth(ProjectForm)}/>
+                        <Route path='/users/:user_id/skills/new' component={withAuth(SkillForm)}/>
+                        <Route path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm)}/>
                     </Switch>
                 </div>
             </div>

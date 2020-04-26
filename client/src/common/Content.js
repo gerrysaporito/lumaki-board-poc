@@ -37,12 +37,18 @@ const Content = {
         experience: {
             note: 'Add details about your experience here. You will be redirected to the previous page with your experience(s) populated.',
             title: 'EXPERIENCE',
-            buttonText: 'Add Experience',
+            buttonText: {
+                create: 'Add Experience',
+                edit: 'Update Experience',
+            },
         },
         project: {
             note: 'Add details about your project here. You will be redirected to the previous page with your project(s) populated.',
             title: 'PROJECT',
-            buttonText: 'Add Project',
+            buttonText: {
+                create: 'Add Project',
+                edit: 'Update Project',
+            },
         },
         skill: {
             note: 'Add details about your skill here. You will be redirected to the previous page with your skill(s) populated.',
