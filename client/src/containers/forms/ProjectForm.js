@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { ERROR } from '../../store/actionTypes';
 
 import { postNewProject } from '../../store/actions/projects';
+import Content from '../../common/Content';
 import './css/Form.css'
 
 class ExperienceForm extends Component {
@@ -32,8 +33,8 @@ class ExperienceForm extends Component {
         return(
             <div className='form'>
                 <form onSubmit={this.handleNewExperience} >
-                    <p>Add details about your project here. You will be redirected to the previous page with your project(s) populated.</p>
-                    <h3>PROJECT</h3>
+                    <p>{this.props.Content.forms.project.note}</p>
+                    <h3>{this.props.Content.forms.project.title}</h3>
                     {this.props.alerts === ERROR && this.props.alerts.message && (
                         <div className='alert alert-danger'>
                             {this.props.alerts.message}
@@ -41,7 +42,7 @@ class ExperienceForm extends Component {
                     )}
                     <label htmlFor='description'>Description:</label>
                     <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description} required />
-                    <button className='btn lumaki-btn btn-md mt-3' type='submit'>Add Project</button>
+                    <button className='btn lumaki-btn btn-md mt-3' type='submit'>{this.props.Content.forms.project.buttonText}</button>
                 </form>
             </div>
         )
@@ -50,7 +51,8 @@ class ExperienceForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        alerts: state.alerts
+        alerts: state.alerts,
+        Content: Content,
     }
 }
 
