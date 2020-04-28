@@ -38,6 +38,7 @@ exports.signup = async function(req, res, next) {
             program: '',
             graduation_year: '2000-01-02',
             gender:'',
+            role: 'superadmin',
         });
         let { id } = user;
         let token = jwt.sign({
@@ -58,14 +59,17 @@ exports.signup = async function(req, res, next) {
     }
 };
 
-exports.fetchUser = async function(req, res, next) {
+exports.fetchUser = async (req, res, next) => {
     try {
         let user = await db.User.findById(req.params.id);
         let { id } = user;
         let token = jwt.sign({
             id,
         }, process.env.SECRET_KEY);
+        // copyUser = JSON.parse(JSON.stringify(user));
+        // delete copyUser.password;
         return res.status(200).json({
+            // ...copyUser,
             id: user._id,
             first_name: user.first_name,
             last_name: user.last_name,

@@ -67,7 +67,13 @@ class ProfileForm extends Component {
                 <input id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
                 <label htmlFor='graduation_year'>Graduation Year *:</label>
                 <input id='graduation_year' name='graduation_year' onChange={this.handleChange} value={graduation_year} type='date' required />
-                <label htmlFor='gender'>Gender *:</label>
+                <label htmlFor='country'>Country*:</label>
+                <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
+                <label htmlFor='state'>State:</label>
+                <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
+                <label htmlFor='city'>City:</label>
+                <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
+                <label htmlFor='gender'>Gender:</label>
                 <select id="gender" name='gender' onChange={this.handleChange} value={gender} required >
                     <option disabled value=''>--Please choose an option--</option>
                     <option value="female">Female</option>
@@ -75,12 +81,6 @@ class ProfileForm extends Component {
                     <option value="other">Other</option>
                     <option value="not_specified">Prefer not to specify</option>
                 </select>
-                <label htmlFor='country'>Country *:</label>
-                <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
-                <label htmlFor='state'>State *:</label>
-                <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
-                <label htmlFor='city'>City *:</label>
-                <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
                 <button className='btn lumaki-btn btn-md mt-3' type='submit'>Save</button>
             </form>
         )

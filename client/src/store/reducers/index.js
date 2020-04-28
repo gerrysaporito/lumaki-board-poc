@@ -4,6 +4,7 @@ import alerts from './alerts';
 import experiences from './experiences';
 import projects from './projects';
 import skills from './skills';
+import jobs from './jobs';
 
 const rootReducer = combineReducers ({
     currentUser,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers ({
     experiences,
     projects,
     skills,
+    jobs
 });
 
 export default rootReducer;

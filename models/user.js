@@ -40,6 +40,11 @@ const UserSchema = new mongoose.Schema({
     city: {
         type: String,
     },
+    role: {
+        type: String,
+        enum: ['user', 'admin', 'superadmin'],
+        required: true,
+    },
     experiences: [
         {
             type: mongoose.Schema.Types.ObjectId,

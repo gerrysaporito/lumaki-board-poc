@@ -34,6 +34,14 @@ const Content = {
         },
     },
     forms: {
+        job: {
+            note: 'Add details about the job here. You will be redirected to the previous page with the job(s) populated.',
+            title: 'JOB',
+            buttonText: {
+                create: 'Add Job',
+                edit: 'Update Job',
+            },
+        },
         experience: {
             note: 'Add details about your experience here. You will be redirected to the previous page with your experience(s) populated.',
             title: 'EXPERIENCE',

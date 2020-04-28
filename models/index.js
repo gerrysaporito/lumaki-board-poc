@@ -13,3 +13,4 @@ module.exports.User = require('./user');
 module.exports.Experience = require('./experience');
 module.exports.Project = require('./project');
 module.exports.Skill = require('./skill');
+module.exports.Job = require('./job');

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const db = require('../models');
 
 // Authentication
 exports.loginRequired = function(req, res, next) {
@@ -49,3 +50,71 @@ exports.ensureCorrectUser = function(req, res, next) {
         });
     }
 };
+
+// Admin
+exports.checkAdminRole = async function(req, res, next) {
+    try {
+        let token = req.headers.authorization.split(' ')[1];
+        jwt.verify(token, process.env.SECRET_KEY, function(e, decoded) {
+            if(decoded && decoded.id === req.params.id) {
+                getUserById(req.params.id)
+                .then(user => {
+                    if(user.role === 'admin' || user.role === 'superadmin') {
+                        return next();
+                    } else {
+                        return next({
+                            status: 401,
+                            message: 'Unauthorized',
+                        });
+                    }
+                })
+            } else {
+                return next({
+                    status: 401,
+                    message: 'Unauthorized.',
+                });
+            }
+        })
+    } catch(e) {
+        return next({
+            status: 401,
+            message: e.message
+        });
+    }
+};
+
+// Super Admin
+exports.checkSuperAdminRole = function(req, res, next) {
+    try {
+        let token = req.headers.authorization.split(' ')[1];
+        jwt.verify(token, process.env.SECRET_KEY, function(e, decoded) {
+            if(decoded && decoded.id === req.params.id) {
+                getUserById(req.params.id)
+                .then(user => {
+                    if(user.role === 'admin' || user.role === 'superadmin') {
+                        return next();
+                    } else {
+                        return next({
+                            status: 401,
+                            message: 'Unauthorized.',
+                        });
+                    }
+                })
+            } else {
+                return next({
+                    status: 401,
+                    message: 'Unauthorized.',
+                });
+            }
+        })
+    } catch(e) {
+        return next({
+            status: 401,
+            message: 'Unauthorized.'
+        });
+    }
+};
+
+const getUserById = async function(id){
+    return user = await db.User.findById(id);
+}
