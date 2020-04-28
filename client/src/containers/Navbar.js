@@ -30,7 +30,7 @@ class Navbar extends Component {
                 <div className='collapse navbar-collapse flex-column justify-content-between' id='navbarNav'>
                     <ul className='nav flex-column'>
                         <li className='nav-item'>
-                            <NavLink to={`/jobs/all`}  activeClassName='active-link'>
+                            <NavLink to={`/jobs`}  activeClassName='active-link'>
                                 All Postings
                             </NavLink>
                         </li>
@@ -51,9 +51,6 @@ class Navbar extends Component {
                             (<React.Fragment>
                                 <li className='nav-item'>
                                     <NavLink to={'/about'}  activeClassName='active-link'>About</NavLink>
-                                </li>
-                                <li className='nav-item'>
-                                    <NavLink to={'/faq'}  activeClassName='active-link'>FAQ</NavLink>
                                 </li>
                                 <li className='nav-item'>
                                     <NavLink to='/register' activeClassName='active-link'>Sign Up</NavLink>

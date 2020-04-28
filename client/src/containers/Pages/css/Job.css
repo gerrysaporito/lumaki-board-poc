@@ -1,0 +1,75 @@
+#job-container {
+    padding: 50px 0 10px 0;
+    width: 100%;
+    height: 100%;
+}
+
+.job {
+    padding: 0 25px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.job img {
+    width: 100px;
+}
+
+.job .tile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    background-color: rgb(75,75,75);
+    border-radius: 20px;
+    padding: 30px 50px;
+    width: 100%;
+    margin: 25px 0;
+}
+
+.job .industry-color-bar {
+    position: absolute;
+    left: 0 !important;
+    bottom: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    left: 50%;
+    width: 10px;
+}
+
+.job .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    font-weight: lighter;
+}
+
+.job p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.job .position {
+    font-size: 40px;
+}
+
+.job .company {
+    font-size: 20px;
+}
+
+.job .location {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 20px
+}
+
+.job .duration {
+    font-size: 16px;
+}
+
+.job .description .title {
+    font-size: 16px;
+    margin-top: 40px;
+}

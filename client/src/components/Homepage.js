@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Content from '../common/Content';
+import { Content } from '../common/Content';
 import './css/Homepage.css';
 
 const Homepage = props => {

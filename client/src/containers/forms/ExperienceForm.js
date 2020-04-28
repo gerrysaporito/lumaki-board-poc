@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ERROR } from '../../store/actionTypes';
 
 import { postNewExperience, getExperience, updateExperience } from '../../store/actions/experiences';
-import Content from '../../common/Content';
+import { Content } from '../../common/Content';
 import './css/Form.css'
 
 class ExperienceForm extends Component {

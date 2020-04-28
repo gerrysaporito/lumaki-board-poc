@@ -12,7 +12,7 @@ const rootReducer = combineReducers ({
     experiences,
     projects,
     skills,
-    jobs
+    jobs,
 });
 
 export default rootReducer;

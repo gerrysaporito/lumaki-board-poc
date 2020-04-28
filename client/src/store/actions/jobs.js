@@ -12,17 +12,17 @@ export const remove = id => ({
     id
 });
 
-export const fetchJobs = id => {
+export const fetchJobs = (search) => {
     return dispatch => {
-        return apiCall('get', `/api/users/${id}/jobs/`)
+        return apiCall('post', `/api/jobs/search`, {...search})
         .then(res => dispatch(loadJobs(res)))
         .catch(e => addAlert(e.message, ERROR));
     };
 };
 
-export const getJob = (user_id, job_id) => {
+export const getJob = (job_id) => {
     return dispatch => {
-        return apiCall('get', `/api/users/${user_id}/jobs/${job_id}`)
+        return apiCall('get', `/api/jobs/${job_id}`)
         .then(res => res)
         .catch(e => addAlert(e.message, ERROR));
     };
@@ -30,9 +30,8 @@ export const getJob = (user_id, job_id) => {
 
 export const postNewJob = job => (dispatch, getState) => {
     let { currentUser } = getState();
-    const id = currentUser.user.id;
-    console.log('POSTNEWJOB')
-    return apiCall('post', `/api/users/${id}/jobs/`, {...job})
+    const user_id = currentUser.user.id;
+    return apiCall('post', `/api/users/${user_id}/jobs/`, {...job})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

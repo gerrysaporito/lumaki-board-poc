@@ -1,4 +1,4 @@
-const Content = {
+export const Content = {
     login: {
         buttonText: 'Log in',
         heading: 'Welcome Back.'
@@ -63,7 +63,11 @@ const Content = {
             title: 'SKILL',
             buttonText: 'Add Skill',
         },
+    },
+    job: {
+        title: {
+            second: 'Your Role At ',
+            third: 'Skills/Requirements',
+        },
     }
 }
-
-export default Content;

@@ -1,0 +1,25 @@
+#jobs-filter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: rgb(61,61,61);
+    border-radius: 15px;
+    padding: 5px 15px;
+}
+
+#jobs-filter label,
+.filter {
+    display: inline-flex;
+    flex-direction: row;
+    padding-right: 10px;
+}
+
+#jobs-filter input,
+#jobs-filter select {
+    background-color: rgba(196,196,196, 0.3);
+    color: white;
+    display: inline-block;
+    width: auto;
+    border-radius: 20px;
+    padding: 3px 10px
+}

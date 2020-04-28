@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { ERROR } from '../../store/actionTypes';
 
 import { postNewJob, getJob, updateJob } from '../../store/actions/jobs';
-import Content from '../../common/Content';
+import { Content } from '../../common/Content';
+import { IndustryValues } from '../../common/Definitions';
 import './css/Form.css'
 
 class JobForm extends Component {
@@ -30,7 +31,7 @@ class JobForm extends Component {
         if(this.props.location.pathname.split('/').pop() === 'edit') {
             const user_id = this.props.match.params.user_id;
             const job_id = this.props.match.params.job_id;
-            this.props.getJob(user_id, job_id)
+            this.props.getJob(job_id)
             .then(job => this.setState({
                 ...job,
                 start_date: formatDate(job.start_date),
@@ -63,7 +64,7 @@ class JobForm extends Component {
             requirements: [],
             compensation: [],
         });
-        // this.props.history.goBack();
+        this.props.history.goBack()
     };
 
     handleChange = e => {
@@ -112,7 +113,10 @@ class JobForm extends Component {
                             </div>
                             <div className='form-section-item'>
                                 <label htmlFor='industry'>Industry:</label>
-                                <input id='industry' name='industry' onChange={this.handleChange} value={this.state.industry} type='text' required />
+                                <select id='industry' name='industry' onChange={this.handleChange} value={this.state.industry} required >
+                                    <option disabled value=''>--Please choose an option--</option>
+                                    {Object.values(IndustryValues).map((industry, i) => (<option key={i} value={industry}>{industry}</option>))}
+                                </select>
                             </div>
                         </div>
                         <div className='form-section mt-2'>

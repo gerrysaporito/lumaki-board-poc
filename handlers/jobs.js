@@ -4,7 +4,6 @@ exports.createJob = async function(req, res, next) {
     try {
         let job = await db.Job.create({
             ...req.body,
-            user: req.params.id,
         });
         let foundUser = await db.User.findById(req.params.id);
         foundUser.jobs.push(job.id);
@@ -18,12 +17,7 @@ exports.createJob = async function(req, res, next) {
 
 exports.fetchJobs = async function(req, res, next) {
     try {
-        let user = await db.User.findById(req.params.id);
-        let jobs = await db.Job.find({
-            '_id': {
-                $in: user.jobs
-            }
-        });
+        let jobs = await db.Job.find({...req.body});
         res.status(200).json(jobs);
     } catch(e) {
         return next(e);
