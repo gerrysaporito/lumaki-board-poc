@@ -22,53 +22,17 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['user', 'admin', 'superadmin'],
+        default: 'user',
+    },
+    profile: {
+        type: mongoose.Schema.Types.ObjectId,
+        refPath: 'profile_type',
+    },
+    profile_type: {
+        type: String,
         required: true,
+        enum: ['student_profile']
     },
-    school: {
-        type: String,
-    },
-    program: {
-        type: String,
-    },
-    graduation_year: {
-        type: Date,
-    },
-    gender:{
-        type: String,
-    },
-    country: {
-        type: String,
-    },
-    state: {
-        type: String,
-    },
-    city: {
-        type: String,
-    },
-    experiences: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Experience',
-        }
-    ],
-    projects: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Project',
-        }
-    ],
-    skills: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Skill',
-        }
-    ],
-    jobs: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Profile',
-        }
-    ]
 });
 
 UserSchema.pre('save', async function(next) {
@@ -94,6 +58,6 @@ UserSchema.methods.comparePassword = async function(candidatePassword, next) {
     }
 };
 
-const User = mongoose.model('User', UserSchema);
+const user = mongoose.model('user', UserSchema);
 
-module.exports = User;
+module.exports = user;

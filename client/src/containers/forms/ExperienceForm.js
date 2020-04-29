@@ -91,7 +91,7 @@ class ExperienceForm extends Component {
                         </div>
                         <label htmlFor='description'>Description:</label>
                         <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description} required />
-                        <button className='btn lumaki-btn btn-md mt-3' type='submit'>{buttonText}</button>
+                        <button className='lumaki-btn ' type='submit'>{buttonText}</button>
                     </form>
                     <button onClick={this.handleBackClick} className='return'>Go back</button>
                 </div>

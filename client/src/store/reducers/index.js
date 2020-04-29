@@ -5,6 +5,7 @@ import experiences from './experiences';
 import projects from './projects';
 import skills from './skills';
 import jobs from './jobs';
+import profile from './profiles';
 
 const rootReducer = combineReducers ({
     currentUser,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers ({
     projects,
     skills,
     jobs,
+    profile,
 });
 
 export default rootReducer;

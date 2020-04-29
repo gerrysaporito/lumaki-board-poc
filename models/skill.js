@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./user');
+const db = require('./index');
 
 const SkillSchema = new mongoose.Schema({
     skill: {
@@ -9,20 +9,21 @@ const SkillSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
     },
 }, {timestamp: true});
 
 SkillSchema.pre('remove', async function(next) {
     try {
-        let user = await User.findById(this.user);
-        user.skills.remove(this.id);
-        await user.save();
+        let user = await db.user.findById(this.user);
+        let profile = await db[user.profile_type].findById(user.profile);
+        profile.skills.remove(this.id);
+        await profile.save();
         return next();
     } catch(e) {
         next(e.message);
     }
 });
 
-const Skill = mongoose.model('Skill', SkillSchema);
+const Skill = mongoose.model('skill', SkillSchema);
 module.exports = Skill;

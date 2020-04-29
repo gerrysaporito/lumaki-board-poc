@@ -29,7 +29,7 @@ class AuthForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const authType = this.props.register ? 'register' : 'login';
-        this.props.authUser(authType, this.state)
+        this.props.authUser(authType, {...this.state, profile_type: 'student_profile'})
         .then(res => {
             this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user._id}`: '/jobs');
         })
@@ -69,7 +69,7 @@ class AuthForm extends Component {
                     <input projectid='email' name='email' onChange={this.handleChange} value={email} type='text' required />
                     <label htmlFor='password'>Password:</label>
                     <input projectid='password' onChange={this.handleChange} name='password' type='password' required />
-                    <button className='btn lumaki-btn btn-md mt-3' type='submit'>{buttonText}</button>
+                    <button className='lumaki-btn' type='submit'>{buttonText}</button>
                 </form>
             </div>
         )

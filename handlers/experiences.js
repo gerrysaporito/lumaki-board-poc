@@ -2,14 +2,15 @@ const db = require('../models');
 
 exports.createExperience = async function(req, res, next) {
     try {
-        let experience = await db.Experience.create({
+        let experience = await db.experience.create({
             ...req.body,
             user: req.params._id,
         });
-        let foundUser = await db.User.findById(req.params._id);
-        foundUser.experiences.push(experience.id);
-        await foundUser.save();
-        let foundExperience = await db.Experience.findById(experience._id);
+        let user = await db.user.findById(req.params._id);
+        let profile = await db[user.profile_type].findById(user.profile);
+        profile.experiences.push(experience.id);
+        await profile.save();
+        let foundExperience = await db.experience.findById(experience._id);
         return res.status(200).json(foundExperience);
     } catch(e) {
         return next(e)
@@ -18,10 +19,11 @@ exports.createExperience = async function(req, res, next) {
 
 exports.fetchExperiences = async function(req, res, next) {
     try {
-        let user = await db.User.findById(req.params._id);
-        let experiences = await db.Experience.find({
+        let user = await db.user.findById(req.params._id);
+        let profile = await db[user.profile_type].findById(user.profile);
+        let experiences = await db.experience.find({
             '_id': {
-                $in: user.experiences
+                $in: profile.experiences
             }
         });
         res.status(200).json(experiences);
@@ -32,7 +34,7 @@ exports.fetchExperiences = async function(req, res, next) {
 
 exports.getExperience = async function(req, res, next) {
     try {
-        let experience = await db.Experience.findById(req.params.experience_id);
+        let experience = await db.experience.findById(req.params.experience_id);
         res.status(200).json(experience);
     } catch(e) {
         return next(e)
@@ -41,7 +43,7 @@ exports.getExperience = async function(req, res, next) {
 
 exports.updateExperience = async function(req, res, next) {
     try {
-        let experience = await db.Experience.findById(req.params.experience_id);
+        let experience = await db.experience.findById(req.params.experience_id);
         res.status(200).json(experience);
         Object.keys(req.body).map(key => {
             experience[key] = req.body[key];
@@ -58,7 +60,7 @@ exports.updateExperience = async function(req, res, next) {
 
 exports.deleteExperience = async function(req, res, next) {
     try {
-        let foundExperience = await db.Experience.findById(req.params.experience_id);
+        let foundExperience = await db.experience.findById(req.params.experience_id);
         await foundExperience.remove();
         res.status(200).json(foundExperience);
     } catch(e) {

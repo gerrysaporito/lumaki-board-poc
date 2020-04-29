@@ -6,6 +6,7 @@ export const SUCCESS = 'SUCCESS';
 export const ADD_ALERT = 'ADD_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 // Profile
+export const SET_PROFILE = 'SET_PROFILE';
 export const LOAD_PROFILE = 'LOAD_PROFILE';
 export const REMOVE_PROFILE = 'REMOVE_PROFILE';
 // Experiences

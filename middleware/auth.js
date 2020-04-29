@@ -116,5 +116,5 @@ exports.checkSuperAdminRole = function(req, res, next) {
 };
 
 const getUserById = async function(id){
-    return user = await db.User.findById(id);
+    return user = await db.user.findById(id);
 }

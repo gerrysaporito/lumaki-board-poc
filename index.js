@@ -13,6 +13,7 @@ const PROJECTS_ROUTES = require('./routes/projects');
 const SKILLS_ROUTES = require('./routes/skills');
 const JOBS_ROUTES = require('./routes/jobs');
 const UNAUTH_ROUTES = require('./routes/unauth');
+const PROFILE_ROUTES = require('./routes/profiles');
 const app = express();
 
 app.use(cors());
@@ -24,6 +25,7 @@ app.use('/api/jobs', UNAUTH_ROUTES);
 app.use('/api/users/:_id/experiences', loginRequired, ensureCorrectUser, EXPERIENCES_ROUTES);
 app.use('/api/users/:_id/projects', loginRequired, ensureCorrectUser, PROJECTS_ROUTES);
 app.use('/api/users/:_id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES);
+app.use('/api/users/:_id/profiles', loginRequired, ensureCorrectUser, PROFILE_ROUTES);
 app.use('/api/users/:_id/jobs', loginRequired, ensureCorrectUser, checkAdminRole, JOBS_ROUTES);
 
 // ERROR HANDLER

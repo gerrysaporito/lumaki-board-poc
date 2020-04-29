@@ -2,14 +2,15 @@ const db = require('../models');
 
 exports.createProject = async function(req, res, next) {
     try {
-        let project = await db.Project.create({
+        let project = await db.project.create({
             ...req.body,
             user: req.params._id,
         });
-        let foundUser = await db.User.findById(req.params._id);
-        foundUser.projects.push(project.id);
-        await foundUser.save();
-        let foundProject = await db.Project.findById(project._id)
+        let user = await db.user.findById(req.params._id);
+        let profile = await db[user.profile_type].findById(user.profile);
+        profile.projects.push(project.id);
+        await profile.save();
+        let foundProject = await db.project.findById(project._id)
         return res.status(200).json(foundProject);
     } catch(e) {
         return next({
@@ -21,10 +22,11 @@ exports.createProject = async function(req, res, next) {
 
 exports.fetchProjects = async function(req, res, next) {
     try {
-        let user = await db.User.findById(req.params._id);
-        let projects = await db.Project.find({
+        let user = await db.user.findById(req.params._id);
+        let profile = await db[user.profile_type].findById(user.profile);
+        let projects = await db.project.find({
             '_id': {
-                $in: user.projects
+                $in: profile.projects
             }
         });
         res.status(200).json(projects);
@@ -35,7 +37,7 @@ exports.fetchProjects = async function(req, res, next) {
 
 exports.getProject = async function(req, res, next) {
     try {
-        let project = await db.Project.findById(req.params.project_id);
+        let project = await db.project.findById(req.params.project_id);
         res.status(200).json(project);
     } catch(e) {
         return next(e)
@@ -44,7 +46,7 @@ exports.getProject = async function(req, res, next) {
 
 exports.updateProject = async function(req, res, next) {
     try {
-        let project = await db.Project.findById(req.params.project_id);
+        let project = await db.project.findById(req.params.project_id);
         res.status(200).json(project);
         Object.keys(req.body).map(key => {
             project[key] = req.body[key];
@@ -61,7 +63,7 @@ exports.updateProject = async function(req, res, next) {
 
 exports.deleteProject = async function(req, res, next) {
     try {
-        let foundProject = await db.Project.findById(req.params.project_id);
+        let foundProject = await db.project.findById(req.params.project_id);
         await foundProject.remove();
         res.status(200).json(foundProject);
     } catch(e) {

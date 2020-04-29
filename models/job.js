@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./user');
+const db = require('./index');
 
 const JobSchema = new mongoose.Schema({
     company: {
@@ -63,20 +63,21 @@ const JobSchema = new mongoose.Schema({
     ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
     },
 }, {timestamp: true});
 
 JobSchema.pre('remove', async function(next) {
     try {
-        let user = await User.findById(this.user);
-        user.jobs.remove(this.id);
-        await user.save();
+        let user = await db.user.findById(this.user);
+        let profile = await db[user.profile_type].findById(user.profile);
+        profile.jobs.remove(this.id);
+        await profile.save();
         return next();
     } catch(e) {
         next(e.message);
     }
 });
 
-const Job = mongoose.model('Job', JobSchema);
+const Job = mongoose.model('job', JobSchema);
 module.exports = Job;

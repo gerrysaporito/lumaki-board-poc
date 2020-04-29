@@ -9,9 +9,9 @@ mongoose.connect(DB_CONNECTION, {
     useUnifiedTopology: true,
 });
 
-module.exports.User = require('./user');
-module.exports.StudentProfile = require('./studentProfile');
-module.exports.Experience = require('./experience');
-module.exports.Project = require('./project');
-module.exports.Skill = require('./skill');
-module.exports.Job = require('./job');
+module.exports.user = require('./user');
+module.exports.student_profile = require('./studentProfile');
+module.exports.experience = require('./experience');
+module.exports.project = require('./project');
+module.exports.skill = require('./skill');
+module.exports.job = require('./job');

@@ -39,24 +39,3 @@ export function authUser(type, userData) {
         });
     };
 };
-
-export const fetchUserProfile = user_id => {
-    return dispatch => {
-        return apiCall('get', `/api/auth/users/${user_id}`)
-        .then(res => {
-            dispatch(setCurrentUser({...res}))
-        })
-        .catch(err => addAlert(err.message, ERROR));
-    };
-};
-
-export const updateUserProfile = profile => (dispatch, getState) => {
-    let { currentUser } = getState();
-    const _id = currentUser.user._id;
-    return apiCall('post', `/api/auth/users/${_id}`, {...profile})
-    .then(res => {
-        let msg = 'Success! We just updated your profile for you.';
-        dispatch(addAlert(msg, SUCCESS));
-    })
-    .catch(err => dispatch(addAlert(err.message, ERROR)));
-};

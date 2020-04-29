@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+import { Content } from '../../common/Content';
 import { SUCCESS } from '../../store/actionTypes';
-import { fetchUserProfile, updateUserProfile } from '../../store/actions/auth';
+import { getProfile, updateProfile } from '../../store/actions/profiles';
 import { removeAlert } from '../../store/actions/alerts';
+
+import ExperienceList from '../lists/ExperienceList';
+import ProjectList from '../lists/ProjectList';
+import SkillList from '../lists/SkillList';
 
 import './css/ProfileForm.css';
 
@@ -13,7 +19,7 @@ class ProfileForm extends Component {
         this.state = {
             school: '',
             program: '',
-            graduation_year: '',
+            graduation_date: '',
             gender: '',
             country: '',
             state: '',
@@ -22,15 +28,15 @@ class ProfileForm extends Component {
     }
 
     componentDidMount(){
-        this.props.fetchUserProfile(this.props.currentUser.user._id)
+        this.props.getProfile(this.props.currentUser.user._id)
         .then(() => this.setState({
-            school: this.props.currentUser.user.school || '',
-            program: this.props.currentUser.user.program || '',
-            graduation_year: formatDate(this.props.currentUser.user.graduation_year) || '',
-            gender: this.props.currentUser.user.gender || '',
-            country: this.props.currentUser.user.country || '',
-            state: this.props.currentUser.user.state || '',
-            city: this.props.currentUser.user.city || '',
+            school: this.props.profile.school || '',
+            program: this.props.profile.program || '',
+            graduation_date: formatDate(this.props.profile.graduation_date) || '',
+            gender: this.props.profile.gender || '',
+            country: this.props.profile.country || '',
+            state: this.props.profile.state || '',
+            city: this.props.profile.city || '',
         }))
         .catch(() => {});
     }
@@ -43,7 +49,7 @@ class ProfileForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.updateUserProfile({...this.state})
+        this.props.updateProfile({...this.state})
         .then(() => {})
         .catch(() => {
             return;
@@ -51,37 +57,62 @@ class ProfileForm extends Component {
     }
 
     render() {
-        const {school, program, graduation_year, gender, country, state, city} = this.state;
-        const {alerts, history, removeAlert} = this.props;
+        const {school, program, graduation_date, gender, country, state, city} = this.state;
+        const {alerts, history, removeAlert, currentUser} = this.props;
         history.listen(() => {
             removeAlert();
         });
         return(
             <form onSubmit={this.handleSubmit} id='profileform'>
-                {alerts.alert === SUCCESS && alerts.message && (
-                    <div className='alert alert-success'>{alerts.message}</div>
-                )}
-                <label htmlFor='school'>School *:</label>
-                <input id='school' name='school' onChange={this.handleChange} value={school} type='text' required />
-                <label htmlFor='program'>Program *:</label>
-                <input id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
-                <label htmlFor='graduation_year'>Approximate Graduation Date *:</label>
-                <input id='graduation_year' name='graduation_year' onChange={this.handleChange} value={graduation_year} type='date' required />
-                <label htmlFor='country'>Country*:</label>
-                <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
-                <label htmlFor='state'>State:</label>
-                <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
-                <label htmlFor='city'>City:</label>
-                <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
-                <label htmlFor='gender'>Gender:</label>
-                <select id="gender" name='gender' onChange={this.handleChange} value={gender} required >
-                    <option disabled value=''>--Please choose an option--</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
-                    <option value="not_specified">Prefer not to specify</option>
-                </select>
-                <button className='btn lumaki-btn btn-md mt-3' type='submit'>Save</button>
+                <div className='form'>
+                    {alerts.alert === SUCCESS && alerts.message && (
+                        <div className='alert alert-success'>{alerts.message}</div>
+                    )}
+                    {/* Form */}
+                    <label htmlFor='school'>School *:</label>
+                    <input id='school' name='school' onChange={this.handleChange} value={school} type='text' required />
+                    <label htmlFor='program'>Program *:</label>
+                    <input id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
+                    <label htmlFor='graduation_date'>Approximate Graduation Date *:</label>
+                    <input id='graduation_date' name='graduation_date' onChange={this.handleChange} value={graduation_date} type='date' required />
+                    <label htmlFor='country'>Country*:</label>
+                    <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
+                    <label htmlFor='state'>State:</label>
+                    <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
+                    <label htmlFor='city'>City:</label>
+                    <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
+                    <label htmlFor='gender'>Gender:</label>
+                    <select id="gender" name='gender' onChange={this.handleChange} value={gender} required >
+                        <option disabled value=''>--Please choose an option--</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="not_specified">Prefer not to specify</option>
+                    </select>
+                </div>
+
+                {/* Lists */}
+                <div className='hr' />
+                <div className='section'>
+                    <h5>{Content.profile.experiences.title}</h5>
+                    <Link to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.experiences.buttonText}</Link>
+                    <ExperienceList />
+                </div>
+                <div className='hr' />
+                <div className='section'>
+                    <h5>{Content.profile.projects.title}</h5>
+                    <Link to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.projects.buttonText}</Link>
+                    <ProjectList />
+                </div>
+                <div className='hr' />
+                <div className='section'>
+                    <h5>{Content.profile.skills.title}</h5>
+                    <Link to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.skills.buttonText}</Link>
+                    <SkillList />
+                </div>
+
+                {/* Save Button */}
+                <button className='lumaki-btn' type='submit'>Save</button>
             </form>
         )
     }
@@ -102,7 +133,12 @@ function formatDate(date) {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        Content: Content,
+        alerts: state.alerts,
+        profile: state.profile,
+        currentUser: state.currentUser,
+    }
 }
 
-export default connect(mapStateToProps, { fetchUserProfile, updateUserProfile, removeAlert })(ProfileForm);
+export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(ProfileForm);

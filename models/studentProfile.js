@@ -1,77 +1,61 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const db = require('./index');
 
 const StudentProfileSchema = new mongoose.Schema({
     school: {
         type: String,
+        default: '',
     },
     program: {
         type: String,
+        default: '',
     },
-    graduation_year: {
+    graduation_date: {
         type: Date,
+        default: new Date('2000 01 01'),
     },
     gender:{
         type: String,
+        default: '',
     },
     country: {
         type: String,
+        default: '',
     },
     state: {
         type: String,
+        default: '',
     },
     city: {
         type: String,
+        default: '',
     },
     experiences: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Experience',
+            ref: 'experience',
         }
     ],
     projects: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Project',
+            ref: 'project',
         }
     ],
     skills: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Skill',
+            ref: 'skill',
         }
     ],
     jobs: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Job',
+            ref: 'job',
         }
-    ]
+    ],
 });
 
-StudentProfileSchema.pre('save', async function(next) {
-    try {
-        if(!this.isModified('password')) {
-            return next();
-        }
+const student_profile = mongoose.model('student_profile', StudentProfileSchema);
 
-        let hashedPassword = await bcrypt.hash(this.password, 12);
-        this.password = hashedPassword;
-        return next();
-    } catch(e) {
-        return next(e);
-    }
-});
-
-StudentProfileSchema.methods.comparePassword = async function(candidatePassword, next) {
-    try {
-        let isMatch = await bcrypt.compare(candidatePassword, this.password);
-        return isMatch;
-    } catch(e) {
-        return next(e);
-    }
-};
-
-const StudentProfile = mongoose.model('StudentProfile', StudentProfileSchema);
-
-module.exports = StudentProfile;
+module.exports = student_profile;

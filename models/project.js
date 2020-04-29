@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./user');
+const db = require('./index');
 
 const ProjectSchema = new mongoose.Schema({
     description: {
@@ -8,20 +8,21 @@ const ProjectSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
     },
 }, {timestamp: true});
 
 ProjectSchema.pre('remove', async function(next) {
     try {
-        let user = await User.findById(this.user);
-        user.projects.remove(this.id);
-        await user.save();
+        let user = await db.user.findById(this.user);
+        let profile = await db[user.profile_type].findById(user.profile);
+        profile.projects.remove(this.id);
+        await profile.save();
         return next();
     } catch(e) {
         next(e.message);
     }
 });
 
-const Project = mongoose.model('Project', ProjectSchema);
+const Project = mongoose.model('project', ProjectSchema);
 module.exports = Project;

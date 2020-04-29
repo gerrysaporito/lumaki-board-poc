@@ -3,17 +3,23 @@ const jwt = require('jsonwebtoken');
 
 exports.signin = async function(req, res, next) {
     try {
-        let user = await db.User.findOne({
+        let user = await db.user.findOne({
             email: req.body.email
         });
-        let { _id, role } = user;
+        let { _id, role, profile_type, first_name } = user;
         let isMatch = await user.comparePassword(req.body.password);
         if(isMatch) {
             let token = jwt.sign({
                 _id,
+                first_name,
+                role,
+                profile_type,
             }, process.env.SECRET_KEY);
             return res.status(200).json({
                 _id,
+                first_name,
+                role,
+                profile_type,
                 token,
             });
         } else {
@@ -32,21 +38,25 @@ exports.signin = async function(req, res, next) {
 
 exports.signup = async function(req, res, next) {
     try {
-        let user = await db.User.create({
+        let profile = await db[req.body.profile_type].create({});
+        let user = await db.user.create({
             ...req.body,
-            school: '',
-            program: '',
-            graduation_year: '2000-01-02',
-            gender:'',
+            profile: profile._id,
+            profile_type: req.body.profile_type,
             role: 'superadmin',
         });
-        let { _id, role } = user;
+        let { _id, role, profile_type, first_name } = user;
         let token = jwt.sign({
             _id,
+            first_name,
+            role,
+            profile_type,
         }, process.env.SECRET_KEY);
         return res.status(200).json({
             _id,
+            first_name,
             role,
+            profile_type,
             token,
         });
     } catch(e) {
@@ -57,49 +67,5 @@ exports.signup = async function(req, res, next) {
             status: 400,
             message: e.message,
         });
-    }
-};
-
-exports.fetchUser = async (req, res, next) => {
-    try {
-        let user = await db.User.findById(req.params._id);
-        let { _id, role } = user;
-        let token = jwt.sign({
-            _id,
-        }, process.env.SECRET_KEY);
-        copyUser = JSON.parse(JSON.stringify(user));
-        delete copyUser.password;
-        delete copyUser.role;
-        return res.status(200).json({
-            ...copyUser,
-            token,
-        });
-    } catch(e) {
-        return next(e);
-    }
-};
-
-exports.updateUser = async function(req, res, next) {
-    try {
-        let user = await db.User.findById(req.params._id);
-        let { _id } = user;
-        let token = jwt.sign({
-            _id,
-        }, process.env.SECRET_KEY);
-        Object.keys(req.body)
-        .filter(key => key != 'role')
-        .map(key => {
-            user[key] = req.body[key];
-        });
-        await user.save();
-        copyUser = JSON.parse(JSON.stringify(user));
-        delete copyUser.password;
-        delete copyUser.role;
-        res.status(200).json({
-            ...copyUser,
-            token,
-        });
-    } catch(e) {
-        return next(e)
     }
 };

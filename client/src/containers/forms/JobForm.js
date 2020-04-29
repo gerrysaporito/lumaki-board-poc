@@ -133,7 +133,7 @@ class JobForm extends Component {
                         <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description} type='text' required />
                         <label htmlFor='position_description'>Position Description:</label>
                         <textarea id='position_description' name='position_description' onChange={this.handleChange} value={this.state.position_description} type='text' required />
-                        <button className='btn lumaki-btn btn-md mt-3' type='submit'>{buttonText}</button>
+                        <button className='lumaki-btn ' type='submit'>{buttonText}</button>
                     </form>
                     <button onClick={this.handleBackClick} className='return'>Go back</button>
                 </div>
