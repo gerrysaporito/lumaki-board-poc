@@ -8,7 +8,7 @@ const skills = (state = DEFAULT_STATE, action) => {
             return [...action.skills]
         }
         case REMOVE_SKILL: {
-            return state.filter(skill => skill._id !== action.id);
+            return state.filter(skill => skill._id !== action._id);
         }
         default: {
             return state;

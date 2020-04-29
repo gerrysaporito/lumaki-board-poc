@@ -7,7 +7,7 @@ import './css/SkillList.css';
 
 class SkillList extends Component {
     componentDidMount() {
-        this.props.fetchSkills(this.props.currentUser.user.id);
+        this.props.fetchSkills(this.props.currentUser.user._id);
     }
 
     render() {
@@ -17,7 +17,7 @@ class SkillList extends Component {
                 key={m._id}
                 {...m}
                 removeSkill={removeSkill.bind(this, m.user, m._id)}
-                isCorrectUser={currentUser.user.id === m.user}
+                isCorrectUser={currentUser.user._id === m.user}
                 currentUser={currentUser}
             />
         ));

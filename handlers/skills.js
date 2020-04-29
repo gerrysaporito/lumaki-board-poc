@@ -4,9 +4,9 @@ exports.createSkill = async function(req, res, next) {
     try {
         let skill = await db.Skill.create({
             ...req.body,
-            user: req.params.id,
+            user: req.params._id,
         });
-        let foundUser = await db.User.findById(req.params.id);
+        let foundUser = await db.User.findById(req.params._id);
         foundUser.skills.push(skill.id);
         await foundUser.save();
         let foundSkill = await db.Skill.findById(skill._id)
@@ -18,7 +18,7 @@ exports.createSkill = async function(req, res, next) {
 
 exports.fetchSkills = async function(req, res, next) {
     try {
-        let user = await db.User.findById(req.params.id);
+        let user = await db.User.findById(req.params._id);
         let skills = await db.Skill.find({
             '_id': {
                 $in: user.skills

@@ -13,7 +13,7 @@ class JobList extends Component {
                 key={m._id}
                 {...m}
                 removeJob={removeJob.bind(this, m.user, m._id)}
-                isCorrectUser={currentUser.user.id === m.user}
+                isCorrectUser={currentUser.user._id === m.user}
                 currentUser={currentUser}
             />
         ));

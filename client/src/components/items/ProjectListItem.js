@@ -10,7 +10,7 @@ const ProjectListItem = ({_id, description, removeProject, currentUser, isCorrec
             {isCorrectUser && (
                 <div className='function-tools'>
                     <button onClick={removeProject}><i className="far fa-trash-alt" /></button>
-                    <Link to={`/users/${currentUser.user.id}/projects/${_id}/edit`} ><i className="fas fa-pencil-alt" /></Link>
+                    <Link to={`/users/${currentUser.user._id}/projects/${_id}/edit`} ><i className="fas fa-pencil-alt" /></Link>
                 </div>
             )}
         </div>

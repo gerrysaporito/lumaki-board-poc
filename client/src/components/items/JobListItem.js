@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IndustryColorValues } from '../../common/Definitions';
 import './css/JobListItem.css';
 
-const JobListItem = ({_id, company, link, image, position, industry, location, start_date, end_date, position_description, removeJob, currentUser, isCorrectUser}) => (
+const JobListItem = ({_id, company, link, image, position, industry, location, duration, position_description, removeJob, currentUser, isCorrectUser}) => (
     <div className='job-list-item'>
         <div className='industry-color-bar' style={{backgroundColor: IndustryColorValues[industry]}} />
         <div>
@@ -27,12 +27,12 @@ const JobListItem = ({_id, company, link, image, position, industry, location, s
             </div>
             <div className='tag'>
                 <strong>Duration:</strong>
-                <span>{datediff(start_date, end_date)} weeks</span>
+                <span>{duration} weeks</span>
             </div>
             <div className='cta'>
                 {isCorrectUser && (
                     <React.Fragment>
-                        <Link to={`/users/${currentUser.user.id}/jobs/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
+                        <Link to={`/users/${currentUser.user._id}/jobs/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
                         <button onClick={removeJob}><i className="far fa-trash-alt" /></button>
                     </React.Fragment>
                 )}
@@ -41,11 +41,5 @@ const JobListItem = ({_id, company, link, image, position, industry, location, s
         </div>
     </div>
 )
-
-function datediff(start_date, end_date) {
-    let first = new Date(start_date);
-    let second = new Date(end_date)
-    return Math.round((second-first)/(1000*60*60*24*7));
-}
 
 export default JobListItem;

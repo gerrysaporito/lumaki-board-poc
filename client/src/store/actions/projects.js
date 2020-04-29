@@ -7,14 +7,14 @@ export const loadProjects = projects => ({
     projects
 });
 
-export const remove = id => ({
+export const remove = _id => ({
     type: REMOVE_PROJECT,
-    id
+    _id
 });
 
-export const fetchProjects = id => {
+export const fetchProjects = _id => {
     return dispatch => {
-        return apiCall('get', `/api/users/${id}/projects/`)
+        return apiCall('get', `/api/users/${_id}/projects/`)
         .then(res => dispatch(loadProjects(res)))
         .catch(e => addAlert(e.message, ERROR));
     };
@@ -30,15 +30,15 @@ export const getProject = (user_id, project_id) => {
 
 export const postNewProject = project => (dispatch, getState) => {
     let { currentUser } = getState();
-    const id = currentUser.user.id;
-    return apiCall('post', `/api/users/${id}/projects/`, {...project})
+    const _id = currentUser.user._id;
+    return apiCall('post', `/api/users/${_id}/projects/`, {...project})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };
 
 export const updateProject = (project, project_id) => (dispatch, getState) => {
     let { currentUser } = getState();
-    const user_id = currentUser.user.id;
+    const user_id = currentUser.user._id;
     return apiCall('post', `/api/users/${user_id}/projects/${project_id}`, {...project})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));

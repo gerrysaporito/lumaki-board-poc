@@ -1,29 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const UserSchema = new mongoose.Schema({
-    first_name: {
-        type: String,
-        required: true,
-    },
-    last_name: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    role: {
-        type: String,
-        enum: ['user', 'admin', 'superadmin'],
-        required: true,
-    },
+const StudentProfileSchema = new mongoose.Schema({
     school: {
         type: String,
     },
@@ -66,12 +44,12 @@ const UserSchema = new mongoose.Schema({
     jobs: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Profile',
+            ref: 'Job',
         }
     ]
 });
 
-UserSchema.pre('save', async function(next) {
+StudentProfileSchema.pre('save', async function(next) {
     try {
         if(!this.isModified('password')) {
             return next();
@@ -85,7 +63,7 @@ UserSchema.pre('save', async function(next) {
     }
 });
 
-UserSchema.methods.comparePassword = async function(candidatePassword, next) {
+StudentProfileSchema.methods.comparePassword = async function(candidatePassword, next) {
     try {
         let isMatch = await bcrypt.compare(candidatePassword, this.password);
         return isMatch;
@@ -94,6 +72,6 @@ UserSchema.methods.comparePassword = async function(candidatePassword, next) {
     }
 };
 
-const User = mongoose.model('User', UserSchema);
+const StudentProfile = mongoose.model('StudentProfile', StudentProfileSchema);
 
-module.exports = User;
+module.exports = StudentProfile;

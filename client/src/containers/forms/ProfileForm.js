@@ -22,7 +22,7 @@ class ProfileForm extends Component {
     }
 
     componentDidMount(){
-        this.props.fetchUserProfile(this.props.currentUser.user.id)
+        this.props.fetchUserProfile(this.props.currentUser.user._id)
         .then(() => this.setState({
             school: this.props.currentUser.user.school || '',
             program: this.props.currentUser.user.program || '',
@@ -65,7 +65,7 @@ class ProfileForm extends Component {
                 <input id='school' name='school' onChange={this.handleChange} value={school} type='text' required />
                 <label htmlFor='program'>Program *:</label>
                 <input id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
-                <label htmlFor='graduation_year'>Graduation Year *:</label>
+                <label htmlFor='graduation_year'>Approximate Graduation Date *:</label>
                 <input id='graduation_year' name='graduation_year' onChange={this.handleChange} value={graduation_year} type='date' required />
                 <label htmlFor='country'>Country*:</label>
                 <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />

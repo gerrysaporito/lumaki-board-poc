@@ -2,10 +2,12 @@ const db = require('../models');
 
 exports.createJob = async function(req, res, next) {
     try {
+
         let job = await db.Job.create({
             ...req.body,
+            duration: dateToWeek(req.body.start_date, req.body.end_date),
         });
-        let foundUser = await db.User.findById(req.params.id);
+        let foundUser = await db.User.findById(req.params._id);
         foundUser.jobs.push(job.id);
         await foundUser.save();
         let foundJob = await db.Job.findById(job._id)
@@ -59,3 +61,10 @@ exports.deleteJob = async function(req, res, next) {
         return next(e)
     }
 };
+
+
+function dateToWeek(start_date, end_date) {
+    let first = new Date(start_date);
+    let second = new Date(end_date)
+    return Math.round((second-first)/(1000*60*60*24*7));
+}

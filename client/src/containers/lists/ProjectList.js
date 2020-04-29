@@ -7,7 +7,7 @@ import './css/ProjectList.css';
 
 class ProjectList extends Component {
     componentDidMount() {
-        this.props.fetchProjects(this.props.currentUser.user.id);
+        this.props.fetchProjects(this.props.currentUser.user._id);
     }
 
     render() {
@@ -17,7 +17,7 @@ class ProjectList extends Component {
                 key={m._id}
                 {...m}
                 removeProject={removeProject.bind(this, m.user, m._id)}
-                isCorrectUser={currentUser.user.id === m.user}
+                isCorrectUser={currentUser.user._id === m.user}
                 currentUser={currentUser}
             />
         ));

@@ -30,7 +30,7 @@ export const getJob = (job_id) => {
 
 export const postNewJob = job => (dispatch, getState) => {
     let { currentUser } = getState();
-    const user_id = currentUser.user.id;
+    const user_id = currentUser.user._id;
     return apiCall('post', `/api/users/${user_id}/jobs/`, {...job})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
@@ -38,7 +38,7 @@ export const postNewJob = job => (dispatch, getState) => {
 
 export const updateJob = (job, job_id) => (dispatch, getState) => {
     let { currentUser } = getState();
-    const user_id = currentUser.user.id;
+    const user_id = currentUser.user._id;
     return apiCall('post', `/api/users/${user_id}/jobs/${job_id}`, {...job})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));

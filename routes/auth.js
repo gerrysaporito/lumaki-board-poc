@@ -5,7 +5,7 @@ const { signin, signup, fetchUser, updateUser } = require('../handlers/auth');
 
 router.post('/login', signin);
 router.post('/register', signup);
-router.get('/users/:id', loginRequired, ensureCorrectUser, fetchUser);
-router.post('/users/:id', loginRequired, ensureCorrectUser, updateUser);
+router.get('/users/:_id', loginRequired, ensureCorrectUser, fetchUser);
+router.post('/users/:_id', loginRequired, ensureCorrectUser, updateUser);
 
 module.exports = router;

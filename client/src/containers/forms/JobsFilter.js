@@ -48,11 +48,6 @@ class JobsFilter extends Component {
         return(
             <div id='jobs-filter'>
                 <div className='filter'>
-                    <label htmlFor='company'>Company:</label>
-                    <input id='company' name='company' onChange={this.handleChange} value={company} type='text' />
-                </div>
-
-                <div className='filter'>
                     <label htmlFor='industry'>Industry:</label>
                     <select id="industry" name='industry' onChange={this.handleChange} value={industry} >
                         <option value=''>Any</option>
@@ -63,13 +58,8 @@ class JobsFilter extends Component {
                 </div>
 
                 <div className='filter'>
-                    <label htmlFor='duration'>Duration:</label>
-                    <select id="duration" name='duration' onChange={this.handleChange} value={duration} >
-                        <option value=''>Any</option>
-                        {Object.values(this.props.JobDurations).map((duration, i) => (
-                            <option key={i} value={duration}>{duration}</option>
-                        ))}
-                    </select>
+                    <label htmlFor='duration'>Duration (weeks):</label>
+                    <input id='duration' name='duration' onChange={this.handleChange} value={duration} type='number' />
                 </div>
             </div>
         )

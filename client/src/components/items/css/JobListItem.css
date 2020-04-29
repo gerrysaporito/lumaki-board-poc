@@ -29,8 +29,10 @@
     padding: 20px 0;
 }
 
-.job-list-item p {
+.job-list-item p,
+.job-list-item a {
     margin: 0;
+    color: white;
 }
 
 .job-list-item .company a {

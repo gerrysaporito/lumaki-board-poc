@@ -37,7 +37,7 @@ class Navbar extends Component {
                         {this.props.currentUser.isAuthenticated ?
                             (<React.Fragment>
                                 <li className='nav-item'>
-                                    <NavLink to={`/users/${this.props.currentUser.user.id}`}  activeClassName='active-link'>
+                                    <NavLink to={`/users/${this.props.currentUser.user._id}`}  activeClassName='active-link'>
                                         Profile
                                     </NavLink>
                                 </li>

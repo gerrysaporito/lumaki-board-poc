@@ -13,7 +13,7 @@ const ExperienceListItem = ({_id, company, role, description, start_date, end_da
             {isCorrectUser && (
                 <div className='function-tools'>
                     <button onClick={removeExperience}><i className="far fa-trash-alt" /></button>
-                    <Link to={`/users/${currentUser.user.id}/experiences/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
+                    <Link to={`/users/${currentUser.user._id}/experiences/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
                 </div>
             )}
         </div>

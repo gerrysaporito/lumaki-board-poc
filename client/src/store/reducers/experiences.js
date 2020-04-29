@@ -8,7 +8,7 @@ const experiences = (state = DEFAULT_STATE, action) => {
             return [...action.experiences]
         }
         case REMOVE_EXPERIENCE: {
-            return state.filter(experience => experience._id !== action.id);
+            return state.filter(experience => experience._id !== action._id);
         }
         default: {
             return state;

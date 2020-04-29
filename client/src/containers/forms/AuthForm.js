@@ -17,7 +17,6 @@ class AuthForm extends Component {
             email: '',
             username: '',
             password: '',
-            profileImageUrl: '',
         }
     }
 
@@ -32,7 +31,7 @@ class AuthForm extends Component {
         const authType = this.props.register ? 'register' : 'login';
         this.props.authUser(authType, this.state)
         .then(res => {
-            this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user.id}`: '/jobs');
+            this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user._id}`: '/jobs');
         })
         .catch(() => {
             return;

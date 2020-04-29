@@ -20,19 +20,19 @@ class Profile extends Component {
                 <div className='hr' />
                 <div className='section'>
                     <h5>{Content.profile.experiences.title}</h5>
-                    <Link to={`/users/${currentUser.user.id}/experiences/new`}>{Content.profile.experiences.buttonText}</Link>
+                    <Link to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.experiences.buttonText}</Link>
                     <ExperienceList />
                 </div>
                 <div className='hr' />
                 <div className='section'>
                     <h5>{Content.profile.projects.title}</h5>
-                    <Link to={`/users/${currentUser.user.id}/projects/new`}>{Content.profile.projects.buttonText}</Link>
+                    <Link to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.projects.buttonText}</Link>
                     <ProjectList />
                 </div>
                 <div className='hr' />
                 <div className='section'>
                     <h5>{Content.profile.skills.title}</h5>
-                    <Link to={`/users/${currentUser.user.id}/skills/new`}>{Content.profile.skills.buttonText}</Link>
+                    <Link to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.skills.buttonText}</Link>
                     <SkillList />
                 </div>
 

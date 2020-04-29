@@ -64,7 +64,7 @@ class JobForm extends Component {
             requirements: [],
             compensation: [],
         });
-        this.props.history.goBack()
+        this.props.history.push('/jobs');
     };
 
     handleChange = e => {

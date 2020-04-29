@@ -6,14 +6,14 @@ exports.signin = async function(req, res, next) {
         let user = await db.User.findOne({
             email: req.body.email
         });
-        let { id } = user;
+        let { _id, role } = user;
         let isMatch = await user.comparePassword(req.body.password);
         if(isMatch) {
             let token = jwt.sign({
-                id,
+                _id,
             }, process.env.SECRET_KEY);
             return res.status(200).json({
-                id,
+                _id,
                 token,
             });
         } else {
@@ -40,12 +40,13 @@ exports.signup = async function(req, res, next) {
             gender:'',
             role: 'superadmin',
         });
-        let { id } = user;
+        let { _id, role } = user;
         let token = jwt.sign({
-            id,
+            _id,
         }, process.env.SECRET_KEY);
         return res.status(200).json({
-            id,
+            _id,
+            role,
             token,
         });
     } catch(e) {
@@ -61,26 +62,16 @@ exports.signup = async function(req, res, next) {
 
 exports.fetchUser = async (req, res, next) => {
     try {
-        let user = await db.User.findById(req.params.id);
-        let { id } = user;
+        let user = await db.User.findById(req.params._id);
+        let { _id, role } = user;
         let token = jwt.sign({
-            id,
+            _id,
         }, process.env.SECRET_KEY);
-        // copyUser = JSON.parse(JSON.stringify(user));
-        // delete copyUser.password;
+        copyUser = JSON.parse(JSON.stringify(user));
+        delete copyUser.password;
+        delete copyUser.role;
         return res.status(200).json({
-            // ...copyUser,
-            id: user._id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-            school: user.school,
-            program: user.program,
-            graduation_year: user.graduation_year,
-            gender: user.gender,
-            country: user.country,
-            state: user.state,
-            city: user.city,
+            ...copyUser,
             token,
         });
     } catch(e) {
@@ -90,17 +81,20 @@ exports.fetchUser = async (req, res, next) => {
 
 exports.updateUser = async function(req, res, next) {
     try {
-        let user = await db.User.findById(req.params.id);
-        let { id } = user;
+        let user = await db.User.findById(req.params._id);
+        let { _id } = user;
         let token = jwt.sign({
-            id,
+            _id,
         }, process.env.SECRET_KEY);
-        Object.keys(req.body).map(key => {
+        Object.keys(req.body)
+        .filter(key => key != 'role')
+        .map(key => {
             user[key] = req.body[key];
         });
         await user.save();
         copyUser = JSON.parse(JSON.stringify(user));
         delete copyUser.password;
+        delete copyUser.role;
         res.status(200).json({
             ...copyUser,
             token,

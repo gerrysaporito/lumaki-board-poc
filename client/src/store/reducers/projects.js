@@ -8,7 +8,7 @@ const projects = (state = defaultState, action) => {
             return [...action.projects]
         }
         case REMOVE_PROJECT: {
-            return state.filter(project => project._id !== action.id);
+            return state.filter(project => project._id !== action._id);
         }
         default: {
             return state;

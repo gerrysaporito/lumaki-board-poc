@@ -31,8 +31,8 @@ const Main = props => {
                         <Route exact path='/register' render={props => <AuthForm {...Content.register} {...props} />} />
                         <Route exact path='/' render={props => <Homepage {...props} />} />
                         <Route exact path='/jobs' render={props => <AllJobs {...props} />} />
+                        <Route exact path='/jobs/:job_id' render={props => <Job {...props} />}  />
                         {/* Users */}
-                        <Route exact path='/jobs/:job_id' component={withAuth(Job)} />
                         <Route exact path='/users/:user_id' component={withAuth(Profile)} />
                         <Route path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm)}/>
                         <Route path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm)}/>

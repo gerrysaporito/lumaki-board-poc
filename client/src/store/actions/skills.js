@@ -7,9 +7,9 @@ export const loadSkills = skills => ({
     skills
 });
 
-export const remove = id => ({
+export const remove = _id => ({
     type: REMOVE_SKILL,
-    id
+    _id
 });
 
 export const removeSkill = (user_id, skill_id) => {
@@ -20,9 +20,9 @@ export const removeSkill = (user_id, skill_id) => {
     };
 };
 
-export const fetchSkills = id => {
+export const fetchSkills = _id => {
     return dispatch => {
-        return apiCall('get', `/api/users/${id}/skills/`)
+        return apiCall('get', `/api/users/${_id}/skills/`)
         .then(res => dispatch(loadSkills(res)))
         .catch(e => addAlert(e.message, ERROR));
     };
@@ -30,8 +30,8 @@ export const fetchSkills = id => {
 
 export const postNewSkill = skill => (dispatch, getState) => {
     let { currentUser } = getState();
-    const id = currentUser.user.id;
-    return apiCall('post', `/api/users/${id}/skills/`, {...skill})
+    const _id = currentUser.user._id;
+    return apiCall('post', `/api/users/${_id}/skills/`, {...skill})
     .then(res => {})
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 };

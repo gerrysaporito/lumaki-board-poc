@@ -8,7 +8,7 @@ const jobs = (state = defaultState, action) => {
             return [...action.jobs]
         }
         case REMOVE_JOB: {
-            return state.filter(job => job._id !== action.id);
+            return state.filter(job => job._id !== action._id);
         }
         default: {
             return state;

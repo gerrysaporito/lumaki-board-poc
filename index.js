@@ -21,10 +21,10 @@ app.use(bodyParser.json());
 // ROUTES
 app.use('/api/auth', AUTH_ROUTES);
 app.use('/api/jobs', UNAUTH_ROUTES);
-app.use('/api/users/:id/experiences', loginRequired, ensureCorrectUser, EXPERIENCES_ROUTES);
-app.use('/api/users/:id/projects', loginRequired, ensureCorrectUser, PROJECTS_ROUTES);
-app.use('/api/users/:id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES);
-app.use('/api/users/:id/jobs', loginRequired, ensureCorrectUser, checkAdminRole, JOBS_ROUTES);
+app.use('/api/users/:_id/experiences', loginRequired, ensureCorrectUser, EXPERIENCES_ROUTES);
+app.use('/api/users/:_id/projects', loginRequired, ensureCorrectUser, PROJECTS_ROUTES);
+app.use('/api/users/:_id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES);
+app.use('/api/users/:_id/jobs', loginRequired, ensureCorrectUser, checkAdminRole, JOBS_ROUTES);
 
 // ERROR HANDLER
 app.use(function(req, res, next) {

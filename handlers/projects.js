@@ -4,9 +4,9 @@ exports.createProject = async function(req, res, next) {
     try {
         let project = await db.Project.create({
             ...req.body,
-            user: req.params.id,
+            user: req.params._id,
         });
-        let foundUser = await db.User.findById(req.params.id);
+        let foundUser = await db.User.findById(req.params._id);
         foundUser.projects.push(project.id);
         await foundUser.save();
         let foundProject = await db.Project.findById(project._id)
@@ -21,7 +21,7 @@ exports.createProject = async function(req, res, next) {
 
 exports.fetchProjects = async function(req, res, next) {
     try {
-        let user = await db.User.findById(req.params.id);
+        let user = await db.User.findById(req.params._id);
         let projects = await db.Project.find({
             '_id': {
                 $in: user.projects

@@ -29,7 +29,7 @@ exports.ensureCorrectUser = function(req, res, next) {
     try {
         let token = req.headers.authorization.split(' ')[1];
         jwt.verify(token, process.env.SECRET_KEY, function(e, decoded) {
-            if(decoded && decoded.id === req.params.id) {
+            if(decoded && decoded._id === req.params._id) {
                 return next();
             } else {
                 return next({
@@ -37,8 +37,8 @@ exports.ensureCorrectUser = function(req, res, next) {
                     message: 'Unauthorized.',
                     // {
                     //     decoded: decoded,
-                    //     decoded_id: decoded.id,
-                    //     rea: req.params.id
+                    //     decoded_id: decoded._id,
+                    //     req: req.params._id
                     // }
                 });
             }
@@ -46,7 +46,7 @@ exports.ensureCorrectUser = function(req, res, next) {
     } catch(e) {
         return next({
             status: 401,
-            message: 'Unauthorized.'
+            message: 'Unauthorized.',
         });
     }
 };
@@ -56,15 +56,15 @@ exports.checkAdminRole = async function(req, res, next) {
     try {
         let token = req.headers.authorization.split(' ')[1];
         jwt.verify(token, process.env.SECRET_KEY, function(e, decoded) {
-            if(decoded && decoded.id === req.params.id) {
-                getUserById(req.params.id)
+            if(decoded && decoded._id === req.params._id) {
+                getUserById(req.params._id)
                 .then(user => {
                     if(user.role === 'admin' || user.role === 'superadmin') {
                         return next();
                     } else {
                         return next({
                             status: 401,
-                            message: 'Unauthorized',
+                            message: 'Unauthorized.',
                         });
                     }
                 })
@@ -88,8 +88,8 @@ exports.checkSuperAdminRole = function(req, res, next) {
     try {
         let token = req.headers.authorization.split(' ')[1];
         jwt.verify(token, process.env.SECRET_KEY, function(e, decoded) {
-            if(decoded && decoded.id === req.params.id) {
-                getUserById(req.params.id)
+            if(decoded && decoded._id === req.params._id) {
+                getUserById(req.params._id)
                 .then(user => {
                     if(user.role === 'admin' || user.role === 'superadmin') {
                         return next();

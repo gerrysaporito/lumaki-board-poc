@@ -34,6 +34,10 @@ const JobSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    duration: {
+        type: String,
+        required: true,
+    },
     company_description: {
         type: String,
         required: true,

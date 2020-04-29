@@ -7,7 +7,7 @@ import './css/ExperienceList.css';
 
 class ExperienceList extends Component {
     componentDidMount() {
-        this.props.fetchExperiences(this.props.currentUser.user.id);
+        this.props.fetchExperiences(this.props.currentUser.user._id);
     }
 
     render() {
@@ -18,7 +18,7 @@ class ExperienceList extends Component {
                 key={m._id}
                 {...m}
                 removeExperience={removeExperience.bind(this, m.user, m._id)}
-                isCorrectUser={currentUser.user.id === m.user}
+                isCorrectUser={currentUser.user._id === m.user}
                 currentUser={currentUser}
             />
         ));
