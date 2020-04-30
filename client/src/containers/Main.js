@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Content } from '../common/Content';
 import withAuth from '../hocs/WithAuth'
-import WithAdminAuth from '../hocs/WithAdminAuth'
+import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
 import Homepage from '../components/Homepage';
 import AuthForm from './forms/AuthForm';
@@ -41,8 +41,8 @@ const Main = props => {
                         <Route exact path='/users/:user_id/skills/new' component={withAuth(SkillForm)}/>
                         <Route exact path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm)}/>
                         {/* Admin */}
-                        <Route exact path='/users/:user_id/jobs/new' component={withAuth(JobForm)}/>
-                        <Route exact path='/users/:user_id/jobs/:job_id/edit' component={withAuth(JobForm)}/>
+                        <Route exact path='/users/:user_id/jobs/new' component={withAdminAuth(JobForm)}/>
+                        <Route exact path='/users/:user_id/jobs/:job_id/edit' component={withAdminAuth(JobForm)}/>
                     </Switch>
                 </div>
             </div>

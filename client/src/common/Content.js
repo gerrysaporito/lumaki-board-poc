@@ -66,8 +66,9 @@ export const Content = {
     },
     job: {
         title: {
-            second: 'Your Role At ',
-            third: 'Skills/Requirements',
+            description: 'Your Role At ',
+            requirements: 'Skills/Requirements.',
+            compensation: 'What you get.'
         },
     }
 }

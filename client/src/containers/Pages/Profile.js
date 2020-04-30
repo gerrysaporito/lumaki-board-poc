@@ -9,7 +9,7 @@ import './css/Profile.css';
 
 class Profile extends Component {
     render() {
-        const { currentUser, Profiles, Content } = this.props;
+        const { currentUser } = this.props;
         let profile = '';
         switch(currentUser.user.profile_type) {
             case Profiles.student: {
@@ -39,8 +39,6 @@ class Profile extends Component {
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
-        Profiles: Profiles,
-        Content: Content,
     }
 }
 

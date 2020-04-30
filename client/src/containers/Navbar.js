@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 
-import { Profiles } from '../common/Definitions';
-
 import LOGO from '../images/LumakiLabs_SmallLogo_W.png';
 import './css/Navbar.css';
 
@@ -21,6 +19,7 @@ class Navbar extends Component {
         let mainTabs = [];
         let supportTabs = [];
         mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
+
         if(currentUser.isAuthenticated) {
             mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Profile'));
             mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/new`, 'Post a job'));
@@ -74,7 +73,6 @@ function createTab(key, url, text) {
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
-        Profiles: Profiles,
     };
 }
 

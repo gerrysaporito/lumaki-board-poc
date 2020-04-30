@@ -53,13 +53,13 @@ class ProjectForm extends Component {
 
     render() {
         const buttonText = this.props.location.pathname.split('/').pop() === 'edit' ?
-            this.props.Content.forms.project.buttonText.edit : this.props.Content.forms.project.buttonText.create;
+            Content.forms.project.buttonText.edit : Content.forms.project.buttonText.create;
         return(
             <div className='form'>
                 <div>
                     <form onSubmit={this.handleNewProject} >
-                        <p>{this.props.Content.forms.project.note}</p>
-                        <h3>{this.props.Content.forms.project.title}</h3>
+                        <p>{Content.forms.project.note}</p>
+                        <h3>{Content.forms.project.title}</h3>
                         {this.props.alerts === ERROR && this.props.alerts.message && (
                             <div className='alert alert-danger'>
                                 {this.props.alerts.message}

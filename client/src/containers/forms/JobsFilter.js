@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { IndustryValues, JobDurations } from '../../common/Definitions';
+import { IndustryValues } from '../../common/Definitions';
 import { fetchJobs } from '../../store/actions/jobs';
 
 import './css/JobsFilter.css';
@@ -18,7 +18,6 @@ class JobsFilter extends Component {
     componentDidMount(){
         this.props.fetchJobs({})
         .then(() => this.setState({
-            company: '',
             industry: '',
             duration: '',
         }))
@@ -50,7 +49,7 @@ class JobsFilter extends Component {
                     <label htmlFor='industry'>Industry:</label>
                     <select id="industry" name='industry' onChange={this.handleChange} value={industry} >
                         <option value=''>Any</option>
-                        {Object.values(this.props.IndustryValues).map((industry, i) => (
+                        {Object.values(IndustryValues).map((industry, i) => (
                             <option key={i} value={industry}>{industry}</option>
                         ))}
                     </select>
@@ -66,10 +65,7 @@ class JobsFilter extends Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        IndustryValues: IndustryValues,
-        JobDurations: JobDurations,
-    }
+    return {}
 }
 
 export default connect(mapStateToProps, { fetchJobs })(JobsFilter);

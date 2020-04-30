@@ -63,13 +63,13 @@ class ExperienceForm extends Component {
 
     render() {
         const buttonText = this.props.location.pathname.split('/').pop() === 'edit' ?
-            this.props.Content.forms.experience.buttonText.edit : this.props.Content.forms.experience.buttonText.create;
+            Content.forms.experience.buttonText.edit : Content.forms.experience.buttonText.create;
         return(
             <div className='form'>
                 <div>
                     <form onSubmit={this.handleNewExperience} >
-                        <p>{this.props.Content.forms.experience.note}</p>
-                        <h3>{this.props.Content.forms.experience.title}</h3>
+                        <p>{Content.forms.experience.note}</p>
+                        <h3>{Content.forms.experience.title}</h3>
                         {this.props.alerts === ERROR && this.props.alerts.message && (
                             <div className='alert alert-danger'>
                                 {this.props.alerts.message}

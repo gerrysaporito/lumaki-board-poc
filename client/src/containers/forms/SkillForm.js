@@ -39,8 +39,8 @@ class ExperienceForm extends Component {
             <div className='form'>
                 <div>
                     <form onSubmit={this.handleNewExperience} >
-                        <p>{this.props.Content.forms.skill.note}</p>
-                        <h3>{this.props.Content.forms.skill.title}</h3>
+                        <p>{Content.forms.skill.note}</p>
+                        <h3>{Content.forms.skill.title}</h3>
                         {this.props.alerts === ERROR && this.props.alerts.message && (
                             <div className='alert alert-danger'>
                                 {this.props.alerts.message}
@@ -48,7 +48,7 @@ class ExperienceForm extends Component {
                         )}
                         <label htmlFor='skill'>Skill:</label>
                         <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill} type='text' required />
-                        <button className='lumaki-btn ' type='submit'>{this.props.Content.forms.skill.buttonText}</button>
+                        <button className='lumaki-btn ' type='submit'>{Content.forms.skill.buttonText}</button>
                     </form>
                     <button onClick={this.handleBackClick} className='return'>Go back</button>
                 </div>

@@ -58,12 +58,12 @@ class Job extends Component {
 
                     <div className='tile'>
                         <div className='content'>
-                            <h3>{`${this.props.Content.job.title.second} ${this.state.company}`}</h3>
+                            <h3>{`${Content.job.title.description} ${this.state.company}`}</h3>
                             <p>{this.state.position_description}</p>
                             <div className='description'>
                                 <p className='title'><strong>Responsibilities:</strong></p>
                                 <ul>
-                                    {this.state.responsibilities.map(resp => (<li>{resp}</li>))}
+                                    {this.state.responsibilities.map((resp, i) => (<li key={i}>{resp.text}</li>))}
                                 </ul>
                             </div>
                         </div>
@@ -71,9 +71,18 @@ class Job extends Component {
 
                     <div className='tile'>
                         <div className='content'>
-                            <h3>{`${this.props.Content.job.title.third}`}</h3>
+                            <h3>{`${Content.job.title.requirements}`}</h3>
                             <ul>
-                                {this.state.requirements.map(req => (<li>{req}</li>))}
+                                {this.state.requirements.map((req, i) => (<li key={i}>{req.text}</li>))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className='tile'>
+                        <div className='content'>
+                            <h3>{`${Content.job.title.compensation}`}</h3>
+                            <ul>
+                                {this.state.compensation.map((req, i) => (<li key={i}>{req.text}</li>))}
                             </ul>
                         </div>
                     </div>

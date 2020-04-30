@@ -61,7 +61,7 @@ class StudentProfileForm extends Component {
 
     render() {
         const {school, program, graduation_date, gender, country, state, city} = this.state;
-        const {alerts, history, removeAlert, currentUser, Genders} = this.props;
+        const {alerts, history, removeAlert, currentUser} = this.props;
         history.listen(() => {
             removeAlert();
         });
@@ -134,8 +134,6 @@ function formatDate(date) {
 
 function mapStateToProps(state) {
     return {
-        Content: Content,
-        Genders: Genders,
         alerts: state.alerts,
         profile: state.profile,
         currentUser: state.currentUser,

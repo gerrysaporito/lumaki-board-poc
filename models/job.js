@@ -48,17 +48,23 @@ const JobSchema = new mongoose.Schema({
     },
     responsibilities: [
         {
-            type: String,
+            text: {
+                type: String,
+            }
         }
     ],
     requirements: [
         {
-            type: String,
+            text: {
+                type: String,
+            }
         }
     ],
     compensation: [
         {
-            type: String,
+            text: {
+                type: String,
+            }
         }
     ],
     user: {

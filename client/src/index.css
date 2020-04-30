@@ -51,10 +51,12 @@ button {
 
 .fa-trash-alt {
     color: rgb(216, 88, 68);
+    z-index: -1;
 }
 
 .fa-pencil-alt {
-    color: rgb(190, 188, 42)
+    color: rgb(190, 188, 42);
+    z-index: -1;
 }
 
 .function-tools {

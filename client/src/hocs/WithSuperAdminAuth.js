@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import { Roles } from '../common/Definitions';
 
-export default function withAdminAuth(ComponentToBeRendered) {
+export default function withSuperAdminAuth(ComponentToBeRendered) {
     class Authenticate extends Component {
         componentDidMount(){
             if(!this.props.isAuthenticated) {
                 this.props.history.push('/login')
-            } else if(this.props.role !== Roles.admin && this.props.role !== Roles.superadmin) {
+            } else if(this.props.role !== Roles.superadmin) {
                 this.props.history.push('/')
             }
         }
@@ -16,7 +16,7 @@ export default function withAdminAuth(ComponentToBeRendered) {
         componentDidUpdate(nextProps) {
             if(!nextProps.isAuthenticated) {
                 this.props.history.push('/login')
-            } else if(this.props.role !== Roles.admin && this.props.role !== Roles.superadmin) {
+            } else if(this.props.role !== Roles.superadmin) {
                 this.props.history.push('/')
             }
         }
