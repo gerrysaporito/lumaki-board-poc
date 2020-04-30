@@ -10,7 +10,6 @@ class JobsFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            company: '',
             industry: '',
             duration: '',
         }
@@ -32,7 +31,7 @@ class JobsFilter extends Component {
                 [e.target.name]: e.target.value
             }, function() {
                 let filterObj = {};
-                let filterKeys = Object.keys(this.state)
+                Object.keys(this.state)
                     .filter(key => this.state[key] !== '')
                     .forEach(key => filterObj[key] = this.state[key]);
                 this.props.fetchJobs(filterObj)
@@ -44,7 +43,7 @@ class JobsFilter extends Component {
     }
 
     render() {
-        const {company, industry, duration} = this.state;
+        const {industry, duration} = this.state;
         return(
             <div id='jobs-filter'>
                 <div className='filter'>

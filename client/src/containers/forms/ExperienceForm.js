@@ -116,7 +116,6 @@ function formatDate(date) {
 
 function mapStateToProps(state) {
     return {
-        alerts: state.alerts,
         Content: Content,
     }
 }

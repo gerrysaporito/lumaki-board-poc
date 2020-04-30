@@ -8,7 +8,7 @@ const JobListItem = ({_id, company, link, image, position, industry, location, d
     <div className='job-list-item'>
         <div className='industry-color-bar' style={{backgroundColor: IndustryColorValues[industry]}} />
         <div>
-            <img src={image} />
+            <img src={image} alt={`${company} Logo`} />
             <p className='company'><strong><Link to={`/jobs/${_id}`}>{company}</Link></strong></p>
             <p><i>{position}</i></p>
         </div>

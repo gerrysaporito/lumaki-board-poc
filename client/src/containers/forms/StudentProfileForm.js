@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Content } from '../../common/Content';
+import { Genders } from '../../common/Definitions';
 import { SUCCESS } from '../../store/actionTypes';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
 import { removeAlert } from '../../store/actions/alerts';
@@ -11,9 +12,9 @@ import ExperienceList from '../lists/ExperienceList';
 import ProjectList from '../lists/ProjectList';
 import SkillList from '../lists/SkillList';
 
-import './css/ProfileForm.css';
+import './css/StudentProfileForm.css';
 
-class ProfileForm extends Component {
+class StudentProfileForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,15 +30,17 @@ class ProfileForm extends Component {
 
     componentDidMount(){
         this.props.getProfile(this.props.currentUser.user._id)
-        .then(() => this.setState({
-            school: this.props.profile.school || '',
-            program: this.props.profile.program || '',
-            graduation_date: formatDate(this.props.profile.graduation_date) || '',
-            gender: this.props.profile.gender || '',
-            country: this.props.profile.country || '',
-            state: this.props.profile.state || '',
-            city: this.props.profile.city || '',
-        }))
+        .then(() => {
+            this.setState((state, props) => ({
+                school: props.profile.school || '',
+                program: props.profile.program || '',
+                graduation_date: formatDate(props.profile.graduation_date) || '',
+                gender: props.profile.gender || '',
+                country: props.profile.country || '',
+                state: props.profile.state || '',
+                city: props.profile.city || '',
+            }))
+        })
         .catch(() => {});
     }
 
@@ -58,7 +61,7 @@ class ProfileForm extends Component {
 
     render() {
         const {school, program, graduation_date, gender, country, state, city} = this.state;
-        const {alerts, history, removeAlert, currentUser} = this.props;
+        const {alerts, history, removeAlert, currentUser, Genders} = this.props;
         history.listen(() => {
             removeAlert();
         });
@@ -84,10 +87,7 @@ class ProfileForm extends Component {
                     <label htmlFor='gender'>Gender:</label>
                     <select id="gender" name='gender' onChange={this.handleChange} value={gender} required >
                         <option disabled value=''>--Please choose an option--</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="other">Other</option>
-                        <option value="not_specified">Prefer not to specify</option>
+                        {Object.keys(Genders).map((key, i) => (<option key={i} value={key}>{Genders[key]}</option>))}
                     </select>
                 </div>
 
@@ -135,10 +135,11 @@ function formatDate(date) {
 function mapStateToProps(state) {
     return {
         Content: Content,
+        Genders: Genders,
         alerts: state.alerts,
         profile: state.profile,
         currentUser: state.currentUser,
     }
 }
 
-export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(ProfileForm);
+export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(StudentProfileForm);

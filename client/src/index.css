@@ -51,9 +51,14 @@ button {
 
 .fa-trash-alt {
     color: rgb(216, 88, 68);
-    padding-left: 10px;
 }
 
 .fa-pencil-alt {
     color: rgb(190, 188, 42)
+}
+
+.function-tools {
+    position: absolute;
+    top: 0;
+    display: inline-flex;
 }

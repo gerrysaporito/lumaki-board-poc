@@ -29,7 +29,6 @@ class JobForm extends Component {
 
     componentDidMount() {
         if(this.props.location.pathname.split('/').pop() === 'edit') {
-            const user_id = this.props.match.params.user_id;
             const job_id = this.props.match.params.job_id;
             this.props.getJob(job_id)
             .then(job => this.setState({
@@ -158,7 +157,6 @@ function formatDate(date) {
 
 function mapStateToProps(state) {
     return {
-        alerts: state.alerts,
         Content: Content,
     }
 }

@@ -78,7 +78,6 @@ class ProjectForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        alerts: state.alerts,
         Content: Content,
     }
 }

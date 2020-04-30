@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 
+import { Profiles } from '../common/Definitions';
+
 import LOGO from '../images/LumakiLabs_SmallLogo_W.png';
 import './css/Navbar.css';
 
@@ -15,10 +17,29 @@ class Navbar extends Component {
     }
 
     render() {
+        const {currentUser} = this.props;
+        let mainTabs = [];
+        let supportTabs = [];
+        mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
+        if(currentUser.isAuthenticated) {
+            mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Profile'));
+            mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/new`, 'Post a job'));
+            mainTabs.push(<li key={mainTabs.length} className='nav-item'>
+                <button onClick={this.logout} href='#'>Log out</button>
+            </li>);
+        } else {
+            mainTabs.push(createTab(mainTabs.length, `/about`, 'About'));
+            mainTabs.push(createTab(mainTabs.length, `/register`, 'Sign Up'));
+            mainTabs.push(createTab(mainTabs.length, `/login`, 'Log In'));
+        }
+
+        supportTabs.push(createTab(supportTabs.length, `/contact`, 'Contact'));
+        supportTabs.push(createTab(supportTabs.length, `/support`, 'Support'));
+
         return(
             <nav className='navbar navbar-expand-lg navbar-dark'>
                 <div className='navbar-header mb-lg-4 mt-lg-3'>
-                    <NavLink to='/' className='navbar-brand'>
+                    <NavLink exact to='/' className='navbar-brand'>
                         <img src={LOGO} alt='LumakiBoard Logo' />
                         <h2 className='hidden mb-0'>lumaki</h2>
                         <h2 className='hidden'>board</h2>
@@ -29,49 +50,10 @@ class Navbar extends Component {
                 </button>
                 <div className='collapse navbar-collapse flex-column justify-content-between' id='navbarNav'>
                     <ul className='nav flex-column'>
-                        <li className='nav-item'>
-                            <NavLink to={`/jobs`}  activeClassName='active-link'>
-                                All Postings
-                            </NavLink>
-                        </li>
-                        {this.props.currentUser.isAuthenticated ?
-                            (<React.Fragment>
-                                <li className='nav-item'>
-                                    <NavLink to={`/users/${this.props.currentUser.user._id}`}  activeClassName='active-link'>
-                                        Profile
-                                    </NavLink>
-                                </li>
-                                <li className='nav-item'>
-                                    <button onClick={this.logout} href='#'>
-                                        Log out
-                                    </button>
-                                </li>
-                            </React.Fragment>)
-                        :
-                            (<React.Fragment>
-                                <li className='nav-item'>
-                                    <NavLink to={'/about'}  activeClassName='active-link'>About</NavLink>
-                                </li>
-                                <li className='nav-item'>
-                                    <NavLink to='/register' activeClassName='active-link'>Sign Up</NavLink>
-                                </li>
-                                <li className='nav-item'>
-                                    <NavLink to='/login' activeClassName='active-link'>Log In</NavLink>
-                                </li>
-                            </React.Fragment>)
-                        }
+                        {mainTabs}
                     </ul>
                     <ul className='nav flex-column'>
-                        <li className='nav-item'>
-                            <NavLink to={`/contact`} activeClassName='active-link'>
-                                Contact
-                            </NavLink>
-                        </li>
-                        <li className='nav-item'>
-                            <NavLink to={`/support`} activeClassName='active-link'>
-                                Support
-                            </NavLink>
-                        </li>
+                        {supportTabs}
                     </ul>
                 </div>
             </nav>
@@ -79,9 +61,20 @@ class Navbar extends Component {
     }
 };
 
+function createTab(key, url, text) {
+    return (
+        <li key={key} className='nav-item'>
+            <NavLink exact to={url}  activeClassName='active-link'>
+                {text}
+            </NavLink>
+        </li>
+    )
+}
+
 function mapStateToProps(state) {
     return {
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        Profiles: Profiles,
     };
 }
 

@@ -34,15 +34,15 @@ const Main = props => {
                         <Route exact path='/jobs/:job_id' render={props => <Job {...props} />}  />
                         {/* Users */}
                         <Route exact path='/users/:user_id' component={withAuth(Profile)} />
-                        <Route path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm)}/>
-                        <Route path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm)}/>
-                        <Route path='/users/:user_id/projects/new' component={withAuth(ProjectForm)}/>
-                        <Route path='/users/:user_id/projects/:project_id/edit' component={withAuth(ProjectForm)}/>
-                        <Route path='/users/:user_id/skills/new' component={withAuth(SkillForm)}/>
-                        <Route path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm)}/>
+                        <Route exact path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm)}/>
+                        <Route exact path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm)}/>
+                        <Route exact path='/users/:user_id/projects/new' component={withAuth(ProjectForm)}/>
+                        <Route exact path='/users/:user_id/projects/:project_id/edit' component={withAuth(ProjectForm)}/>
+                        <Route exact path='/users/:user_id/skills/new' component={withAuth(SkillForm)}/>
+                        <Route exact path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm)}/>
                         {/* Admin */}
-                        <Route path='/users/:user_id/jobs/new' component={withAuth(JobForm)}/>
-                        <Route path='/users/:user_id/jobs/:job_id/edit' component={withAuth(JobForm)}/>
+                        <Route exact path='/users/:user_id/jobs/new' component={withAuth(JobForm)}/>
+                        <Route exact path='/users/:user_id/jobs/:job_id/edit' component={withAuth(JobForm)}/>
                     </Switch>
                 </div>
             </div>

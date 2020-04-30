@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Content } from '../../common/Content';
@@ -45,7 +44,7 @@ class Job extends Component {
                     <div className='tile'>
                         <div className='industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.industry]}} />
                         <div className='content'>
-                            <img src={this.state.image} />
+                            <img src={this.state.image} alt={`${this.state.company} Logo`} />
                             <p className='position'>{this.state.position}</p>
                             <p className='company'>{this.state.company}</p>
                             <p className='location'>{this.state.location}</p>
