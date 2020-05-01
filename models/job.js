@@ -67,7 +67,13 @@ const JobSchema = new mongoose.Schema({
             }
         }
     ],
-    user: {
+    applications: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
+        },
+    ],
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
@@ -77,7 +83,17 @@ JobSchema.pre('remove', async function(next) {
     try {
         let user = await db.user.findById(this.user);
         let profile = await db[user.profile_type].findById(user.profile);
-        profile.jobs.remove(this.id);
+        let usersApplications = await db.user.find({
+            '_id': {
+                $in: job.applications,
+            }
+        });
+        for await (let singleUser of usersApplications) {
+            let singleUserProfile = await db[singleUser.profile_type].findById(singleUser.profile);
+            singleUserProfile.applications.remove(this.id);
+            singleUserProfile.save();
+        }
+        profile.applications.remove(this.id);
         await profile.save();
         return next();
     } catch(e) {

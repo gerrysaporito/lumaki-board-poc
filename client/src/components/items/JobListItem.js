@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IndustryColorValues } from '../../common/Definitions';
 import './css/JobListItem.css';
 
-const JobListItem = ({_id, company, link, image, position, industry, location, duration, position_description, removeJob, currentUser, isCorrectUser}) => (
+const JobListItem = ({_id, company, link, image, position, industry, location, duration, position_description, removeJob, currentUser, canAccess}) => (
     <div className='job-list-item'>
         <div className='industry-color-bar' style={{backgroundColor: IndustryColorValues[industry]}} />
         <div>
@@ -30,7 +30,7 @@ const JobListItem = ({_id, company, link, image, position, industry, location, d
                 <span>{duration} weeks</span>
             </div>
             <div className='cta'>
-                {isCorrectUser && (
+                {canAccess && (
                     <React.Fragment>
                         <Link to={`/users/${currentUser.user._id}/jobs/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
                         <button onClick={removeJob}><i className="far fa-trash-alt" /></button>

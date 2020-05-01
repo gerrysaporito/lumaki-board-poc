@@ -48,7 +48,7 @@ const StudentProfileSchema = new mongoose.Schema({
             ref: 'skill',
         }
     ],
-    jobs: [
+    applications: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'job',

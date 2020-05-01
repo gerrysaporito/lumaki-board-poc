@@ -30,6 +30,10 @@
     width: 230px;
 }
 
+.navbar-toggler {
+    width: auto !important;
+}
+
 .hidden {
     display: block;
 }

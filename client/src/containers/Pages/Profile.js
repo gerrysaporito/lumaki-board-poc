@@ -5,6 +5,7 @@ import { Content } from '../../common/Content';
 import { Profiles } from '../../common/Definitions';
 
 import StudentProfileForm from '../forms/StudentProfileForm';
+import EmployerProfileForm from '../forms/EmployerProfileForm';
 import './css/Profile.css';
 
 class Profile extends Component {
@@ -17,7 +18,7 @@ class Profile extends Component {
                 break;
             }
             case Profiles.employer: {
-                profile = null;
+                profile =  (<EmployerProfileForm {...this.props} />);
                 break;
             }
             default: {

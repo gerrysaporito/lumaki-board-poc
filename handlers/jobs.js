@@ -4,6 +4,7 @@ exports.createJob = async function(req, res, next) {
     try {
         let job = await db.job.create({
             ...req.body,
+            user_id: req.params._id,
             duration: dateToWeek(req.body.start_date, req.body.end_date),
         });
         let user = await db.user.findById(req.params._id);
@@ -62,6 +63,23 @@ exports.deleteJob = async function(req, res, next) {
     }
 };
 
+exports.applyJob = async function(req, res, next) {
+    try {
+        let user = await db.user.findById(req.params._id);
+        let profile = await db[user.profile_type].findById(user.profile);
+        let job = await db.job.findById(req.params.job_id);
+        job.applications.push(user._id);
+        profile.applications.push(job._id);
+        job.save();
+        profile.save();
+        res.status(200).json({
+            jobs: job.applications,
+            profile: profile.applications,
+        })
+    } catch(e) {
+        return next(e);
+    }
+}
 
 function dateToWeek(start_date, end_date) {
     let first = new Date(start_date);

@@ -29,7 +29,8 @@ class AuthForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const authType = this.props.register ? 'register' : 'login';
-        this.props.authUser(authType, {...this.state, profile_type: 'student_profile'})
+        const profileType = this.props.employers ? 'employer_profile' : 'student_profile';
+        this.props.authUser(authType, {...this.state, profile_type: profileType})
         .then(res => {
             this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user._id}`: '/jobs');
         })
@@ -60,15 +61,15 @@ class AuthForm extends Component {
                     {register && (
                         <div>
                             <label htmlFor='first_name'>First Name:</label>
-                            <input projectid='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' required />
+                            <input id='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' required />
                             <label htmlFor='lastName'>Last Name:</label>
-                            <input projectid='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' required />
+                            <input id='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' required />
                         </div>
                     )}
                     <label htmlFor='email'>Email:</label>
-                    <input projectid='email' name='email' onChange={this.handleChange} value={email} type='text' required />
+                    <input id='email' name='email' onChange={this.handleChange} value={email} type='text' required />
                     <label htmlFor='password'>Password:</label>
-                    <input projectid='password' onChange={this.handleChange} name='password' type='password' required />
+                    <input id='password' onChange={this.handleChange} name='password' type='password' required />
                     <button className='lumaki-btn' type='submit'>{buttonText}</button>
                 </form>
             </div>

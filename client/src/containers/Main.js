@@ -3,8 +3,9 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Content } from '../common/Content';
+import { Profiles } from '../common/Definitions';
 import withAuth from '../hocs/WithAuth'
-import withAdminAuth from '../hocs/WithAdminAuth';
+// import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
 import Homepage from '../components/Homepage';
 import AuthForm from './forms/AuthForm';
@@ -19,7 +20,7 @@ import Job from './Pages/Job';
 import './css/Main.css';
 
 const Main = props => {
-    const {Content} = props;
+    const {profile_type} = props;
     return(
         <React.Fragment>
             <Navbar {...props} />
@@ -28,21 +29,22 @@ const Main = props => {
                     <Switch>
                         {/* Wanderer */}
                         <Route exact path='/login' render={props => <AuthForm {...Content.login} {...props} />} />
-                        <Route exact path='/register' render={props => <AuthForm {...Content.register} {...props} />} />
+                        <Route exact path='/register' render={props => <AuthForm {...Content.register.student} {...props} />} />
+                        <Route exact path='/register/employer' render={props => <AuthForm {...Content.register.employers} {...props} />} />
                         <Route exact path='/' render={props => <Homepage {...props} />} />
                         <Route exact path='/jobs' render={props => <AllJobs {...props} />} />
                         <Route exact path='/jobs/:job_id' render={props => <Job {...props} />}  />
                         {/* Users */}
-                        <Route exact path='/users/:user_id' component={withAuth(Profile)} />
-                        <Route exact path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm)}/>
-                        <Route exact path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm)}/>
-                        <Route exact path='/users/:user_id/projects/new' component={withAuth(ProjectForm)}/>
-                        <Route exact path='/users/:user_id/projects/:project_id/edit' component={withAuth(ProjectForm)}/>
-                        <Route exact path='/users/:user_id/skills/new' component={withAuth(SkillForm)}/>
-                        <Route exact path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm)}/>
+                        <Route exact path='/users/:user_id' component={withAuth(Profile, true)} />
+                        <Route exact path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
+                        <Route exact path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
+                        <Route exact path='/users/:user_id/projects/new' component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
+                        <Route exact path='/users/:user_id/projects/:project_id/edit' component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
+                        <Route exact path='/users/:user_id/skills/new' component={withAuth(SkillForm, profile_type === Profiles.student)}/>
+                        <Route exact path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm, profile_type === Profiles.student)}/>
                         {/* Admin */}
-                        <Route exact path='/users/:user_id/jobs/new' component={withAdminAuth(JobForm)}/>
-                        <Route exact path='/users/:user_id/jobs/:job_id/edit' component={withAdminAuth(JobForm)}/>
+                        <Route exact path='/users/:user_id/jobs/new' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
+                        <Route exact path='/users/:user_id/jobs/:job_id/edit' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
                     </Switch>
                 </div>
             </div>
@@ -52,7 +54,7 @@ const Main = props => {
 
 function mapStateToProps(state) {
     return {
-        Content: Content,
+        profile_type: state.currentUser.user.profile_type,
     }
 }
 

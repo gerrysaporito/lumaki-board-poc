@@ -4,9 +4,17 @@ export const Content = {
         heading: 'Welcome Back.'
     },
     register: {
-        buttonText: "Let's go!",
-        heading: 'Apply for your next internship today.',
-        register: true,
+        student: {
+            buttonText: "Let's go!",
+            heading: 'Apply for your next internship today.',
+            register: true,
+        },
+        employers: {
+            buttonText: "Let's go!",
+            heading: 'List your first job today.',
+            register: true,
+            employers: true,
+        }
     },
     homepage: {
         authenticated: {

@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 
+import { Profiles } from '../common/Definitions';
+
 import LOGO from '../images/LumakiLabs_SmallLogo_W.png';
 import './css/Navbar.css';
 
@@ -22,14 +24,23 @@ class Navbar extends Component {
 
         if(currentUser.isAuthenticated) {
             mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Profile'));
-            mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/new`, 'Post a job'));
+                switch(currentUser.user.profile_type) {
+                    case Profiles.employer: {
+                        mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/new`, 'Post a job'));
+                        break;
+                    }
+                    default: {
+                        break;
+                    }
+                }
             mainTabs.push(<li key={mainTabs.length} className='nav-item'>
                 <button onClick={this.logout} href='#'>Log out</button>
             </li>);
         } else {
             mainTabs.push(createTab(mainTabs.length, `/about`, 'About'));
-            mainTabs.push(createTab(mainTabs.length, `/register`, 'Sign Up'));
             mainTabs.push(createTab(mainTabs.length, `/login`, 'Log In'));
+            mainTabs.push(createTab(mainTabs.length, `/register`, 'Sign Up'));
+            mainTabs.push(createTab(mainTabs.length, `/register/employer`, 'For Employers'));
         }
 
         supportTabs.push(createTab(supportTabs.length, `/contact`, 'Contact'));

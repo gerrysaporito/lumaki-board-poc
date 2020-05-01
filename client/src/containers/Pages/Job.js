@@ -48,7 +48,7 @@ class Job extends Component {
                             <p className='position'>{this.state.position}</p>
                             <p className='company'>{this.state.company}</p>
                             <p className='location'>{this.state.location}</p>
-                            <p className='duration'><strong>Duration:</strong> {datediff(this.state.start_date, this.state.end_date)}</p>
+                            <p className='duration'><strong>Duration:</strong> {datediff(this.state.start_date, this.state.end_date)} weeks</p>
                             <div className='description'>
                                 <p className='title'><strong>Company Description:</strong></p>
                                 <p>{this.state.company_description}</p>
