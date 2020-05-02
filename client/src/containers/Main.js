@@ -51,8 +51,8 @@ const Main = props => {
                         <Route exact path='/users/:user_id/skills/new' component={withAuth(SkillForm, profile_type === Profiles.student)}/>
                         <Route exact path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm, profile_type === Profiles.student)}/>
                         {/* Admin */}
-                        <Route exact path='/users/:user_id/jobs/new' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
-                        <Route exact path='/users/:user_id/jobs/:job_id/edit' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
+                        <Route exact path='/users/:user_id/jobs/postings/new' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
+                        <Route exact path='/users/:user_id/jobs/postings/:job_id/edit' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
                     </Switch>
                 </div>
             </div>

@@ -32,7 +32,7 @@ const JobListItem = ({_id, company, link, image, position, job_industry, locatio
             <div className='cta'>
                 {canAccess && (
                     <React.Fragment>
-                        <Link to={`/users/${currentUser.user._id}/jobs/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
+                        <Link to={`/users/${currentUser.user._id}/jobs/postings/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
                         <button onClick={removeJob}><i className="far fa-trash-alt" /></button>
                     </React.Fragment>
                 )}

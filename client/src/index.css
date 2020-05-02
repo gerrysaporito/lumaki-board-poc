@@ -23,6 +23,11 @@
     border-radius: 10px;
 }
 
+.lumaki-btn:hover,
+.lumaki-btn-outline {
+    color: white;
+}
+
 .lumaki-btn-outline {
     background-color: rgba(0,0,0,0);
     color: rgb(56,180,157);

@@ -19,7 +19,6 @@ class ContactForm extends Component {
 
     handleMessage = e => {
         e.preventDefault();
-        const experience_id = this.props.match.params.experience_id;
         this.props.postNewExperience({...this.state});
         this.setState({
             company: '',
@@ -62,20 +61,6 @@ class ContactForm extends Component {
             </div>
         )
     }
-}
-
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
-
-    return [year, month, day].join('-');
 }
 
 function mapStateToProps(state) {

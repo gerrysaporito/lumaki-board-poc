@@ -23,7 +23,7 @@ class Navbar extends Component {
 
         if(currentUser.isAuthenticated) {
             switch(currentUser.user.profile_type) {
-                case Profiles.admin: {
+                case Profiles.superadmin: {
                     mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
                     mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
                     mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
@@ -40,8 +40,8 @@ class Navbar extends Component {
                 case Profiles.employer: {
                     mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
                     mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
                     mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
                     break;
                 }
                 case Profiles.student: {

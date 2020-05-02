@@ -26,12 +26,40 @@ export const Content = {
     },
     homepage: {
         authenticated: {
-
+            title: `A no-frills virtual internship marketplace.`,
+            subTitle: `Flexible internship experiences at your fingertips. `,
+            tiles: [
+                {
+                    title: `Looking for a job?`,
+                    subTitle: `Some random gibberish here`,
+                    buttonText: `Sign up here`,
+                    link: `/register`,
+                },
+                {
+                    title: `Wanna fill your position?`,
+                    subTitle: `Some random gibberish here`,
+                    buttonText: `Learn more here`,
+                    link: `/employer`,
+                }
+            ]
         },
         unauthenticated: {
-            title: `What's Happening?`,
-            subTitle: `New to the LumakiBoard?`,
-            buttonText: `Sign Up Here`,
+            title: `A no-frills virtual internship marketplace.`,
+            subTitle: `Flexible internship experiences at your fingertips. `,
+            tiles: [
+                {
+                    title: `Looking for a job?`,
+                    subTitle: `Some random gibberish here`,
+                    buttonText: `Sign up here`,
+                    link: `/register`,
+                },
+                {
+                    title: `Wanna fill your position?`,
+                    subTitle: `Some random gibberish here`,
+                    buttonText: `Learn more here`,
+                    link: `/employer`,
+                }
+            ]
         }
     },
     profile: {
