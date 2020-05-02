@@ -10,6 +10,6 @@ router.route('/:job_id')
     .post(updateJob)
 
 router.route('/:job_id/apply')
-    .post(applyJob)
+    .get(applyJob)
 
 module.exports = router;

@@ -38,8 +38,9 @@ exports.signin = async function(req, res, next) {
 
 exports.signup = async function(req, res, next) {
     try {
-        let profile = await db[req.body.profile_type].create({});
-        if(db.user.findOne({email: req.body.email})) {
+        let checkUserExists = await db.user.findOne({email: req.body.email});
+        if(checkUserExists === null) {
+            let profile = await db[req.body.profile_type].create({});
             let user = await db.user.create({
                 ...req.body,
                 profile: profile._id,

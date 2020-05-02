@@ -52,6 +52,7 @@ const StudentProfileSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'job',
+            unique: true,
         }
     ],
 });

@@ -94,20 +94,20 @@ class StudentProfileForm extends Component {
                 {/* Lists */}
                 <div className='hr' />
                 <div className='section'>
-                    <h5>{Content.profile.experiences.title}</h5>
-                    <Link to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.experiences.buttonText}</Link>
+                    <h5>{Content.profile.student.experiences.title}</h5>
+                    <Link to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.student.experiences.buttonText}</Link>
                     <ExperienceList />
                 </div>
                 <div className='hr' />
                 <div className='section'>
-                    <h5>{Content.profile.projects.title}</h5>
-                    <Link to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.projects.buttonText}</Link>
+                    <h5>{Content.profile.student.projects.title}</h5>
+                    <Link to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.student.projects.buttonText}</Link>
                     <ProjectList />
                 </div>
                 <div className='hr' />
                 <div className='section'>
-                    <h5>{Content.profile.skills.title}</h5>
-                    <Link to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.skills.buttonText}</Link>
+                    <h5>{Content.profile.student.skills.title}</h5>
+                    <Link to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.student.skills.buttonText}</Link>
                     <SkillList />
                 </div>
 

@@ -1,5 +1,5 @@
 import { apiCall } from '../../services/api';
-import { LOAD_JOBS, REMOVE_JOB, ERROR } from '../actionTypes';
+import { LOAD_JOBS, REMOVE_JOB, ERROR, SUCCESS } from '../actionTypes';
 import { addAlert } from './alerts';
 
 export const loadJobs = jobs => ({
@@ -51,3 +51,11 @@ export const removeJob = (user_id, job_id) => {
         .catch(e => addAlert(e.message, ERROR));
     };
 };
+
+export const applyToJob = job_id => (dispatch, getState) => {
+    let { currentUser } = getState();
+    const user_id = currentUser.user._id;
+    return apiCall('get', `/api/users/${user_id}/jobs/${job_id}/apply`)
+    .then(res => dispatch(addAlert('Successfully applied to job', SUCCESS)))
+    .catch(e => dispatch(addAlert(e.message, ERROR)));
+}

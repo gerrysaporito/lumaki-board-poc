@@ -18,7 +18,7 @@ const JobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    industry: {
+    job_industry: {
         type: String,
         required: true,
     },
@@ -71,6 +71,7 @@ const JobSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
+            unique: true,
         },
     ],
     user_id: {

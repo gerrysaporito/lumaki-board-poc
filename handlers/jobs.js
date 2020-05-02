@@ -66,17 +66,36 @@ exports.deleteJob = async function(req, res, next) {
 
 exports.applyJob = async function(req, res, next) {
     try {
+        let error = false;
         let user = await db.user.findById(req.params._id);
         let profile = await db[user.profile_type].findById(user.profile);
         let job = await db.job.findById(req.params.job_id);
-        job.applications.push(user._id);
-        profile.applications.push(job._id);
-        job.save();
-        profile.save();
-        res.status(200).json({
-            jobs: job.applications,
-            profile: profile.applications,
-        })
+
+        if (!job.applications.includes(user._id)) {
+            job.applications.push(user._id);
+            job.save();
+        } else {
+            error = true;
+        }
+
+        if (!profile.applications.includes(job._id)) {
+            profile.applications.push(job._id);
+            profile.save();
+        } else {
+            error = true;
+        }
+
+        if (error) {
+            next({
+                status: 400,
+                message: 'You have already applied to this job',
+            })
+        } else {
+            res.status(200).json({
+                jobs: job.applications,
+                profile: profile.applications,
+            })
+        }
     } catch(e) {
         return next(e);
     }

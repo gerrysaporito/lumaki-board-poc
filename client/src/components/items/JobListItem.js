@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { IndustryColorValues } from '../../common/Definitions';
 import './css/JobListItem.css';
 
-const JobListItem = ({_id, company, link, image, position, industry, location, duration, position_description, removeJob, currentUser, canAccess}) => (
+const JobListItem = ({_id, company, link, image, position, job_industry, location, duration, position_description, removeJob, currentUser, canAccess}) => (
     <div className='job-list-item'>
-        <div className='industry-color-bar' style={{backgroundColor: IndustryColorValues[industry]}} />
+        <div className='job-industry-color-bar' style={{backgroundColor: IndustryColorValues[job_industry] || 'green',}} />
         <div>
             <img src={image} alt={`${company} Logo`} />
             <p className='company'><strong><Link to={`/jobs/${_id}`}>{company}</Link></strong></p>
@@ -17,9 +17,9 @@ const JobListItem = ({_id, company, link, image, position, industry, location, d
             <div className='tag'>
                 <strong>Industry:</strong>
                 <span style={{
-                    backgroundColor: IndustryColorValues[industry],
+                    backgroundColor: IndustryColorValues[job_industry] || 'green',
                     color: 'rgb(97, 95, 95)',
-                }}>{industry}</span>
+                }}>{job_industry}</span>
             </div>
             <div className='tag'>
                 <strong>Location:</strong>

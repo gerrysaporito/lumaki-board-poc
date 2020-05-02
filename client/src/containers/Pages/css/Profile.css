@@ -8,3 +8,7 @@
 .name {
     color: rgb(57,168,147);
 }
+
+#profile h5 {
+    padding-bottom: 15px;
+}

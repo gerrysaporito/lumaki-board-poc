@@ -23,12 +23,12 @@ export const IndustryColorValues = {
     [IndustryValues.engineering]: 'rgb(170, 208, 243)',
 }
 
-export const JobDurations = {
-    '4': '4 weeks',
-    '8': '8 weeks',
-    '12': '12 weeks',
-    '16': '16 weeks',
-    '52': '52 weeks',
+export const CompaySize = {
+    '4': '1-4 employees',
+    '19': '5-19 employees',
+    '49': '20-49 employees',
+    '99': '50-99 employees',
+    '100+': '100+ employees',
 }
 
 export const Genders = {

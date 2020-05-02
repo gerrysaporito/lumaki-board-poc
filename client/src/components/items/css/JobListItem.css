@@ -15,10 +15,9 @@
     margin: 20px 0;
 }
 
-.industry-color-bar {
+.job-industry-color-bar {
     width: 50%;
     height: 10px;
-    background-color: blue;
     margin: 0;
     position: absolute;
     top: 0;

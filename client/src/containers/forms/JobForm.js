@@ -15,8 +15,8 @@ class JobForm extends Component {
             // link: '',
             // image: '',
             position: '',
-            industry: '',
-            location: '',
+            job_industry: '',
+            // location: '',
             start_date: '',
             end_date: '',
             // company_description: '',
@@ -53,7 +53,7 @@ class JobForm extends Component {
             link: '',
             image: '',
             position: '',
-            industry: '',
+            job_industry: '',
             location: '',
             start_date: '',
             end_date: '',
@@ -117,11 +117,6 @@ class JobForm extends Component {
                         {/* Company Name */}
                         {/* <label htmlFor='company'>Company/Organization:</label>
                         <input id='company' name='company' onChange={this.handleChange} value={this.state.company} type='text' required /> */}
-
-                        {/* Position Title */}
-                        <label htmlFor='position'>Position:</label>
-                        <input id='position' name='position' onChange={this.handleChange} value={this.state.position} type='text' required />
-
                         {/* Link and Imaage */}
                         {/* <div className='form-section mt-2'>
                             <div className='form-section-item'>
@@ -133,6 +128,13 @@ class JobForm extends Component {
                                 <input id='image' name='image' onChange={this.handleChange} value={this.state.image} type='text' required />
                             </div>
                         </div> */}
+                        {/* Company Description */}
+                        {/* <label htmlFor='company_description'>Company Description:</label>
+                        <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description} type='text' required /> */}
+
+                        {/* Position Title */}
+                        <label htmlFor='position'>Position:</label>
+                        <input id='position' name='position' onChange={this.handleChange} value={this.state.position} type='text' required />
 
                         {/* Location & Industry */}
                         <div className='form-section mt-2'>
@@ -141,10 +143,10 @@ class JobForm extends Component {
                                 <input id='location' name='location' onChange={this.handleChange} value={this.state.location} type='text' required />
                             </div>
                             <div className='form-section-item'>
-                                <label htmlFor='industry'>Industry:</label>
-                                <select id='industry' name='industry' onChange={this.handleChange} value={this.state.industry} required >
+                                <label htmlFor='job_industry'>Job Industry:</label>
+                                <select id='job_industry' name='job_industry' onChange={this.handleChange} value={this.state.job_industry} required >
                                     <option disabled value=''>--Please choose an option--</option>
-                                    {Object.values(IndustryValues).map((industry, i) => (<option key={i} value={industry}>{industry}</option>))}
+                                    {Object.values(IndustryValues).map((job_industry, i) => (<option key={i} value={job_industry}>{job_industry}</option>))}
                                 </select>
                             </div>
                         </div>
@@ -160,10 +162,6 @@ class JobForm extends Component {
                                 <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date} type='date' required />
                             </div>
                         </div>
-
-                        {/* Company Description */}
-                        {/* <label htmlFor='company_description'>Company Description:</label>
-                        <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description} type='text' required /> */}
 
                         {/* Position Description */}
                         <label htmlFor='position_description'>Position Description:</label>

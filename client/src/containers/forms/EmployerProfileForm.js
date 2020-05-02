@@ -4,17 +4,25 @@ import { connect } from 'react-redux';
 import { SUCCESS } from '../../store/actionTypes';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
 import { removeAlert } from '../../store/actions/alerts';
+import { IndustryValues, CompaySize } from '../../common/Definitions';
+import { Content } from '../../common/Content';
 
 import './css/ProfileForm.css';
 
-class StudentProfileForm extends Component {
+class EmployerProfileForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             company: '',
             link: '',
             image:  '',
+            company_size: '',
+            remote_internship_experience: '',
+            company_industry: '',
             company_description: '',
+            country: '',
+            state: '',
+            city: '',
         }
     }
 
@@ -25,7 +33,14 @@ class StudentProfileForm extends Component {
                 company: props.profile.company || '',
                 link: props.profile.link || '',
                 image: props.profile.image || '',
+                company_size: props.profile.company_size || '',
+                remote_internship_experience: props.profile.remote_internship_experience || '',
+                company_industry: props.profile.company_industry || '',
                 company_description: props.profile.company_description || '',
+                country: props.profile.country || '',
+                state: props.profile.state || '',
+                city: props.profile.city || '',
+
             }))
         })
         .catch(() => {});
@@ -47,7 +62,7 @@ class StudentProfileForm extends Component {
     }
 
     render() {
-        const {company, link, image, company_description} = this.state;
+        const {company, link, image, company_size, remote_internship_experience, company_industry, company_description, country,  state, city} = this.state;
         const {alerts, history, removeAlert} = this.props;
         history.listen(() => {
             removeAlert();
@@ -65,7 +80,40 @@ class StudentProfileForm extends Component {
                     <input id='link' name='link' onChange={this.handleChange} value={link} type='text' required />
                     <label htmlFor='image'>Image Logo Link*:</label>
                     <input id='image' name='image' onChange={this.handleChange} value={image} type='text' required />
-                    <label htmlFor='company_description'>Company Description:</label>
+                    {/* Location & Industry */}
+                    <div className='form-section mt-2'>
+                        <div className='form-section-item'>
+                            <label htmlFor='company_size'>Company Size:</label>
+                            <select id='company_size' name='company_size' onChange={this.handleChange} value={company_size} required >
+                                <option disabled value=''>--Please choose an option--</option>
+                                {Object.values(CompaySize).map((company_size, i) => (<option key={i} value={company_size}>{company_size}</option>))}
+                            </select>
+                        </div>
+                        <div className='form-section-item'>
+                            <label htmlFor='company_industry'>Industry:</label>
+                            <select id='company_industry' name='company_industry' onChange={this.handleChange} value={company_industry} required >
+                                <option disabled value=''>--Please choose an option--</option>
+                                {Object.values(IndustryValues).map((company_industry, i) => (<option key={i} value={company_industry}>{company_industry}</option>))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <label htmlFor='country'>Country*:</label>
+                    <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
+                    <label htmlFor='state'>State:</label>
+                    <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
+                    <label htmlFor='city'>City:</label>
+                    <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
+                    <label htmlFor='remote_internship_experience'>Have you ever run a remote internship before?</label>
+                    <select id='remote_internship_experience' name='remote_internship_experience' onChange={this.handleChange} value={remote_internship_experience} required >
+                        <option disabled value=''>--Please choose an option--</option>
+                        <option value='yes'>Yes</option>
+                        <option value='no'>No</option>
+                    </select>
+
+                    <div className='hr' />
+                    <h5>{Content.profile.employer.description.title}</h5>
+                    <label htmlFor='company_description'>{Content.profile.employer.description.subTitle}</label>
                     <textarea id='company_description' name='company_description' onChange={this.handleChange} value={company_description} required />
                 </div>
 
@@ -84,4 +132,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(StudentProfileForm);
+export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(EmployerProfileForm);

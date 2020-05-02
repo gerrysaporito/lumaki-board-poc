@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Content } from '../../common/Content';
-import { IndustryColorValues } from '../../common/Definitions';
-import { getJob } from '../../store/actions/jobs';
+import { IndustryColorValues, Profiles } from '../../common/Definitions';
+import { getJob, applyToJob } from '../../store/actions/jobs';
+import { ERROR } from '../../store/actionTypes';
 
 import './css/Job.css';
 
@@ -37,13 +38,27 @@ class Job extends Component {
         }))
         .catch(() => {});
     }
+
+    handleApplyClick = e => {
+        e.preventDefault();
+        const job_id = this.props.match.params.job_id;
+        this.props.applyToJob(job_id);
+    }
+
     render() {
         return(
             <div id='job-container'>
                 <div className='job'>
                     <div className='tile'>
-                        <div className='industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.industry]}} />
+                        <div className='job-industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.job_industry]}} />
                         <div className='content'>
+                            {this.props.alerts.alert === ERROR && this.props.alerts.message && (
+                                <div className='error'>
+                                    <div className='alert alert-danger'>
+                                        {this.props.alerts.message}
+                                    </div>
+                                </div>
+                            )}
                             <img src={this.state.image} alt={`${this.state.company} Logo`} />
                             <p className='position'>{this.state.position}</p>
                             <p className='company'>{this.state.company}</p>
@@ -86,6 +101,9 @@ class Job extends Component {
                             </ul>
                         </div>
                     </div>
+                    {this.props.currentUser.user.profile_type === Profiles.student && (
+                        <button className='lumaki-btn apply' onClick={this.handleApplyClick}>Apply Now</button>
+                    )}
                 </div>
             </div>
         )
@@ -121,4 +139,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getJob })(Job);
+export default connect(mapStateToProps, { getJob, applyToJob })(Job);

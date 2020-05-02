@@ -20,19 +20,40 @@ class Navbar extends Component {
         const {currentUser} = this.props;
         let mainTabs = [];
         let supportTabs = [];
-        mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
 
         if(currentUser.isAuthenticated) {
-            mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Profile'));
-                switch(currentUser.user.profile_type) {
-                    case Profiles.employer: {
-                        mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/new`, 'Post a job'));
-                        break;
-                    }
-                    default: {
-                        break;
-                    }
+            switch(currentUser.user.profile_type) {
+                case Profiles.admin: {
+                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
+                    break;
                 }
+                case Profiles.admin: {
+                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
+                    break;
+                }
+                case Profiles.employer: {
+                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
+                    break;
+                }
+                case Profiles.student: {
+                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'My Profile'));
+                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/applications`, 'My Applications'));
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
             mainTabs.push(<li key={mainTabs.length} className='nav-item'>
                 <button onClick={this.logout} href='#'>Log out</button>
             </li>);
@@ -40,11 +61,11 @@ class Navbar extends Component {
             mainTabs.push(createTab(mainTabs.length, `/about`, 'About'));
             mainTabs.push(createTab(mainTabs.length, `/login`, 'Log In'));
             mainTabs.push(createTab(mainTabs.length, `/register`, 'Sign Up'));
-            mainTabs.push(createTab(mainTabs.length, `/register/employer`, 'For Employers'));
+            mainTabs.push(createTab(mainTabs.length, `/employer/`, 'For Employers'));
         }
 
+        supportTabs.push(createTab(supportTabs.length, `/faq`, 'FAQ'));
         supportTabs.push(createTab(supportTabs.length, `/contact`, 'Contact'));
-        supportTabs.push(createTab(supportTabs.length, `/support`, 'Support'));
 
         return(
             <nav className='navbar navbar-expand-lg navbar-dark'>

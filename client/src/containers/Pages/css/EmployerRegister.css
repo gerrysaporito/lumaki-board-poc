@@ -1,0 +1,16 @@
+#employer-register {
+    width: 100%;
+    display: flex;
+    justify-self: center;
+}
+
+#employer-register a {
+    padding: 7px 30px;
+    margin-right: 20px;
+    width: 150px;
+}
+
+#employer-register .cta {
+    padding-top: 10px;
+    justify-content: flex-start;
+}

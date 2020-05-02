@@ -10,11 +10,35 @@ const EmployerProfileSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
+    company_size: {
+        type: String,
+        default: '',
+    },
+    remote_internship_experience: {
+        type: String,
+        default: '',
+    },
+    company_industry: {
+        type: String,
+        default: '',
+    },
     image: {
         type: String,
         default: '',
     },
     company_description: {
+        type: String,
+        default: '',
+    },
+    country: {
+        type: String,
+        default: '',
+    },
+    state: {
+        type: String,
+        default: '',
+    },
+    city: {
         type: String,
         default: '',
     },
