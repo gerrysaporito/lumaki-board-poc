@@ -81,11 +81,11 @@ const JobSchema = new mongoose.Schema({
 
 JobSchema.pre('remove', async function(next) {
     try {
-        let user = await db.user.findById(this.user);
+        let user = await db.user.findById(this.user_id);
         let profile = await db[user.profile_type].findById(user.profile);
         let usersApplications = await db.user.find({
             '_id': {
-                $in: job.applications,
+                $in: this.applications,
             }
         });
         for await (let singleUser of usersApplications) {
@@ -97,7 +97,13 @@ JobSchema.pre('remove', async function(next) {
         await profile.save();
         return next();
     } catch(e) {
-        next(e.message);
+        next({
+            status: 400,
+            message: {
+                user: await db.user.findById(this.user_id),
+                message: e.message,
+            }
+        });
     }
 });
 

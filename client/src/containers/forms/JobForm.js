@@ -11,15 +11,15 @@ class JobForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            company: '',
-            link: '',
-            image: '',
+            // company: '',
+            // link: '',
+            // image: '',
             position: '',
             industry: '',
             location: '',
             start_date: '',
             end_date: '',
-            company_description: '',
+            // company_description: '',
             position_description: '',
             responsibilities: [''],
             requirements: [''],
@@ -115,15 +115,15 @@ class JobForm extends Component {
                         )}
 
                         {/* Company Name */}
-                        <label htmlFor='company'>Company/Organization:</label>
-                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company} type='text' required />
+                        {/* <label htmlFor='company'>Company/Organization:</label>
+                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company} type='text' required /> */}
 
                         {/* Position Title */}
                         <label htmlFor='position'>Position:</label>
                         <input id='position' name='position' onChange={this.handleChange} value={this.state.position} type='text' required />
 
                         {/* Link and Imaage */}
-                        <div className='form-section mt-2'>
+                        {/* <div className='form-section mt-2'>
                             <div className='form-section-item'>
                                 <label htmlFor='link'>Website Link:</label>
                                 <input id='link' name='link' onChange={this.handleChange} value={this.state.link} type='text' required />
@@ -132,7 +132,7 @@ class JobForm extends Component {
                                 <label htmlFor='image'>Image URL:</label>
                                 <input id='image' name='image' onChange={this.handleChange} value={this.state.image} type='text' required />
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Location & Industry */}
                         <div className='form-section mt-2'>
@@ -162,8 +162,8 @@ class JobForm extends Component {
                         </div>
 
                         {/* Company Description */}
-                        <label htmlFor='company_description'>Company Description:</label>
-                        <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description} type='text' required />
+                        {/* <label htmlFor='company_description'>Company Description:</label>
+                        <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description} type='text' required /> */}
 
                         {/* Position Description */}
                         <label htmlFor='position_description'>Position Description:</label>

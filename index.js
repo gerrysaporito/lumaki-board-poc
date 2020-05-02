@@ -26,7 +26,7 @@ app.use('/api/users/:_id/experiences', loginRequired, ensureCorrectUser, EXPERIE
 app.use('/api/users/:_id/projects', loginRequired, ensureCorrectUser, PROJECTS_ROUTES);
 app.use('/api/users/:_id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES);
 app.use('/api/users/:_id/profiles', loginRequired, ensureCorrectUser, PROFILE_ROUTES);
-app.use('/api/users/:_id/jobs', loginRequired, ensureCorrectUser, checkAdminRole, JOBS_ROUTES);
+app.use('/api/users/:_id/jobs', loginRequired, ensureCorrectUser, JOBS_ROUTES);
 
 // ERROR HANDLER
 app.use(function(req, res, next) {

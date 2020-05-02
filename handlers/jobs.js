@@ -2,14 +2,15 @@ const db = require('../models');
 
 exports.createJob = async function(req, res, next) {
     try {
+        let user = await db.user.findById(req.params._id);
+        let profile = await db[user.profile_type].findById(user.profile);
         let job = await db.job.create({
             ...req.body,
+            ...profile._doc,
             user_id: req.params._id,
             duration: dateToWeek(req.body.start_date, req.body.end_date),
         });
-        let user = await db.user.findById(req.params._id);
-        let profile = await db[user.profile_type].findById(user.profile);
-        profile.jobs.push(job.id);
+        profile.applications.push(job.id);
         await profile.save();
         let foundJob = await db.job.findById(job._id)
         return res.status(200).json(foundJob);

@@ -38,7 +38,8 @@ exports.ensureCorrectUser = function(req, res, next) {
                     // {
                     //     decoded: decoded,
                     //     decoded_id: decoded._id,
-                    //     req: req.params._id
+                    //     req: req.params,
+                    //     url: req.protocol + '://' + req.get('host') + req.originalUrl
                     // }
                 });
             }

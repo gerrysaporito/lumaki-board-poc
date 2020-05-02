@@ -12,7 +12,7 @@ class JobList extends Component {
             <JobListItem
                 key={m._id}
                 {...m}
-                removeJob={removeJob.bind(this, m.user, m._id)}
+                removeJob={removeJob.bind(this, m.user_id, m._id)}
                 canAccess={currentUser.user._id === m.user_id}
                 currentUser={currentUser}
             />
