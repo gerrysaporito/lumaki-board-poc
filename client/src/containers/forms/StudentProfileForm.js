@@ -12,7 +12,7 @@ import ExperienceList from '../lists/ExperienceList';
 import ProjectList from '../lists/ProjectList';
 import SkillList from '../lists/SkillList';
 
-import './css/StudentProfileForm.css';
+import './css/ProfileForm.css';
 
 class StudentProfileForm extends Component {
     constructor(props) {

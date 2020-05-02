@@ -5,7 +5,7 @@ import { SUCCESS } from '../../store/actionTypes';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
 import { removeAlert } from '../../store/actions/alerts';
 
-import './css/StudentProfileForm.css';
+import './css/ProfileForm.css';
 
 class StudentProfileForm extends Component {
     constructor(props) {
@@ -66,7 +66,7 @@ class StudentProfileForm extends Component {
                     <label htmlFor='image'>Image Logo Link*:</label>
                     <input id='image' name='image' onChange={this.handleChange} value={image} type='text' required />
                     <label htmlFor='company_description'>Company Description:</label>
-                    <input id='company_description' name='company_description' onChange={this.handleChange} value={company_description} type='text' required />
+                    <textarea id='company_description' name='company_description' onChange={this.handleChange} value={company_description} required />
                 </div>
 
                 {/* Save Button */}
