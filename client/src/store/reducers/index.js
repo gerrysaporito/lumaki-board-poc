@@ -4,7 +4,7 @@ import alerts from './alerts';
 import experiences from './experiences';
 import projects from './projects';
 import skills from './skills';
-import jobs from './jobs';
+import posts from './posts';
 import profile from './profiles';
 
 const rootReducer = combineReducers ({
@@ -13,7 +13,7 @@ const rootReducer = combineReducers ({
     experiences,
     projects,
     skills,
-    jobs,
+    posts,
     profile,
 });
 

@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Routes } from '../../common/Routes'
 import { IndustryColorValues } from '../../common/Definitions';
-import './css/JobListItem.css';
+import './css/PostListItem.css';
 
-const JobListItem = ({_id, company, link, image, position, job_industry, location, duration, position_description, removeJob, currentUser, canAccess}) => (
-    <div className='job-list-item'>
-        <div className='job-industry-color-bar' style={{backgroundColor: IndustryColorValues[job_industry] || 'green',}} />
+const PostListItem = ({_id, company, link, image, position, post_industry, location, duration, position_description, removePost, currentUser, canAccess}) => (
+    <div className='post-list-item'>
+        <div className='post-industry-color-bar' style={{backgroundColor: IndustryColorValues[post_industry] || 'green',}} />
         <div>
             <img src={image} alt={`${company} Logo`} />
-            <p className='company'><strong><Link to={`/jobs/${_id}`}>{company}</Link></strong></p>
+            <p className='company'><strong><Link to={`/posts/${_id}`}>{company}</Link></strong></p>
             <p><i>{position}</i></p>
         </div>
         <p className='position-description'>{position_description}</p>
@@ -17,9 +18,9 @@ const JobListItem = ({_id, company, link, image, position, job_industry, locatio
             <div className='tag'>
                 <strong>Industry:</strong>
                 <span style={{
-                    backgroundColor: IndustryColorValues[job_industry] || 'green',
+                    backgroundColor: IndustryColorValues[post_industry] || 'green',
                     color: 'rgb(97, 95, 95)',
-                }}>{job_industry}</span>
+                }}>{post_industry}</span>
             </div>
             <div className='tag'>
                 <strong>Location:</strong>
@@ -32,14 +33,14 @@ const JobListItem = ({_id, company, link, image, position, job_industry, locatio
             <div className='cta'>
                 {canAccess && (
                     <React.Fragment>
-                        <Link to={`/users/${currentUser.user._id}/jobs/postings/${_id}/edit`}><i className="fas fa-pencil-alt" /></Link>
-                        <button onClick={removeJob}><i className="far fa-trash-alt" /></button>
+                        <Link to={Routes.editPost.url.replace(':user_id', currentUser.user._id)}><i className="fas fa-pencil-alt" /></Link>
+                        <button onClick={removePost}><i className="far fa-trash-alt" /></button>
                     </React.Fragment>
                 )}
-                <Link to={`/jobs/${_id}`}>Read More ></Link>
+                <Link to={`/posts/${_id}`}>Read More ></Link>
             </div>
         </div>
     </div>
 )
 
-export default JobListItem;
+export default PostListItem;

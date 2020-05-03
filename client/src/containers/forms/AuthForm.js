@@ -32,7 +32,7 @@ class AuthForm extends Component {
         const profileType = this.props.employers ? 'employer_profile' : 'student_profile';
         this.props.authUser(authType, {...this.state, profile_type: profileType})
         .then(res => {
-            this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user._id}`: '/jobs');
+            this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user._id}`: '/posts');
         })
         .catch(() => {
             return;

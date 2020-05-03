@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { Content } from '../common/Content';
 import { Profiles } from '../common/Definitions';
+import { Routes } from '../common/Routes';
 import withAuth from '../hocs/WithAuth'
 // import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
@@ -12,15 +13,15 @@ import Homepage from '../components/Homepage';
 import FAQ from './Pages/FAQ';
 import Profile from './Pages/Profile';
 import Contact from './Pages/Contact';
-import AllJobs from './Pages/AllJobs';
-import Job from './Pages/Job';
+import AllPosts from './Pages/AllPosts';
+import Post from './Pages/Post';
 import EmployerRegister from './Pages/EmployerRegister';
 // Forms
 import AuthForm from './forms/AuthForm';
 import ExperienceForm from './forms/ExperienceForm';
 import ProjectForm from './forms/ProjectForm';
 import SkillForm from './forms/SkillForm';
-import JobForm from './forms/JobForm';
+import PostForm from './forms/PostForm';
 
 import './css/Main.css';
 
@@ -33,26 +34,26 @@ const Main = props => {
                 <div className='content'>
                     <Switch>
                         {/* Wanderer */}
-                        <Route exact path='/login' render={props => <AuthForm {...Content.login} {...props} />} />
-                        <Route exact path='/register' render={props => <AuthForm {...Content.register.student} {...props} />} />
-                        <Route exact path='/employer' render={props => <EmployerRegister {...Content.register.employers} {...props} />} />
-                        <Route exact path='/employer/register' render={props => <AuthForm {...Content.register.employers.register} {...props} />} />
-                        <Route exact path='/' render={props => <Homepage {...props} />} />
-                        <Route exact path='/jobs' render={props => <AllJobs {...props} />} />
-                        <Route exact path='/jobs/:job_id' render={props => <Job {...props} />}  />
-                        <Route exact path='/contact' render={props => <Contact {...props} />}  />
-                        <Route exact path='/faq' render={props => <FAQ {...props} />}  />
-                        {/* Users */}
-                        <Route exact path='/users/:user_id' component={withAuth(Profile, true)} />
-                        <Route exact path='/users/:user_id/experiences/new' component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
-                        <Route exact path='/users/:user_id/experiences/:experience_id/edit' component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
-                        <Route exact path='/users/:user_id/projects/new' component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
-                        <Route exact path='/users/:user_id/projects/:project_id/edit' component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
-                        <Route exact path='/users/:user_id/skills/new' component={withAuth(SkillForm, profile_type === Profiles.student)}/>
-                        <Route exact path='/users/:user_id/skills/:skill_id/edit' component={withAuth(SkillForm, profile_type === Profiles.student)}/>
-                        {/* Admin */}
-                        <Route exact path='/users/:user_id/jobs/postings/new' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
-                        <Route exact path='/users/:user_id/jobs/postings/:job_id/edit' component={withAuth(JobForm, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.login.url} render={props => <AuthForm {...Content.login} {...props} />} />
+                        <Route exact path={Routes.register.url} render={props => <AuthForm {...Content.register.student} {...props} />} />
+                        <Route exact path={Routes.employer.url} render={props => <EmployerRegister {...Content.register.employers} {...props} />} />
+                        <Route exact path={Routes.registerEmployer.url}  render={props => <AuthForm {...Content.register.employers.register} {...props} />} />
+                        <Route exact path={Routes.home.url} render={props => <Homepage {...props} />} />
+                        <Route exact path={Routes.allPosts.url} render={props => <AllPosts {...props} />} />
+                        <Route exact path={Routes.singlePost.url} render={props => <Post {...props} />}  />
+                        <Route exact path={Routes.contact.url} render={props => <Contact {...props} />}  />
+                        <Route exact path={Routes.faq.url} render={props => <FAQ {...props} />}  />
+                        {/* User */}
+                        <Route exact path={Routes.profile.url}  component={withAuth(Profile, true)} />
+                        <Route exact path={Routes.createExperience.url} component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
+                        <Route exact path={Routes.editExperience.url} component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
+                        <Route exact path={Routes.createProject.url} component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
+                        <Route exact path={Routes.editProject.url} component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
+                        <Route exact path={Routes.createSkill.url} component={withAuth(SkillForm, profile_type === Profiles.student)}/>
+                        <Route exact path={Routes.editSkill.url} component={withAuth(SkillForm, profile_type === Profiles.student)}/>
+                        {/* Employer */}
+                        <Route exact path={Routes.createPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.editPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
                     </Switch>
                 </div>
             </div>

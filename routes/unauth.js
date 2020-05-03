@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
-const { getJob, fetchJobs } = require('../handlers/jobs');
+const { getPost, fetchPosts } = require('../handlers/posts');
 
 router.route('/search')
-    .post(fetchJobs);
+    .post(fetchPosts);
 
-router.route('/:job_id')
-    .get(getJob);
+router.route('/:post_id')
+    .get(getPost);
 
 module.exports = router;

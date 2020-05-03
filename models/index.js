@@ -17,4 +17,4 @@ module.exports.employer_profile = require('./employerProfile');
 module.exports.experience = require('./experience');
 module.exports.project = require('./project');
 module.exports.skill = require('./skill');
-module.exports.job = require('./job');
+module.exports.post = require('./post');

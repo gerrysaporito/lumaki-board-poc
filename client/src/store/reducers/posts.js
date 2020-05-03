@@ -1,14 +1,14 @@
 import { LOAD_JOBS, REMOVE_JOB } from '../actionTypes';
 
-const defaultState = [];
+const DEFAULT_STATE = [];
 
-const jobs = (state = defaultState, action) => {
+const posts = (state = DEFAULT_STATE, action) => {
     switch(action.type) {
         case LOAD_JOBS: {
-            return [...action.jobs]
+            return [...action.posts]
         }
         case REMOVE_JOB: {
-            return state.filter(job => job._id !== action._id);
+            return state.filter(post => post._id !== action._id);
         }
         default: {
             return state;
@@ -16,4 +16,4 @@ const jobs = (state = defaultState, action) => {
     }
 };
 
-export default jobs;
+export default posts;

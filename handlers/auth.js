@@ -63,12 +63,12 @@ exports.signup = async function(req, res, next) {
         } else {
             return next({
                 status: 400,
-                message: 'Sorry, that username and/or email is taken.',
+                message: 'Sorry, that email is taken.',
             });
         }
     } catch(e) {
         if(e.code === 11000) {
-            e.message = 'Sorry, that username and/or email is taken.';
+            e.message = 'Sorry, that email is taken.';
         }
         return next({
             status: 400,

@@ -18,6 +18,6 @@ export const REMOVE_PROJECT = 'REMOVE_PROJECT';
 // Skills
 export const LOAD_SKILLS = 'LOAD_SKILLS';
 export const REMOVE_SKILL = 'REMOVE_SKILL';
-// Jobs
+// Posts
 export const LOAD_JOBS = 'LOAD_JOBS';
 export const REMOVE_JOB = 'REMOVE_JOB';

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Content } from '../../common/Content';
 import { IndustryColorValues, Profiles } from '../../common/Definitions';
-import { getJob, applyToJob } from '../../store/actions/jobs';
+import { getPost, applyToPost } from '../../store/actions/posts';
 import { ERROR } from '../../store/actionTypes';
 
-import './css/Job.css';
+import './css/Post.css';
 
-class Job extends Component {
+class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,28 +30,42 @@ class Job extends Component {
     };
 
     componentDidMount() {
-        const job_id = this.props.match.params.job_id;
-        this.props.getJob(job_id, {_id: job_id})
-        .then(job => this.setState({
-            ...job,
-            start_date: formatDate(job.start_date),
-            end_date: formatDate(job.end_date),
+        const post_id = this.props.match.params.post_id;
+        this.props.getPost(post_id, {_id: post_id})
+        .then(post => this.setState({
+            ...post,
+            start_date: formatDate(post.start_date),
+            end_date: formatDate(post.end_date),
         }))
         .catch(() => {});
     }
 
     handleApplyClick = e => {
         e.preventDefault();
-        const job_id = this.props.match.params.job_id;
-        this.props.applyToJob(job_id);
+        const post_id = this.props.match.params.post_id;
+        this.props.applyToPost(post_id);
     }
 
     render() {
+        const button = [];
+        switch(this.props.currentUser.user.profile_type) {
+            case Profiles.student: {
+                button.push(<button key={1} className='lumaki-btn apply' onClick={this.handleApplyClick}>Apply Now</button>);
+                break;
+            }
+            case Profiles.employer: {
+                break;
+            }
+            default: {
+                button.push(<Link key={1} to='/login' className='lumaki-btn-outline apply'>Login</Link>);
+                break;
+            }
+        }
         return(
-            <div id='job-container'>
-                <div className='job'>
+            <div id='post-container'>
+                <div className='post'>
                     <div className='tile'>
-                        <div className='job-industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.job_industry]}} />
+                        <div className='post-industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.post_industry]}} />
                         <div className='content'>
                             {this.props.alerts.alert === ERROR && this.props.alerts.message && (
                                 <div className='error'>
@@ -73,7 +88,7 @@ class Job extends Component {
 
                     <div className='tile'>
                         <div className='content'>
-                            <h3>{`${Content.job.title.description} ${this.state.company}`}</h3>
+                            <h3>{`${Content.post.title.description} ${this.state.company}`}</h3>
                             <p>{this.state.position_description}</p>
                             <div className='description'>
                                 <p className='title'><strong>Responsibilities:</strong></p>
@@ -86,7 +101,7 @@ class Job extends Component {
 
                     <div className='tile'>
                         <div className='content'>
-                            <h3>{`${Content.job.title.requirements}`}</h3>
+                            <h3>{`${Content.post.title.requirements}`}</h3>
                             <ul>
                                 {this.state.requirements.map((req, i) => (<li key={i}>{req.text}</li>))}
                             </ul>
@@ -95,15 +110,13 @@ class Job extends Component {
 
                     <div className='tile'>
                         <div className='content'>
-                            <h3>{`${Content.job.title.compensation}`}</h3>
+                            <h3>{`${Content.post.title.compensation}`}</h3>
                             <ul>
                                 {this.state.compensation.map((req, i) => (<li key={i}>{req.text}</li>))}
                             </ul>
                         </div>
                     </div>
-                    {this.props.currentUser.user.profile_type === Profiles.student && (
-                        <button className='lumaki-btn apply' onClick={this.handleApplyClick}>Apply Now</button>
-                    )}
+                    {button}
                 </div>
             </div>
         )
@@ -139,4 +152,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getJob, applyToJob })(Job);
+export default connect(mapStateToProps, { getPost, applyToPost })(Post);

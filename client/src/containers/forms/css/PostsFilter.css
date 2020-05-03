@@ -1,4 +1,4 @@
-#jobs-filter {
+#posts-filter {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -7,15 +7,15 @@
     padding: 5px 15px;
 }
 
-#jobs-filter label,
+#posts-filter label,
 .filter {
     display: inline-flex;
     flex-direction: row;
     padding-right: 10px;
 }
 
-#jobs-filter input,
-#jobs-filter select {
+#posts-filter input,
+#posts-filter select {
     background-color: rgba(196,196,196, 0.3);
     color: white;
     display: inline-block;

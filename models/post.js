@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const db = require('./index');
 
-const JobSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     company: {
         type: String,
         required: true,
@@ -18,7 +18,7 @@ const JobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    job_industry: {
+    post_industry: {
         type: String,
         required: true,
     },
@@ -80,7 +80,7 @@ const JobSchema = new mongoose.Schema({
     },
 }, {timestamp: true});
 
-JobSchema.pre('remove', async function(next) {
+PostSchema.pre('remove', async function(next) {
     try {
         let user = await db.user.findById(this.user_id);
         let profile = await db[user.profile_type].findById(user.profile);
@@ -108,5 +108,5 @@ JobSchema.pre('remove', async function(next) {
     }
 });
 
-const Job = mongoose.model('job', JobSchema);
-module.exports = Job;
+const Post = mongoose.model('post', PostSchema);
+module.exports = Post;

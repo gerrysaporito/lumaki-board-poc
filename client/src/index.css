@@ -23,8 +23,7 @@
     border-radius: 10px;
 }
 
-.lumaki-btn:hover,
-.lumaki-btn-outline {
+.lumaki-btn:hover {
     color: white;
 }
 
@@ -38,6 +37,10 @@
     min-width: 150px;
     margin: 30px 0;
     border-radius: 10px;
+}
+
+.lumaki-btn-outline:hover {
+    color: rgb(56,180,157);
 }
 
 input, textarea, select {

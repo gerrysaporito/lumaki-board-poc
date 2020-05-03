@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { IndustryValues } from '../../common/Definitions';
-import { fetchJobs } from '../../store/actions/jobs';
+import { fetchPosts } from '../../store/actions/posts';
 
-import './css/JobsFilter.css';
+import './css/PostsFilter.css';
 
-class JobsFilter extends Component {
+class PostsFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +16,7 @@ class JobsFilter extends Component {
     }
 
     componentDidMount(){
-        this.props.fetchJobs({})
+        this.props.fetchPosts({})
         .then(() => this.setState({
             industry: '',
             duration: '',
@@ -33,7 +33,7 @@ class JobsFilter extends Component {
                 Object.keys(this.state)
                     .filter(key => this.state[key] !== '')
                     .forEach(key => filterObj[key] = this.state[key]);
-                this.props.fetchJobs(filterObj)
+                this.props.fetchPosts(filterObj)
                     .then(() => {})
                     .catch(() => {})
                 return;
@@ -44,7 +44,7 @@ class JobsFilter extends Component {
     render() {
         const {industry, duration} = this.state;
         return(
-            <div id='jobs-filter'>
+            <div id='posts-filter'>
                 <div className='filter'>
                     <label htmlFor='industry'>Industry:</label>
                     <select id="industry" name='industry' onChange={this.handleChange} value={industry} >
@@ -68,4 +68,4 @@ function mapStateToProps(state) {
     return {}
 }
 
-export default connect(mapStateToProps, { fetchJobs })(JobsFilter);
+export default connect(mapStateToProps, { fetchPosts })(PostsFilter);

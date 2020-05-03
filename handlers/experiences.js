@@ -44,7 +44,6 @@ exports.getExperience = async function(req, res, next) {
 exports.updateExperience = async function(req, res, next) {
     try {
         let experience = await db.experience.findById(req.params.experience_id);
-        res.status(200).json(experience);
         Object.keys(req.body).map(key => {
             experience[key] = req.body[key];
         });

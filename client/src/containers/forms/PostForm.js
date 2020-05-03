@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ERROR } from '../../store/actionTypes';
 
-import { postNewJob, getJob, updateJob } from '../../store/actions/jobs';
+import { postNewPost, getPost, updatePost } from '../../store/actions/posts';
 import { Content } from '../../common/Content';
 import { IndustryValues } from '../../common/Definitions';
 import './css/Form.css'
 
-class JobForm extends Component {
+class PostForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,7 @@ class JobForm extends Component {
             // link: '',
             // image: '',
             position: '',
-            job_industry: '',
+            post_industry: '',
             // location: '',
             start_date: '',
             end_date: '',
@@ -29,31 +29,31 @@ class JobForm extends Component {
 
     componentDidMount() {
         if(this.props.location.pathname.split('/').pop() === 'edit') {
-            const job_id = this.props.match.params.job_id;
-            this.props.getJob(job_id)
-            .then(job => this.setState({
-                ...job,
-                start_date: formatDate(job.start_date),
-                end_date: formatDate(job.end_date),
+            const post_id = this.props.match.params.post_id;
+            this.props.getPost(post_id)
+            .then(post => this.setState({
+                ...post,
+                start_date: formatDate(post.start_date),
+                end_date: formatDate(post.end_date),
             }))
             .catch(() => {});
         }
     }
 
-    handleNewJob = e => {
+    handleNewPost = e => {
         e.preventDefault();
-        const job_id = this.props.match.params.job_id;
+        const post_id = this.props.match.params.post_id;
         if (this.props.location.pathname.split('/').pop() === 'edit') {
-            this.props.updateJob({...this.state}, job_id);
+            this.props.updatePost({...this.state}, post_id);
         } else {
-            this.props.postNewJob({...this.state});
+            this.props.postNewPost({...this.state});
         }
         this.setState({
             company: '',
             link: '',
             image: '',
             position: '',
-            job_industry: '',
+            post_industry: '',
             location: '',
             start_date: '',
             end_date: '',
@@ -63,7 +63,7 @@ class JobForm extends Component {
             requirements: [''],
             compensation: [''],
         });
-        this.props.history.push('/jobs');
+        this.props.history.push('/posts');
     };
 
     handleChange = e => {
@@ -99,13 +99,13 @@ class JobForm extends Component {
 
     render() {
         const buttonText = this.props.location.pathname.split('/').pop() === 'edit' ?
-            Content.forms.job.buttonText.edit : Content.forms.job.buttonText.create;
+            Content.forms.post.buttonText.edit : Content.forms.post.buttonText.create;
         return(
             <div className='form'>
                 <div>
-                    <form onSubmit={this.handleNewJob} >
-                        <p>{Content.forms.job.note}</p>
-                        <h3>{Content.forms.job.title}</h3>
+                    <form onSubmit={this.handleNewPost} >
+                        <p>{Content.forms.post.note}</p>
+                        <h3>{Content.forms.post.title}</h3>
 
                         {/* Error Message */}
                         {this.props.alerts === ERROR && this.props.alerts.message && (
@@ -143,10 +143,10 @@ class JobForm extends Component {
                                 <input id='location' name='location' onChange={this.handleChange} value={this.state.location} type='text' required />
                             </div>
                             <div className='form-section-item'>
-                                <label htmlFor='job_industry'>Job Industry:</label>
-                                <select id='job_industry' name='job_industry' onChange={this.handleChange} value={this.state.job_industry} required >
+                                <label htmlFor='post_industry'>Post Industry:</label>
+                                <select id='post_industry' name='post_industry' onChange={this.handleChange} value={this.state.post_industry} required >
                                     <option disabled value=''>--Please choose an option--</option>
-                                    {Object.values(IndustryValues).map((job_industry, i) => (<option key={i} value={job_industry}>{job_industry}</option>))}
+                                    {Object.values(IndustryValues).map((post_industry, i) => (<option key={i} value={post_industry}>{post_industry}</option>))}
                                 </select>
                             </div>
                         </div>
@@ -225,4 +225,4 @@ function mapStateToProps(state) {
     return {}
 }
 
-export default connect(mapStateToProps, { postNewJob, getJob, updateJob })(JobForm);
+export default connect(mapStateToProps, { postNewPost, getPost, updatePost })(PostForm);

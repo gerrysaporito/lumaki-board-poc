@@ -1,52 +1,52 @@
 const db = require('../models');
 
-exports.createJob = async function(req, res, next) {
+exports.createPost = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);
         let profile = await db[user.profile_type].findById(user.profile);
-        let job = await db.job.create({
+        let post = await db.post.create({
             ...req.body,
             ...profile._doc,
             user_id: req.params._id,
             duration: dateToWeek(req.body.start_date, req.body.end_date),
         });
-        profile.applications.push(job.id);
+        profile.applications.push(post.id);
         await profile.save();
-        let foundJob = await db.job.findById(job._id)
-        return res.status(200).json(foundJob);
+        let foundPost = await db.post.findById(post._id)
+        return res.status(200).json(foundPost);
     } catch(e) {
         return next(e)
     }
 };
 
-exports.fetchJobs = async function(req, res, next) {
+exports.fetchPosts = async function(req, res, next) {
     try {
-        let jobs = await db.job.find({...req.body});
-        res.status(200).json(jobs);
+        let posts = await db.post.find({...req.body});
+        res.status(200).json(posts);
     } catch(e) {
         return next(e);
     }
 }
 
-exports.getJob = async function(req, res, next) {
+exports.getPost = async function(req, res, next) {
     try {
-        let job = await db.job.findById(req.params.job_id);
-        res.status(200).json(job);
+        let post = await db.post.findById(req.params.post_id);
+        res.status(200).json(post);
     } catch(e) {
         return next(e)
     }
 };
 
-exports.updateJob = async function(req, res, next) {
+exports.updatePost = async function(req, res, next) {
     try {
-        let job = await db.job.findById(req.params.job_id);
-        res.status(200).json(job);
+        let post = await db.post.findById(req.params.post_id);
+        res.status(200).json(post);
         Object.keys(req.body).map(key => {
-            job[key] = req.body[key];
+            post[key] = req.body[key];
         });
-        await job.save();
+        await post.save();
         res.status(200).json({
-            ...job,
+            ...post,
             token,
         });
     } catch(e) {
@@ -54,32 +54,32 @@ exports.updateJob = async function(req, res, next) {
     }
 };
 
-exports.deleteJob = async function(req, res, next) {
+exports.deletePost = async function(req, res, next) {
     try {
-        let foundJob = await db.job.findById(req.params.job_id);
-        await foundJob.remove();
-        res.status(200).json(foundJob);
+        let foundPost = await db.post.findById(req.params.post_id);
+        await foundPost.remove();
+        res.status(200).json(foundPost);
     } catch(e) {
         return next(e)
     }
 };
 
-exports.applyJob = async function(req, res, next) {
+exports.applyPost = async function(req, res, next) {
     try {
         let error = false;
         let user = await db.user.findById(req.params._id);
         let profile = await db[user.profile_type].findById(user.profile);
-        let job = await db.job.findById(req.params.job_id);
+        let post = await db.post.findById(req.params.post_id);
 
-        if (!job.applications.includes(user._id)) {
-            job.applications.push(user._id);
-            job.save();
+        if (!post.applications.includes(user._id)) {
+            post.applications.push(user._id);
+            post.save();
         } else {
             error = true;
         }
 
-        if (!profile.applications.includes(job._id)) {
-            profile.applications.push(job._id);
+        if (!profile.applications.includes(post._id)) {
+            profile.applications.push(post._id);
             profile.save();
         } else {
             error = true;
@@ -88,11 +88,11 @@ exports.applyJob = async function(req, res, next) {
         if (error) {
             next({
                 status: 400,
-                message: 'You have already applied to this job',
+                message: 'You have already applied to this post',
             })
         } else {
             res.status(200).json({
-                jobs: job.applications,
+                posts: post.applications,
                 profile: profile.applications,
             })
         }

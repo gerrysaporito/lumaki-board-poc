@@ -89,6 +89,9 @@ class StudentProfileForm extends Component {
                         <option disabled value=''>--Please choose an option--</option>
                         {Object.keys(Genders).map((key, i) => (<option key={i} value={key}>{Genders[key]}</option>))}
                     </select>
+
+                    {/* Save Button */}
+                    <button className='lumaki-btn' type='submit'>Save</button>
                 </div>
 
                 {/* Lists */}

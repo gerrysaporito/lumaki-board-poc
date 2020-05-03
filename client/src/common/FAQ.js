@@ -1,6 +1,6 @@
 const FAQ = [
     {
-        question: `How many jobs can I apply to?`,
+        question: `How many posts can I apply to?`,
         answer: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry.
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.

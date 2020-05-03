@@ -1,4 +1,4 @@
-.job-list-item {
+.post-list-item {
     display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,7 +15,7 @@
     margin: 20px 0;
 }
 
-.job-industry-color-bar {
+.post-industry-color-bar {
     width: 50%;
     height: 10px;
     margin: 0;
@@ -23,24 +23,24 @@
     top: 0;
 }
 
-.job-list-item img {
+.post-list-item img {
     width: 90%;
     padding: 20px 0;
 }
 
-.job-list-item p,
-.job-list-item a {
+.post-list-item p,
+.post-list-item a {
     margin: 0;
     color: white;
 }
 
-.job-list-item .company a {
+.post-list-item .company a {
     font-size: 16px;
     margin: 0;
     text-transform: uppercase;
 }
 
-.job-list-item .position-description {
+.post-list-item .position-description {
     font-weight: lighter;
     color: white;
     flex: 1 0 auto;

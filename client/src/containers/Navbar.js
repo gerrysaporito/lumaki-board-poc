@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 
+import { NavbarRoutes, Routes } from '../common/Routes';
 import { Profiles } from '../common/Definitions';
 
 import LOGO from '../images/LumakiLabs_SmallLogo_W.png';
@@ -19,53 +20,27 @@ class Navbar extends Component {
     render() {
         const {currentUser} = this.props;
         let mainTabs = [];
-        let supportTabs = [];
 
         if(currentUser.isAuthenticated) {
-            switch(currentUser.user.profile_type) {
-                case Profiles.superadmin: {
-                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
-                    break;
-                }
-                case Profiles.admin: {
-                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
-                    break;
-                }
-                case Profiles.employer: {
-                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'Company Profile'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings/new`, 'Post a job'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/postings`, 'My Postings'));
-                    break;
-                }
-                case Profiles.student: {
-                    mainTabs.push(createTab(mainTabs.length, `/jobs`, 'All Postings'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}`, 'My Profile'));
-                    mainTabs.push(createTab(mainTabs.length, `/users/${currentUser.user._id}/jobs/applications`, 'My Applications'));
-                    break;
-                }
-                default: {
-                    break;
-                }
-            }
+            mainTabs = NavbarRoutes[currentUser.user.profile_type].map((tab, i) => (
+                <li key={i} className='nav-item'>
+                    <NavLink exact to={tab.url.replace(':user_id', currentUser.user._id)}  activeClassName='active-link'>
+                        {tab.text}
+                    </NavLink>
+                </li>
+            ));
             mainTabs.push(<li key={mainTabs.length} className='nav-item'>
                 <button onClick={this.logout} href='#'>Log out</button>
             </li>);
         } else {
-            mainTabs.push(createTab(mainTabs.length, `/about`, 'About'));
-            mainTabs.push(createTab(mainTabs.length, `/login`, 'Log In'));
-            mainTabs.push(createTab(mainTabs.length, `/register`, 'Sign Up'));
-            mainTabs.push(createTab(mainTabs.length, `/employer/`, 'For Employers'));
+            mainTabs = NavbarRoutes.default.map((tab, i) => (
+                <li key={i} className='nav-item'>
+                    <NavLink exact to={tab.url}  activeClassName='active-link'>
+                        {tab.text}
+                    </NavLink>
+                </li>
+            ));
         }
-
-        supportTabs.push(createTab(supportTabs.length, `/faq`, 'FAQ'));
-        supportTabs.push(createTab(supportTabs.length, `/contact`, 'Contact'));
 
         return(
             <nav className='navbar navbar-expand-lg navbar-dark'>
@@ -84,7 +59,13 @@ class Navbar extends Component {
                         {mainTabs}
                     </ul>
                     <ul className='nav flex-column'>
-                        {supportTabs}
+                        {NavbarRoutes.other.map((tab, i) => (
+                            <li key={i} className='nav-item'>
+                                <NavLink exact to={tab.url}  activeClassName='active-link'>
+                                    {tab.text}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </nav>
