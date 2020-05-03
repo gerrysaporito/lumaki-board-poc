@@ -2,7 +2,7 @@ import { apiCall } from '../../services/api';
 import { SET_PROFILE, ERROR, SUCCESS } from '../actionTypes';
 import { addAlert } from './alerts';
 
-export const loadProfile = profile => ({
+export const setProfile = profile => ({
     type: SET_PROFILE,
     profile
 });
@@ -10,7 +10,7 @@ export const loadProfile = profile => ({
 export const getProfile = (user_id) => {
     return dispatch => {
         return apiCall('get', `/api/users/${user_id}/profiles/`)
-        .then(res => dispatch(loadProfile(res)))
+        .then(res => dispatch(setProfile(res)))
         .catch(e => addAlert(e.message, ERROR));
     };
 };
@@ -20,7 +20,7 @@ export const updateProfile = (profile) => (dispatch, getState) => {
     const user_id = currentUser.user._id;
     return apiCall('post', `/api/users/${user_id}/profiles/`, {...profile})
     .then(res => {
-        dispatch(loadProfile(res));
+        dispatch(setProfile(res));
         let msg = 'Success! We just updated your profile for you.';
         dispatch(addAlert(msg, SUCCESS));
     })

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Content } from '../../common/Content';
+import { Routes } from '../../common/Routes';
 import { IndustryColorValues, Profiles } from '../../common/Definitions';
 import { getPost, applyToPost } from '../../store/actions/posts';
 import { ERROR } from '../../store/actionTypes';
@@ -57,7 +58,7 @@ class Post extends Component {
                 break;
             }
             default: {
-                button.push(<Link key={1} to='/login' className='lumaki-btn-outline apply'>Login</Link>);
+                button.push(<Link key={1} to={Routes.login.url} className='lumaki-btn-outline apply'>Login</Link>);
                 break;
             }
         }

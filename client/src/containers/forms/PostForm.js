@@ -4,6 +4,7 @@ import { ERROR } from '../../store/actionTypes';
 
 import { postNewPost, getPost, updatePost } from '../../store/actions/posts';
 import { Content } from '../../common/Content';
+import { Routes } from '../../common/Routes';
 import { IndustryValues } from '../../common/Definitions';
 import './css/Form.css'
 
@@ -63,7 +64,7 @@ class PostForm extends Component {
             requirements: [''],
             compensation: [''],
         });
-        this.props.history.push('/posts');
+        this.props.history.push(Routes.posts.url.replace(':user_id', this.props.currentUser.user._id));
     };
 
     handleChange = e => {
@@ -222,7 +223,9 @@ function formatDate(date) {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        currentUser: state.currentUser,
+    }
 }
 
 export default connect(mapStateToProps, { postNewPost, getPost, updatePost })(PostForm);

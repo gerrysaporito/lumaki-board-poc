@@ -11,7 +11,7 @@ const AUTH_ROUTES = require('./routes/auth');
 const EXPERIENCES_ROUTES = require('./routes/experiences');
 const PROJECTS_ROUTES = require('./routes/projects');
 const SKILLS_ROUTES = require('./routes/skills');
-const JOBS_ROUTES = require('./routes/posts');
+const POST_ROUTES = require('./routes/posts');
 const UNAUTH_ROUTES = require('./routes/unauth');
 const PROFILE_ROUTES = require('./routes/profiles');
 const app = express();
@@ -26,7 +26,7 @@ app.use('/api/users/:_id/experiences', loginRequired, ensureCorrectUser, EXPERIE
 app.use('/api/users/:_id/projects', loginRequired, ensureCorrectUser, PROJECTS_ROUTES);
 app.use('/api/users/:_id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES);
 app.use('/api/users/:_id/profiles', loginRequired, ensureCorrectUser, PROFILE_ROUTES);
-app.use('/api/users/:_id/posts', loginRequired, ensureCorrectUser, JOBS_ROUTES);
+app.use('/api/users/:_id/posts', loginRequired, ensureCorrectUser, POST_ROUTES);
 
 // ERROR HANDLER
 app.use(function(req, res, next) {

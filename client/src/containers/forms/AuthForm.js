@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Profiles } from '../../common/Definitions';
 import { authUser } from '../../store/actions/auth';
 import { removeAlert } from '../../store/actions/alerts';
+import { Routes } from '../../common/Routes';
 
 import LOGO from '../../images/LumakiLabs_whitelogo.png';
 import { ERROR } from '../../store/actionTypes';
@@ -32,7 +34,23 @@ class AuthForm extends Component {
         const profileType = this.props.employers ? 'employer_profile' : 'student_profile';
         this.props.authUser(authType, {...this.state, profile_type: profileType})
         .then(res => {
-            this.props.history.push(authType === 'register' ? `/users/${this.props.currentUser.user._id}`: '/posts');
+            switch(this.props.currentUser.user.profile_type) {
+                case Profiles.student: {
+                    let route = authType === 'register' ?
+                        Routes.profile.url.replace(':user_id', this.props.currentUser.user._id) : Routes.allPosts.url;
+                    this.props.history.push(route);
+                    break;
+                }
+                case Profiles.employer: {
+                    let route = authType === 'register' ?
+                        Routes.profile.url.replace(':user_id', this.props.currentUser.user._id) : Routes.companyPosts.url;
+                    this.props.history.push(route);
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
         })
         .catch(() => {
             return;

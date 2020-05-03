@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 
 import { NavbarRoutes, Routes } from '../common/Routes';
-import { Profiles } from '../common/Definitions';
 
 import LOGO from '../images/LumakiLabs_SmallLogo_W.png';
 import './css/Navbar.css';
@@ -14,7 +13,7 @@ class Navbar extends Component {
     logout = e => {
         e.preventDefault();
         this.props.logout();
-        this.props.history.push('/')
+        this.props.history.push(Routes.home.url)
     }
 
     render() {
@@ -45,7 +44,7 @@ class Navbar extends Component {
         return(
             <nav className='navbar navbar-expand-lg navbar-dark'>
                 <div className='navbar-header mb-lg-4 mt-lg-3'>
-                    <NavLink exact to='/' className='navbar-brand'>
+                    <NavLink exact to={Routes.home.url} className='navbar-brand'>
                         <img src={LOGO} alt='LumakiBoard Logo' />
                         <h2 className='hidden mb-0'>lumaki</h2>
                         <h2 className='hidden'>board</h2>

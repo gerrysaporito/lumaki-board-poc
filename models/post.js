@@ -94,7 +94,7 @@ PostSchema.pre('remove', async function(next) {
             singleUserProfile.applications.remove(this.id);
             singleUserProfile.save();
         }
-        profile.applications.remove(this.id);
+        profile.postings.remove(this.id);
         await profile.save();
         return next();
     } catch(e) {

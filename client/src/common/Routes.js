@@ -107,7 +107,6 @@ export const NavbarRoutes = {
         Routes.home,
         Routes.profile,
         Routes.companyPosts,
-        Routes.createPost,
         Routes.companyApplications
     ],
     [Profiles.admin]: [

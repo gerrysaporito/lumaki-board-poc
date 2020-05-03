@@ -146,5 +146,12 @@ export const Content = {
             requirements: `Skills/Requirements.`,
             compensation: `What you get.`
         },
+    },
+    companyPosts: {
+        title: `My Postings`,
+        subTitle: `Above each posting you will see the status of your job posting.
+            This will indicate if the posting is live, pending, or offline.
+            At the bottom of each card, you will see the option to EDIT, SEE DETAILS, or delete your posting.
+            EDIT will allow you to make changes to the card itself while SEE DETAILS is where you can go to edit the expanded posting details.`,
     }
 }

@@ -6,6 +6,7 @@ import { Content } from '../common/Content';
 import { Profiles } from '../common/Definitions';
 import { Routes } from '../common/Routes';
 import withAuth from '../hocs/WithAuth'
+import withoutAuth from '../hocs/WithoutAuth'
 // import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
 // Pages
@@ -16,6 +17,7 @@ import Contact from './Pages/Contact';
 import AllPosts from './Pages/AllPosts';
 import Post from './Pages/Post';
 import EmployerRegister from './Pages/EmployerRegister';
+import CompanyPosts from './Pages/CompanyPosts';
 // Forms
 import AuthForm from './forms/AuthForm';
 import ExperienceForm from './forms/ExperienceForm';
@@ -34,10 +36,10 @@ const Main = props => {
                 <div className='content'>
                     <Switch>
                         {/* Wanderer */}
-                        <Route exact path={Routes.login.url} render={props => <AuthForm {...Content.login} {...props} />} />
-                        <Route exact path={Routes.register.url} render={props => <AuthForm {...Content.register.student} {...props} />} />
+                        <Route exact path={Routes.login.url} component={withoutAuth(AuthForm, Content.login)} />
+                        <Route exact path={Routes.register.url} component={withoutAuth(AuthForm, Content.register.student)} />
                         <Route exact path={Routes.employer.url} render={props => <EmployerRegister {...Content.register.employers} {...props} />} />
-                        <Route exact path={Routes.registerEmployer.url}  render={props => <AuthForm {...Content.register.employers.register} {...props} />} />
+                        <Route exact path={Routes.registerEmployer.url}  component={withoutAuth(AuthForm, Content.register.employers.register)} />
                         <Route exact path={Routes.home.url} render={props => <Homepage {...props} />} />
                         <Route exact path={Routes.allPosts.url} render={props => <AllPosts {...props} />} />
                         <Route exact path={Routes.singlePost.url} render={props => <Post {...props} />}  />
@@ -54,6 +56,7 @@ const Main = props => {
                         {/* Employer */}
                         <Route exact path={Routes.createPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
                         <Route exact path={Routes.editPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.companyPosts.url} component={withAuth(CompanyPosts, profile_type === Profiles.employer)}/>
                     </Switch>
                 </div>
             </div>

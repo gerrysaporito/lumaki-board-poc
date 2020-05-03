@@ -9,6 +9,7 @@ exports.signin = async function(req, res, next) {
         let { _id, role, profile_type, first_name } = user;
         let isMatch = await user.comparePassword(req.body.password);
         if(isMatch) {
+            let profile = await db[user.profile_type].findById(user.profile);
             let token = jwt.sign({
                 _id,
                 first_name,
@@ -20,6 +21,7 @@ exports.signin = async function(req, res, next) {
                 first_name,
                 role,
                 profile_type,
+                profile: profile._doc,
                 token,
             });
         } else {
@@ -31,7 +33,7 @@ exports.signin = async function(req, res, next) {
     } catch(e) {
         return next({
             status: 400,
-            message: 'Invalid email/password.',
+            message: e.message,
         });
     }
 }

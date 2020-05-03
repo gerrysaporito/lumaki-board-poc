@@ -42,10 +42,10 @@ const EmployerProfileSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
-    applications: [
+    postings: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'user',
+            ref: 'posts',
         },
     ],
     user_id: {

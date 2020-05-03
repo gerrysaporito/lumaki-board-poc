@@ -1,6 +1,7 @@
 import { apiCall, setTokenHeader } from '../../services/api';
 import { SET_CURRENT_USER, ERROR } from '../actionTypes';
 import { addAlert, removeAlert } from './alerts';
+import { setProfile } from '././profiles';
 
 export function setCurrentUser(user) {
     return {
@@ -18,6 +19,7 @@ export function logout() {
         localStorage.clear();
         setAuthorizationToken(false);
         dispatch(setCurrentUser({}));
+        dispatch(setProfile({}));
     };
 };
 
@@ -28,6 +30,8 @@ export function authUser(type, userData) {
             .then((user) => {
                 localStorage.setItem('jwtToken', user.token);
                 setAuthorizationToken(user.token);
+                dispatch(setProfile(user.profile));
+                delete user.profile;
                 dispatch(setCurrentUser(user));
                 dispatch(removeAlert());
                 resolve();
