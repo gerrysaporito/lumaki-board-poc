@@ -56,7 +56,7 @@ export const Routes = {
         url: `/users/:user_id/posts/applications`,
         text: `My Applications`,
     },
-    // /create
+    // /users/create
     createExperience: {
         url: `/users/:user_id/experiences/new`,
         text: ``,
@@ -73,7 +73,7 @@ export const Routes = {
         url: `/users/:user_id/posts/postings/new`,
         text: ``,
     },
-    // /edit
+    // /users/edit
     editExperience: {
         url: `/users/:user_id/experiences/:experience_id/edit`,
         text: ``,

@@ -147,6 +147,14 @@ export const Content = {
             compensation: `What you get.`
         },
     },
+    companyApplications: {
+        title: `View Applicants`,
+        buttonText: {
+            all: `All Applicants`,
+            saved: `Bookmarked Applicants`,
+            pipeline: `Pipeline`,
+        }
+    },
     companyPosts: {
         title: `My Postings`,
         subTitle: `Above each posting you will see the status of your job posting.
@@ -158,5 +166,5 @@ export const Content = {
             delete: `DELETE`,
             view: `SEE DETAILS`,
         }
-    }
+    },
 }

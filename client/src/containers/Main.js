@@ -18,6 +18,7 @@ import AllPosts from './Pages/AllPosts';
 import Post from './Pages/Post';
 import EmployerRegister from './Pages/EmployerRegister';
 import CompanyPosts from './Pages/CompanyPosts';
+import CompanyApplications from './Pages/CompanyApplications';
 // Forms
 import AuthForm from './forms/AuthForm';
 import ExperienceForm from './forms/ExperienceForm';
@@ -57,6 +58,7 @@ const Main = props => {
                         <Route exact path={Routes.createPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
                         <Route exact path={Routes.editPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
                         <Route exact path={Routes.companyPosts.url} component={withAuth(CompanyPosts, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.companyApplications.url} component={withAuth(CompanyApplications, profile_type === Profiles.employer)}/>
                     </Switch>
                 </div>
             </div>
