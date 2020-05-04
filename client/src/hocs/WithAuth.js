@@ -29,6 +29,7 @@ export default function withAuth(ComponentToBeRendered, isAllowed) {
     function mapStateToProps(state) {
         return {
             isAuthenticated: state.currentUser.isAuthenticated,
+            profile: state.profile,
         }
     }
 

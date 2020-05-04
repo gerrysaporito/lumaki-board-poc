@@ -33,17 +33,17 @@ class AuthForm extends Component {
         const authType = this.props.register ? 'register' : 'login';
         const profileType = this.props.employers ? 'employer_profile' : 'student_profile';
         this.props.authUser(authType, {...this.state, profile_type: profileType})
-        .then(res => {
-            switch(this.props.currentUser.user.profile_type) {
+        .then(user => {
+            switch(user.profile_type) {
                 case Profiles.student: {
                     let route = authType === 'register' ?
-                        Routes.profile.url.replace(':user_id', this.props.currentUser.user._id) : Routes.allPosts.url;
+                        Routes.profile.url.replace(':user_id', user._id) : Routes.allPosts.url;
                     this.props.history.push(route);
                     break;
                 }
                 case Profiles.employer: {
                     let route = authType === 'register' ?
-                        Routes.profile.url.replace(':user_id', this.props.currentUser.user._id) : Routes.companyPosts.url;
+                        Routes.profile.url.replace(':user_id', user._id) : Routes.companyPosts.url;
                     this.props.history.push(route);
                     break;
                 }
@@ -54,7 +54,7 @@ class AuthForm extends Component {
         })
         .catch(() => {
             return;
-        })
+        });
     }
 
     render() {
@@ -79,13 +79,13 @@ class AuthForm extends Component {
                     {register && (
                         <div>
                             <label htmlFor='first_name'>First Name:</label>
-                            <input id='first_name' name='first_name' onChange={this.handleChange} value={first_name} type='text' required />
+                            <input id='first_name' name='first_name' onChange={this.handleChange} value={first_name || ''} type='text' required />
                             <label htmlFor='lastName'>Last Name:</label>
-                            <input id='last_name' name='last_name' onChange={this.handleChange} value={last_name} type='text' required />
+                            <input id='last_name' name='last_name' onChange={this.handleChange} value={last_name || ''} type='text' required />
                         </div>
                     )}
                     <label htmlFor='email'>Email:</label>
-                    <input id='email' name='email' onChange={this.handleChange} value={email} type='text' required />
+                    <input id='email' name='email' onChange={this.handleChange} value={email || ''} type='text' required />
                     <label htmlFor='password'>Password:</label>
                     <input id='password' onChange={this.handleChange} name='password' type='password' required />
                     <button className='lumaki-btn' type='submit'>{buttonText}</button>

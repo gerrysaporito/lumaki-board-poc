@@ -48,13 +48,13 @@ class ContactForm extends Component {
                             </div>
                         )}
                         <label htmlFor='company'>{subject}</label>
-                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company} type='text' required />
+                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />
                         <label htmlFor='name'>{contactPerson}</label>
-                        <input id='name' name='name' onChange={this.handleChange} value={this.state.name} type='text' required />
+                        <input id='name' name='name' onChange={this.handleChange} value={this.state.name || ''} type='text' required />
                         <label htmlFor='email'>{contactMethod}</label>
-                        <input id='email' name='email' onChange={this.handleChange} value={this.state.email} type='text' required />
+                        <input id='email' name='email' onChange={this.handleChange} value={this.state.email || ''} type='text' required />
                         <label htmlFor='message'>{messageTitle}</label>
-                        <textarea id='message' name='message' onChange={this.handleChange} value={this.state.message} required />
+                        <textarea id='message' name='message' onChange={this.handleChange} value={this.state.message || ''} required />
                         <button className='lumaki-btn ' type='submit'>{buttonText}</button>
                     </form>
                 </div>

@@ -7,9 +7,9 @@ export const loadPosts = posts => ({
     posts
 });
 
-export const remove = id => ({
+export const remove = _id => ({
     type: REMOVE_JOB,
-    id
+    _id
 });
 
 export const fetchPosts = (search) => {

@@ -75,35 +75,35 @@ class EmployerProfileForm extends Component {
                         <div className='alert alert-success'>{alerts.message}</div>
                     )}
                     <label htmlFor='company'>Company *:</label>
-                    <input id='company' name='company' onChange={this.handleChange} value={company} type='text' required />
+                    <input id='company' name='company' onChange={this.handleChange} value={company || ''} type='text' required />
                     <label htmlFor='link'>Company Link *:</label>
-                    <input id='link' name='link' onChange={this.handleChange} value={link} type='text' required />
+                    <input id='link' name='link' onChange={this.handleChange} value={link || ''} type='text' required />
                     <label htmlFor='image'>Image Logo Link*:</label>
-                    <input id='image' name='image' onChange={this.handleChange} value={image} type='text' required />
+                    <input id='image' name='image' onChange={this.handleChange} value={image || ''} type='text' required />
                     {/* Location & Industry */}
                     <div className='form-section mt-2'>
                         <div className='form-section-item'>
                             <label htmlFor='company_size'>Company Size:</label>
-                            <select id='company_size' name='company_size' onChange={this.handleChange} value={company_size} required >
+                            <select id='company_size' name='company_size' onChange={this.handleChange} value={company_size || ''} required >
                                 <option disabled value=''>--Please choose an option--</option>
-                                {Object.values(CompaySize).map((company_size, i) => (<option key={i} value={company_size}>{company_size}</option>))}
+                                {Object.values(CompaySize).map((company_size, i) => (<option key={i} value={company_size || ''}>{company_size}</option>))}
                             </select>
                         </div>
                         <div className='form-section-item'>
                             <label htmlFor='company_industry'>Industry:</label>
-                            <select id='company_industry' name='company_industry' onChange={this.handleChange} value={company_industry} required >
+                            <select id='company_industry' name='company_industry' onChange={this.handleChange} value={company_industry || ''} required >
                                 <option disabled value=''>--Please choose an option--</option>
-                                {Object.values(IndustryValues).map((company_industry, i) => (<option key={i} value={company_industry}>{company_industry}</option>))}
+                                {Object.values(IndustryValues).map((company_industry, i) => (<option key={i} value={company_industry || ''}>{company_industry}</option>))}
                             </select>
                         </div>
                     </div>
 
                     <label htmlFor='country'>Country*:</label>
-                    <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
+                    <input id='country' name='country' onChange={this.handleChange} value={country || ''} type='text' required />
                     <label htmlFor='state'>State:</label>
-                    <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
+                    <input id='state' name='state' onChange={this.handleChange} value={state || ''} type='text' required />
                     <label htmlFor='city'>City:</label>
-                    <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
+                    <input id='city' name='city' onChange={this.handleChange} value={city || ''} type='text' required />
                     <label htmlFor='remote_internship_experience'>Have you ever run a remote internship before?</label>
                     <select id='remote_internship_experience' name='remote_internship_experience' onChange={this.handleChange} value={remote_internship_experience} required >
                         <option disabled value=''>--Please choose an option--</option>

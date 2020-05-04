@@ -6,13 +6,12 @@
     position: relative;
     width: 250px;
     background-color: rgb(75,75,75);
-    padding: 20px 20px;
     border-radius: 20px;
     font-size: 12px;
     -webkit-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
     box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
-    margin: 20px 0;
+    margin: 30px;
 }
 
 .post-industry-color-bar {
@@ -21,6 +20,10 @@
     margin: 0;
     position: absolute;
     top: 0;
+}
+
+.post-list-item section {
+    padding: 20px 20px 0 20px;
 }
 
 .post-list-item img {
@@ -72,19 +75,47 @@
 .cta {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     width: 100%;
     text-align: right;
+    padding: 10px 5px;
+    background-color: rgb(122,122,122);
+    border-radius: 0 0 20px 20px;
 }
 
 .cta a,
-.cta button {
-    display: inline-block;
+.cta button,
+.cta .fa-trash-alt {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     white-space: nowrap;
-    font-weight: lighter;
+    font-weight: normal;
     color: white;
     width: 100%;
     margin: 0 3px;
     padding: 0;
+}
 
+.cta .middle {
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    padding: 0 20px;
+}
+
+.add-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: rgb(121,121,121);
+    text-decoration: none;
+    transition: color .15s ease-in-out;
+    min-height: 350px;
+}
+
+.add-card:hover {
+    color: rgb(140,140,140);
+    text-decoration: none;
+    transition: color .15s ease-in-out;
 }

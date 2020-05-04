@@ -47,7 +47,7 @@ class ExperienceForm extends Component {
                             </div>
                         )}
                         <label htmlFor='skill'>Skill:</label>
-                        <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill} type='text' required />
+                        <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill || ''} type='text' required />
                         <button className='lumaki-btn ' type='submit'>{Content.forms.skill.buttonText}</button>
                     </form>
                     <button onClick={this.handleBackClick} className='return'>Go back</button>

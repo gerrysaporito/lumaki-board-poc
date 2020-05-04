@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removePost } from '../../store/actions/posts';
 
 import PostListItem from '../../components/items/PostListItem';
 import './css/PostList.css';
@@ -12,9 +11,9 @@ class PostList extends Component {
             <PostListItem
                 key={m._id}
                 {...m}
-                removePost={removePost.bind(this, m.user_id, m._id)}
                 canAccess={currentUser.user._id === m.user_id}
                 currentUser={currentUser}
+                editable
             />
         ));
         return(
@@ -32,4 +31,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { removePost })(PostList);
+export default connect(mapStateToProps, {})(PostList);

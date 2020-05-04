@@ -9,3 +9,9 @@ export const addAlert = (error, alertType) => ({
 export const removeAlert = () => ({
     type: REMOVE_ALERT
 });
+
+export const dispatchAlert = (message, alert) => {
+    return dispatch => {
+        dispatch(addAlert(message, alert))
+    }
+}

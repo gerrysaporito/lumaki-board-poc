@@ -86,7 +86,7 @@ export const Content = {
         }
     },
     forms: {
-        job: {
+        post: {
             note: `Add details about the job here. You will be redirected to the previous page with the job(s) populated.`,
             title: `JOB`,
             buttonText: {
@@ -140,7 +140,7 @@ export const Content = {
         title: 'FREQUENTLY ASKED QUESTIONS',
         content: FAQ
     },
-    job: {
+    post: {
         title: {
             description: `Your Role At `,
             requirements: `Skills/Requirements.`,
@@ -153,5 +153,10 @@ export const Content = {
             This will indicate if the posting is live, pending, or offline.
             At the bottom of each card, you will see the option to EDIT, SEE DETAILS, or delete your posting.
             EDIT will allow you to make changes to the card itself while SEE DETAILS is where you can go to edit the expanded posting details.`,
+        buttonText: {
+            edit: `EDIT`,
+            delete: `DELETE`,
+            view: `SEE DETAILS`,
+        }
     }
 }

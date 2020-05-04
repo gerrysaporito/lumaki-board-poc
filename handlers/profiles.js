@@ -23,7 +23,7 @@ exports.updateProfile = async function(req, res, next) {
 
         let posts = await db.post.find({
             '_id': {
-                $in: profile.applications,
+                $in: profile.postings,
             }
         });
 

@@ -4,7 +4,6 @@ import { ERROR } from '../../store/actionTypes';
 
 import { postNewPost, getPost, updatePost } from '../../store/actions/posts';
 import { Content } from '../../common/Content';
-import { Routes } from '../../common/Routes';
 import { IndustryValues } from '../../common/Definitions';
 import './css/Form.css'
 
@@ -18,8 +17,8 @@ class PostForm extends Component {
             position: '',
             post_industry: '',
             // location: '',
-            start_date: '',
-            end_date: '',
+            start_date: '2000-01-02',
+            end_date: '2000-01-02',
             // company_description: '',
             position_description: '',
             responsibilities: [''],
@@ -50,21 +49,21 @@ class PostForm extends Component {
             this.props.postNewPost({...this.state});
         }
         this.setState({
-            company: '',
-            link: '',
-            image: '',
+            // company: '',
+            // link: '',
+            // image: '',
             position: '',
             post_industry: '',
-            location: '',
-            start_date: '',
-            end_date: '',
-            company_description: '',
+            // location: '',
+            start_date: '2000-01-02',
+            end_date: '2000-01-02',
+            // company_description: '',
             position_description: '',
             responsibilities: [''],
             requirements: [''],
             compensation: [''],
         });
-        this.props.history.push(Routes.posts.url.replace(':user_id', this.props.currentUser.user._id));
+        this.props.history.goBack();
     };
 
     handleChange = e => {
@@ -94,7 +93,6 @@ class PostForm extends Component {
 
     handleBackClick = e => {
         e.preventDefault();
-        console.log(this.state)
         this.props.history.goBack();
     }
 
@@ -117,37 +115,37 @@ class PostForm extends Component {
 
                         {/* Company Name */}
                         {/* <label htmlFor='company'>Company/Organization:</label>
-                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company} type='text' required /> */}
+                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required /> */}
                         {/* Link and Imaage */}
                         {/* <div className='form-section mt-2'>
                             <div className='form-section-item'>
                                 <label htmlFor='link'>Website Link:</label>
-                                <input id='link' name='link' onChange={this.handleChange} value={this.state.link} type='text' required />
+                                <input id='link' name='link' onChange={this.handleChange} value={this.state.link || ''} type='text' required />
                             </div>
                             <div className='form-section-item'>
                                 <label htmlFor='image'>Image URL:</label>
-                                <input id='image' name='image' onChange={this.handleChange} value={this.state.image} type='text' required />
+                                <input id='image' name='image' onChange={this.handleChange} value={this.state.image || ''} type='text' required />
                             </div>
                         </div> */}
                         {/* Company Description */}
                         {/* <label htmlFor='company_description'>Company Description:</label>
-                        <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description} type='text' required /> */}
+                        <textarea id='company_description' name='company_description' onChange={this.handleChange} value={this.state.company_description || ''} type='text' required /> */}
 
                         {/* Position Title */}
                         <label htmlFor='position'>Position:</label>
-                        <input id='position' name='position' onChange={this.handleChange} value={this.state.position} type='text' required />
+                        <input id='position' name='position' onChange={this.handleChange} value={this.state.position || ''} type='text' required />
 
                         {/* Location & Industry */}
                         <div className='form-section mt-2'>
                             <div className='form-section-item'>
                                 <label htmlFor='location'>Location:</label>
-                                <input id='location' name='location' onChange={this.handleChange} value={this.state.location} type='text' required />
+                                <input id='location' name='location' onChange={this.handleChange} value={this.state.location || ''} type='text' required />
                             </div>
                             <div className='form-section-item'>
                                 <label htmlFor='post_industry'>Post Industry:</label>
-                                <select id='post_industry' name='post_industry' onChange={this.handleChange} value={this.state.post_industry} required >
+                                <select id='post_industry' name='post_industry' onChange={this.handleChange} value={this.state.post_industry || ''} required >
                                     <option disabled value=''>--Please choose an option--</option>
-                                    {Object.values(IndustryValues).map((post_industry, i) => (<option key={i} value={post_industry}>{post_industry}</option>))}
+                                    {Object.values(IndustryValues).map((post_industry, i) => (<option key={i} value={post_industry || ''}>{post_industry}</option>))}
                                 </select>
                             </div>
                         </div>
@@ -156,23 +154,23 @@ class PostForm extends Component {
                         <div className='form-section mt-2'>
                             <div className='form-section-item'>
                                 <label htmlFor='start_date'>Start Date:</label>
-                                <input id='start_date' name='start_date' onChange={this.handleChange} value={this.state.start_date} type='date' required />
+                                <input id='start_date' name='start_date' onChange={this.handleChange} value={this.state.start_date || '2000-01-02'} type='date' required />
                             </div>
                             <div className='form-section-item'>
                                 <label htmlFor='end_date'>End Date:</label>
-                                <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date} type='date' required />
+                                <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date || '2000-01-02'} type='date' required />
                             </div>
                         </div>
 
                         {/* Position Description */}
                         <label htmlFor='position_description'>Position Description:</label>
-                        <textarea id='position_description' name='position_description' onChange={this.handleChange} value={this.state.position_description} type='text' required />
+                        <textarea id='position_description' name='position_description' onChange={this.handleChange} value={this.state.position_description || ''} type='text' required />
 
                         {/* Responsibilities */}
                         <label htmlFor='responsibilities'>Responsibilities:</label>
                         {this.state.responsibilities.map((responsibility, i) => (
                             <div key={i} className='array-box'>
-                                <input name='responsibilities' type='text' placeholder='Responsibility' value={responsibility.text} onChange={this.handleArrayTextChange(i)} />
+                                <input name='responsibilities' type='text' placeholder='Responsibility' value={responsibility.text || ''} onChange={this.handleArrayTextChange(i)} />
                                 <button name='responsibilities' type='button' onClick={this.handleRemoveFromArray(i)}>x</button>
                             </div>
                         ))}
@@ -182,7 +180,7 @@ class PostForm extends Component {
                         <label htmlFor='requirements'>Requirements:</label>
                         {this.state.requirements.map((requirements, i) => (
                             <div key={i} className='array-box'>
-                                <input name='requirements' type='text' placeholder='Requirement' value={requirements.text} onChange={this.handleArrayTextChange(i)} />
+                                <input name='requirements' type='text' placeholder='Requirement' value={requirements.text || ''} onChange={this.handleArrayTextChange(i)} />
                                 <button name='requirements' type='button' onClick={this.handleRemoveFromArray(i)}>x</button>
                             </div>
                         ))}
@@ -192,7 +190,7 @@ class PostForm extends Component {
                         <label htmlFor='compensation'>Compensation:</label>
                         {this.state.compensation.map((compensation, i) => (
                             <div key={i} className='array-box'>
-                                <input name='compensation' type='text' placeholder='Compensation' value={compensation.text} onChange={this.handleArrayTextChange(i)} />
+                                <input name='compensation' type='text' placeholder='Compensation' value={compensation.text || ''} onChange={this.handleArrayTextChange(i)} />
                                 <button name='compensation' type='button' onClick={this.handleRemoveFromArray(i)}>x</button>
                             </div>
                         ))}
@@ -210,9 +208,9 @@ class PostForm extends Component {
 
 function formatDate(date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+        month = '' + (d.getMonth() + 1) || '01',
+        day = '' + d.getDate() || '02',
+        year = d.getFullYear() || '2000';
 
     if (month.length < 2)
         month = '0' + month;

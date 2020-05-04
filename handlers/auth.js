@@ -15,6 +15,7 @@ exports.signin = async function(req, res, next) {
                 first_name,
                 role,
                 profile_type,
+                profile: profile._doc,
             }, process.env.SECRET_KEY);
             return res.status(200).json({
                 _id,
@@ -54,6 +55,7 @@ exports.signup = async function(req, res, next) {
                 first_name,
                 role,
                 profile_type,
+                profile: profile._doc,
             }, process.env.SECRET_KEY);
             return res.status(200).json({
                 _id,

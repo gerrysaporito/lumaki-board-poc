@@ -45,12 +45,8 @@ export const Routes = {
         text: `Profile`,
     },
     companyPosts: {
-        url: `/users/:user_id/posts/posts`,
+        url: `/users/:user_id/posts/postings`,
         text: `My Postings`,
-    },
-    postPost: {
-        url: `/users/:user_id/posts/postings/new`,
-        text: `Post a post`,
     },
     companyApplications: {
         url: `/users/:user_id/posts/postings/applicants`,

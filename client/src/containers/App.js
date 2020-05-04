@@ -5,6 +5,7 @@ import{ configureStore } from '../store';
 import jwtDecode from 'jwt-decode';
 
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
+import { setProfile } from '../store/actions/profiles';
 
 import Main from './Main';
 
@@ -16,6 +17,7 @@ if(localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
   try {
     store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+    store.dispatch(setProfile(jwtDecode(localStorage.jwtToken).profile));
   } catch(err) {
     store.dispatch(setCurrentUser());
   }

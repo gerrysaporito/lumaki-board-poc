@@ -71,7 +71,6 @@ const PostSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
-            unique: true,
         },
     ],
     user_id: {
@@ -84,15 +83,15 @@ PostSchema.pre('remove', async function(next) {
     try {
         let user = await db.user.findById(this.user_id);
         let profile = await db[user.profile_type].findById(user.profile);
-        let usersApplications = await db.user.find({
+        let applications = await db.user.find({
             '_id': {
                 $in: this.applications,
             }
         });
-        for await (let singleUser of usersApplications) {
-            let singleUserProfile = await db[singleUser.profile_type].findById(singleUser.profile);
-            singleUserProfile.applications.remove(this.id);
-            singleUserProfile.save();
+        for await (let candidate of applications) {
+            let candidateProfile = await db[candidate.profile_type].findById(candidate.profile);
+            candidateProfile.applications.remove(this.id);
+            candidateProfile.save();
         }
         profile.postings.remove(this.id);
         await profile.save();

@@ -4,18 +4,28 @@ exports.createPost = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);
         let profile = await db[user.profile_type].findById(user.profile);
+        let copyProfile = JSON.parse(JSON.stringify(profile));
+        delete copyProfile._id;
+        delete copyProfile.__v;
         let post = await db.post.create({
             ...req.body,
-            ...profile._doc,
+            ...copyProfile,
             user_id: req.params._id,
             duration: dateToWeek(req.body.start_date, req.body.end_date),
         });
-        profile.applications.push(post.id);
+        profile.postings.push(post._id);
         await profile.save();
         let foundPost = await db.post.findById(post._id)
         return res.status(200).json(foundPost);
     } catch(e) {
-        return next(e)
+        return next({
+            status: 500,
+            message: {
+                message: e.message,
+                profile: copyProfile,
+                post: post
+            }
+        })
     }
 };
 
@@ -33,18 +43,22 @@ exports.getPost = async function(req, res, next) {
         let post = await db.post.findById(req.params.post_id);
         res.status(200).json(post);
     } catch(e) {
-        return next(e)
+        return next({
+            status: 400,
+            message: await db.post.findById(req.params.post_id)
+        })
     }
 };
 
 exports.updatePost = async function(req, res, next) {
     try {
         let post = await db.post.findById(req.params.post_id);
-        res.status(200).json(post);
         Object.keys(req.body).map(key => {
             post[key] = req.body[key];
         });
+        post.duration = dateToWeek(req.body.start_date, req.body.end_date);
         await post.save();
+
         res.status(200).json({
             ...post,
             token,

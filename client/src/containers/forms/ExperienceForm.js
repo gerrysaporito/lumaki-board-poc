@@ -76,21 +76,21 @@ class ExperienceForm extends Component {
                             </div>
                         )}
                         <label htmlFor='company'>Company/Organization:</label>
-                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company} type='text' required />
+                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />
                         <label htmlFor='role'>Role:</label>
-                        <input id='role' name='role' onChange={this.handleChange} value={this.state.role} type='text' required />
+                        <input id='role' name='role' onChange={this.handleChange} value={this.state.role || ''} type='text' required />
                         <div className='form-section mt-2'>
                             <div className='form-section-item'>
                                 <label htmlFor='start_date'>Start Date:</label>
-                                <input id='start_date' name='start_date' onChange={this.handleChange} value={this.state.start_date} type='date' required />
+                                <input id='start_date' name='start_date' onChange={this.handleChange} value={this.state.start_date || '2000-01-02'} type='date' required />
                             </div>
                             <div className='form-section-item'>
                                 <label htmlFor='end_date'>End Date:</label>
-                                <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date} type='date' required />
+                                <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date || '2000-01-02'} type='date' required />
                             </div>
                         </div>
                         <label htmlFor='description'>Description:</label>
-                        <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description} required />
+                        <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />
                         <button className='lumaki-btn ' type='submit'>{buttonText}</button>
                     </form>
                     <button onClick={this.handleBackClick} className='return'>Go back</button>

@@ -73,21 +73,21 @@ class StudentProfileForm extends Component {
                         <div className='alert alert-success'>{alerts.message}</div>
                     )}
                     <label htmlFor='school'>School *:</label>
-                    <input id='school' name='school' onChange={this.handleChange} value={school} type='text' required />
+                    <input id='school' name='school' onChange={this.handleChange} value={school || ''} type='text' required />
                     <label htmlFor='program'>Program *:</label>
-                    <input id='program' name='program' onChange={this.handleChange} value={program} type='text' required />
+                    <input id='program' name='program' onChange={this.handleChange} value={program || ''} type='text' required />
                     <label htmlFor='graduation_date'>Approximate Graduation Date *:</label>
-                    <input id='graduation_date' name='graduation_date' onChange={this.handleChange} value={graduation_date} type='date' required />
+                    <input id='graduation_date' name='graduation_date' onChange={this.handleChange} value={graduation_date || '2000-01-02'} type='date' required />
                     <label htmlFor='country'>Country*:</label>
-                    <input id='country' name='country' onChange={this.handleChange} value={country} type='text' required />
+                    <input id='country' name='country' onChange={this.handleChange} value={country || ''} type='text' required />
                     <label htmlFor='state'>State:</label>
-                    <input id='state' name='state' onChange={this.handleChange} value={state} type='text' required />
+                    <input id='state' name='state' onChange={this.handleChange} value={state || ''} type='text' required />
                     <label htmlFor='city'>City:</label>
-                    <input id='city' name='city' onChange={this.handleChange} value={city} type='text' required />
+                    <input id='city' name='city' onChange={this.handleChange} value={city || ''} type='text' required />
                     <label htmlFor='gender'>Gender:</label>
-                    <select id="gender" name='gender' onChange={this.handleChange} value={gender} required >
+                    <select id='gender' name='gender' onChange={this.handleChange} value={gender || ''} required >
                         <option disabled value=''>--Please choose an option--</option>
-                        {Object.keys(Genders).map((key, i) => (<option key={i} value={key}>{Genders[key]}</option>))}
+                        {Object.keys(Genders).map((key, i) => (<option key={i} value={key}>{Genders[key] || ''}</option>))}
                     </select>
 
                     {/* Save Button */}

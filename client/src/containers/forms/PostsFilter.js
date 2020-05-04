@@ -47,17 +47,17 @@ class PostsFilter extends Component {
             <div id='posts-filter'>
                 <div className='filter'>
                     <label htmlFor='industry'>Industry:</label>
-                    <select id="industry" name='industry' onChange={this.handleChange} value={industry} >
+                    <select id='industry' name='industry' onChange={this.handleChange} value={industry} >
                         <option value=''>Any</option>
                         {Object.values(IndustryValues).map((industry, i) => (
-                            <option key={i} value={industry}>{industry}</option>
+                            <option key={i} value={industry || ''}>{industry}</option>
                         ))}
                     </select>
                 </div>
 
                 <div className='filter'>
                     <label htmlFor='duration'>Duration (weeks):</label>
-                    <input id='duration' name='duration' onChange={this.handleChange} value={duration} type='number' />
+                    <input id='duration' name='duration' onChange={this.handleChange} value={duration || '16'} type='number' />
                 </div>
             </div>
         )

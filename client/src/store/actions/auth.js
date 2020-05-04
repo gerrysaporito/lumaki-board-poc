@@ -31,10 +31,11 @@ export function authUser(type, userData) {
                 localStorage.setItem('jwtToken', user.token);
                 setAuthorizationToken(user.token);
                 dispatch(setProfile(user.profile));
-                delete user.profile;
+                let copyUser = JSON.parse(JSON.stringify(user));
+                delete copyUser.profile;
                 dispatch(setCurrentUser(user));
                 dispatch(removeAlert());
-                resolve();
+                resolve(user);
             })
             .catch(e => {
                 dispatch(addAlert(e, ERROR));

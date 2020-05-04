@@ -72,16 +72,6 @@ class Navbar extends Component {
     }
 };
 
-function createTab(key, url, text) {
-    return (
-        <li key={key} className='nav-item'>
-            <NavLink exact to={url}  activeClassName='active-link'>
-                {text}
-            </NavLink>
-        </li>
-    )
-}
-
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,

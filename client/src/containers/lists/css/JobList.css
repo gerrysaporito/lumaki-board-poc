@@ -1,9 +1,0 @@
-.post-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    overflow-y: scroll;
-    align-self: stretch;
-    height: 100%;
-    padding-right: 20px;
-}
