@@ -6,7 +6,8 @@ import { removePost } from '../../store/actions/posts';
 import { Routes } from '../../common/Routes';
 import { Content } from '../../common/Content';
 import { fetchPosts } from '../../store/actions/posts';
-import Tabs from '../../components/Tabs';
+import Tabs from '../../components/tabs/Tabs';
+import CompanyPostList from '../lists/CompanyPostList';
 import './css/CompanyApplications.css';
 
 class CompanyApplications extends Component {
@@ -22,12 +23,12 @@ class CompanyApplications extends Component {
         const {posts, currentUser, removePost} = this.props;
 
         return(
-            <div className='mt-5' id='company-applicants'>
+            <div id='company-applicants'>
                 <div className='section'>
-                    <h3><strong>{Content.companyApplications.title}</strong></h3>
+                    <p className='header'>{Content.companyApplications.title}</p>
                     <Tabs>
                         <div label={Content.companyApplications.buttonText.all}>
-                            all applicants
+                            <CompanyPostList />
                         </div>
                         <div label={Content.companyApplications.buttonText.saved}>
                             my favourite applicants

@@ -11,7 +11,7 @@ const SkillSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
-}, {timestamp: true});
+}, {timestamps: true});
 
 SkillSchema.pre('remove', async function(next) {
     try {

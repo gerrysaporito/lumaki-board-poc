@@ -10,13 +10,13 @@ import './css/EmployerRegister.css';
 class EmployerRegister extends Component {
     render() {
         return(
-            <div className='mt-5' id='employer-register'>
+            <div id='employer-register'>
                 <div className='section'>
-                    <h3><strong>{Content.register.employers.intro.title}</strong></h3>
+                    <p className='header'>{Content.register.employers.intro.title}</p>
                     <p>{Content.register.employers.intro.subTitle}</p>
-                    <div className='cta'>
-                        <Link to={Routes.registerEmployer.url} className='lumaki-btn'><strong>Register</strong></Link>
-                        <Link to={Routes.login.url} className='lumaki-btn-outline'><strong>Login</strong></Link>
+                    <div className='employer-cta'>
+                        <Link to={Routes.registerEmployer.url} className='lumaki-btn'>Register</Link>
+                        <Link to={Routes.login.url} className='lumaki-btn-outline'>Login</Link>
                     </div>
                     <ContactForm {...Content.forms.contact.employer} />
                 </div>

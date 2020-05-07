@@ -1,0 +1,44 @@
+.applicant-list-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.applicant-list-item span {
+    color: rgb(56,180,157);
+}
+
+.applicant-list-item section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.applicant-list-item section div {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: flex-start;
+    width: 47.5%;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.applicant-list-item p {
+    margin: 0;
+    display: block;
+}
+
+.applicant-list-item .overview {
+    display: flex;
+    flex-direction: column;
+    flex: 1 auto;
+    padding-right: 0 20px;
+}
+
+.applicant-list-item .next {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

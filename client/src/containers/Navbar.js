@@ -46,8 +46,8 @@ class Navbar extends Component {
                 <div className='navbar-header mb-lg-4 mt-lg-3'>
                     <NavLink exact to={Routes.home.url} className='navbar-brand'>
                         <img src={LOGO} alt='LumakiBoard Logo' />
-                        <h2 className='hidden mb-0'>lumaki</h2>
-                        <h2 className='hidden'>board</h2>
+                        <h2 className='hidden mb-0'><strong>lumaki</strong></h2>
+                        <h2 className='hidden'><strong>board</strong></h2>
                     </NavLink>
                 </div>
                 <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>

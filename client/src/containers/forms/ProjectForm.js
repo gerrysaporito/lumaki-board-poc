@@ -5,6 +5,7 @@ import { ERROR } from '../../store/actionTypes';
 import { postNewProject, updateProject, getProject } from '../../store/actions/projects';
 import { Content } from '../../common/Content';
 import './css/Form.css';
+import Card from '../../components/Card';
 
 class ProjectForm extends Component {
     constructor(props) {
@@ -55,23 +56,21 @@ class ProjectForm extends Component {
         const buttonText = this.props.location.pathname.split('/').pop() === 'edit' ?
             Content.forms.project.buttonText.edit : Content.forms.project.buttonText.create;
         return(
-            <div className='form'>
-                <div>
-                    <form onSubmit={this.handleNewProject} >
-                        <p>{Content.forms.project.note}</p>
-                        <h3>{Content.forms.project.title}</h3>
-                        {this.props.alerts === ERROR && this.props.alerts.message && (
-                            <div className='alert alert-danger'>
-                                {this.props.alerts.message}
-                            </div>
-                        )}
-                        <label htmlFor='description'>Description:</label>
-                        <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />
-                        <button className='lumaki-btn ' type='submit'>{buttonText}</button>
-                    </form>
-                    <button onClick={this.handleBackClick} className='return'>Go back</button>
-                </div>
-            </div>
+            <Card type='form inline'>
+                <form onSubmit={this.handleNewProject} >
+                    <p className='subheader'>{Content.forms.project.title}</p>
+                    <p>{Content.forms.project.note}</p>
+                    {this.props.alerts === ERROR && this.props.alerts.message && (
+                        <div className='alert alert-danger'>
+                            {this.props.alerts.message}
+                        </div>
+                    )}
+                    <label htmlFor='description'>Description:</label>
+                    <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />
+                    <button className='lumaki-btn ' type='submit'>{buttonText}</button>
+                </form>
+                <button onClick={this.handleBackClick} className='return'>Go back</button>
+            </Card>
         )
     }
 }

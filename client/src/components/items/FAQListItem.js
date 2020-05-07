@@ -1,13 +1,16 @@
 import React from 'react';
 import './css/FAQListItem.css';
+import Card from '../Card';
 
 const FAQListItem = ({question, answer}) => (
-    <div className='faq-list-item'>
-        <div>
-            <h5>{question}</h5>
-            <p>{answer}</p>
+    <Card>
+        <div className='faq-list-item'>
+            <div>
+                <p className='subheader'>{question}</p>
+                <p>{answer}</p>
+            </div>
         </div>
-    </div>
-)
+    </Card>
+);
 
 export default FAQListItem;

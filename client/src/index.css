@@ -4,81 +4,134 @@
 }
 
 ::-webkit-scrollbar-track {
-    background-color: rgba(113,113,113,0.3);
+    background-color: var(--lumaki-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(138,138,138,0.3);
+    background-color: var(--lumaki-scrollbar-thumb);
+}
+
+.header {
+    font-size: 30px;
+    width: 100%;
+}
+
+.subheader {
+    font-size: 20px;
+    width: 100%;
+}
+
+.title {
+    font-size: 16px;
+    width: 100%;
+}
+
+.details {
+    font-size: 10px;
+}
+
+p, li {
+    font-size: 14px;
+    width: 100%;
+    font-weight: lighter;
+    margin: 0;
+}
+
+a, a:hover, div {
+    color: rgb(0,0,0);
+    color: var(--lumaki-primary-font-color);
 }
 
 .lumaki-btn {
-    background-color: rgb(56,180,157);
+    background-color: var(--lumaki-primary-color);
     color: white;
+    color: var(--lumaki-primary-font-color);
     border: none;
     text-transform: uppercase;
     text-align: center;
-    padding: 7px 3px;
-    min-width: 150px;
+    padding: var(--btn-padding);
+    min-width: var(--btn-width);
     margin: 30px 0;
-    border-radius: 10px;
+    border-radius: var(--btn-border-radius);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
 }
 
 .lumaki-btn:hover {
-    color: white;
+    color: var(--lumaki-body-color);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
 }
 
 .lumaki-btn-outline {
     background-color: rgba(0,0,0,0);
-    color: rgb(56,180,157);
-    border: 1px solid rgb(56,180,157);
+    color: var(--lumaki-primary-color);
+    border: 1px solid var(--lumaki-primary-color);
     text-transform: uppercase;
     text-align: center;
-    padding: 7px 3px;
-    min-width: 150px;
+    padding: var(--btn-padding);
+    min-width: var(--btn-width);
     margin: 30px 0;
-    border-radius: 10px;
+    border-radius: var(--btn-border-radius);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
 }
 
 .lumaki-btn-outline:hover {
-    color: rgb(56,180,157);
+    color: var(--lumaki-primary-font-color);
+    border: 1px solid var(--lumaki-primary-font-color);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
+}
+
+.add-btn {
+    padding: var(--btn-padding);
+    background-color: var(--lumaki-primary-btn);
+    border-radius: var(--btn-border-radius);
+    min-width: var(--btn-width);
+    align-self: flex-start;
 }
 
 input, textarea, select {
-    font-size: 12px;
-    color: black;
-    background-color: rgb(196,196,196);
+    font-size: var(--page-font-size);
+    color: var(--lumaki-secondary-font-color);
+    background-color: var(--lumaki-input);
     border: none;
-    border-radius: 3px;
+    border-radius: var(--input-border-radius);
     width: 100%;
-    padding: 5px 8px;
-    font-size: 12px;
+    padding: var(--input-padding);
 }
 
 label {
-    display: inline-block;
     width: 100%;
     text-align: left;
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: lighter;
 }
 
 button {
     background-color: rgba(0,0,0,0);
+    font-size: var(--btn-font-size);
     border: none;
-    color: white;
+    color: var(--lumaki-primary-font-color);
 }
 
 .fa-trash-alt {
-    color: rgb(216, 88, 68);
+    color: var(--lumaki-primary-font-color);
 }
 
 .fa-pencil-alt {
-    color: rgb(190, 188, 42);
+    color: var(--lumaki-primary-font-color);
 }
 
 .function-tools {
     position: absolute;
     top: 0;
     display: inline-flex;
+    right: 0;
+}
+
+.function-tools i {
+    padding: 0 7px;
 }

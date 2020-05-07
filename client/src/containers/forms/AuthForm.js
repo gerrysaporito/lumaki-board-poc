@@ -67,7 +67,7 @@ class AuthForm extends Component {
         return(
             <div id='authform'>
                 <img src={LOGO} alt='LumakiBoard Logo' />
-                <h6 className='mb-5'>{heading}</h6>
+                <p className='mb-5 title'>{heading}</p>
                 {alerts.alert === ERROR && alerts.message && (
                     <div className='error'>
                         <div className='alert alert-danger'>

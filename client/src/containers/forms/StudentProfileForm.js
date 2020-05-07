@@ -77,7 +77,7 @@ class StudentProfileForm extends Component {
                     <label htmlFor='program'>Program *:</label>
                     <input id='program' name='program' onChange={this.handleChange} value={program || ''} type='text' required />
                     <label htmlFor='graduation_date'>Approximate Graduation Date *:</label>
-                    <input id='graduation_date' name='graduation_date' onChange={this.handleChange} value={graduation_date || '2000-01-02'} type='date' required />
+                    <input id='graduation_date' name='graduation_date' onChange={this.handleChange} value={graduation_date || ''} type='date' required />
                     <label htmlFor='country'>Country*:</label>
                     <input id='country' name='country' onChange={this.handleChange} value={country || ''} type='text' required />
                     <label htmlFor='state'>State:</label>
@@ -96,21 +96,21 @@ class StudentProfileForm extends Component {
 
                 {/* Lists */}
                 <div className='hr' />
-                <div className='section'>
-                    <h5>{Content.profile.student.experiences.title}</h5>
-                    <Link to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.student.experiences.buttonText}</Link>
+                <div className='profile-section'>
+                    <p className='subheader'>{Content.profile.student.experiences.title}</p>
+                    <Link className='add-btn' to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.student.experiences.buttonText}</Link>
                     <ExperienceList />
                 </div>
                 <div className='hr' />
-                <div className='section'>
-                    <h5>{Content.profile.student.projects.title}</h5>
-                    <Link to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.student.projects.buttonText}</Link>
+                <div className='profile-section'>
+                    <p className='subheader'>{Content.profile.student.projects.title}</p>
+                    <Link className='add-btn' to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.student.projects.buttonText}</Link>
                     <ProjectList />
                 </div>
                 <div className='hr' />
-                <div className='section'>
-                    <h5>{Content.profile.student.skills.title}</h5>
-                    <Link to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.student.skills.buttonText}</Link>
+                <div className='profile-section'>
+                    <p className='subheader'>{Content.profile.student.skills.title}</p>
+                    <Link className='add-btn' to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.student.skills.buttonText}</Link>
                     <SkillList />
                 </div>
 

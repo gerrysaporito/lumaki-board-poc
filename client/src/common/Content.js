@@ -1,6 +1,7 @@
 import FAQ from './FAQ';
 
 export const Content = {
+    notFound: 'N/A',
     login: {
         buttonText: `Log in`,
         heading: `Welcome Back.`
@@ -28,7 +29,7 @@ export const Content = {
         authenticated: {
             title: `A no-frills virtual internship marketplace.`,
             subTitle: `Flexible internship experiences at your fingertips. `,
-            tiles: [
+            cards: [
                 {
                     title: `Looking for a job?`,
                     subTitle: `Some random gibberish here`,
@@ -46,7 +47,7 @@ export const Content = {
         unauthenticated: {
             title: `A no-frills virtual internship marketplace.`,
             subTitle: `Flexible internship experiences at your fingertips. `,
-            tiles: [
+            cards: [
                 {
                     title: `Looking for a job?`,
                     subTitle: `Some random gibberish here`,
@@ -63,7 +64,19 @@ export const Content = {
         }
     },
     profile: {
-        intro: `Welcome `,
+        intro: {
+            student: {
+                register: {
+                    header: `Let's get to know you `,
+                    subheader: ''
+                },
+                login: {
+                    header: `Welcome `,
+                    subheader: ''
+                }
+            }
+        },
+        subheader: '',
         student: {
             experiences: {
                 title: `Your Experiences.`,
@@ -87,11 +100,15 @@ export const Content = {
     },
     forms: {
         post: {
-            note: `Add details about the job here. You will be redirected to the previous page with the job(s) populated.`,
-            title: `JOB`,
-            buttonText: {
-                create: `Add Job`,
-                edit: `Update Job`,
+            create: {
+                note: `Add details about the job here. You will be redirected to the previous page with the job(s) populated.`,
+                title: `JOB`,
+                buttonText: `Add Job`,
+            },
+            edit: {
+                note: `Edit the details about the job here. You will be redirected to the previous page when you save this job.`,
+                title: `JOB`,
+                buttonText: `Update Job`,
             },
         },
         experience: {

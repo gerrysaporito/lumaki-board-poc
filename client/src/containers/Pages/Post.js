@@ -7,7 +7,7 @@ import { Routes } from '../../common/Routes';
 import { IndustryColorValues, Profiles } from '../../common/Definitions';
 import { getPost, applyToPost } from '../../store/actions/posts';
 import { ERROR } from '../../store/actionTypes';
-
+import Card from '../../components/Card';
 import './css/Post.css';
 
 class Post extends Component {
@@ -65,9 +65,9 @@ class Post extends Component {
         return(
             <div id='post-container'>
                 <div className='post'>
-                    <div className='tile'>
+                    <Card>
                         <div className='post-industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.post_industry]}} />
-                        <div className='content'>
+                        <div className='card-content'>
                             {this.props.alerts.alert === ERROR && this.props.alerts.message && (
                                 <div className='error'>
                                     <div className='alert alert-danger'>
@@ -77,19 +77,19 @@ class Post extends Component {
                             )}
                             <img src={this.state.image} alt={`${this.state.company} Logo`} />
                             <p className='position'>{this.state.position}</p>
-                            <p className='company'>{this.state.company}</p>
-                            <p className='location'>{this.state.location}</p>
+                            <p>{this.state.company}</p>
+                            <p>{this.state.location}</p>
                             <p className='duration'><strong>Duration:</strong> {datediff(this.state.start_date, this.state.end_date)} weeks</p>
                             <div className='description'>
                                 <p className='title'><strong>Company Description:</strong></p>
                                 <p>{this.state.company_description}</p>
                             </div>
                         </div>
-                    </div>
+                    </Card>
 
-                    <div className='tile'>
-                        <div className='content'>
-                            <h3>{`${Content.post.title.description} ${this.state.company}`}</h3>
+                    <Card>
+                        <div className='card-content'>
+                            <p className='subheader'>{`${Content.post.title.description} ${this.state.company}`}</p>
                             <p>{this.state.position_description}</p>
                             <div className='description'>
                                 <p className='title'><strong>Responsibilities:</strong></p>
@@ -98,25 +98,25 @@ class Post extends Component {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </Card>
 
-                    <div className='tile'>
-                        <div className='content'>
-                            <h3>{`${Content.post.title.requirements}`}</h3>
+                    <Card>
+                        <div className='card-content'>
+                            <p className='subheader'>{`${Content.post.title.requirements}`}</p>
                             <ul>
                                 {this.state.requirements.map((req, i) => (<li key={i}>{req.text}</li>))}
                             </ul>
                         </div>
-                    </div>
+                    </Card>
 
-                    <div className='tile'>
-                        <div className='content'>
-                            <h3>{`${Content.post.title.compensation}`}</h3>
+                    <Card>
+                        <div className='card-content'>
+                            <p className='subheader'>{`${Content.post.title.compensation}`}</p>
                             <ul>
                                 {this.state.compensation.map((req, i) => (<li key={i}>{req.text}</li>))}
                             </ul>
                         </div>
-                    </div>
+                    </Card>
                     {button}
                 </div>
             </div>

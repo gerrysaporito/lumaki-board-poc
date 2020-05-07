@@ -10,7 +10,7 @@ const ProjectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
-}, {timestamp: true});
+}, {timestamps: true});
 
 ProjectSchema.pre('remove', async function(next) {
     try {

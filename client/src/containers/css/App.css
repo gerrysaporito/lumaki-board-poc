@@ -5,8 +5,7 @@
 }
 
 .app {
-    background-color: rgb(50,50,50);
-    color: white;
+    background-color: var(--lumaki-body);
     display: flex;
     flex-direction: row;
     justify-content: space-between;

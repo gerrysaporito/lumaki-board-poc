@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { ERROR } from '../../store/actionTypes';
 
 import { postNewSkill } from '../../store/actions/skills';
-import { Content } from '../../common/Content'
-import './css/Form.css'
+import { Content } from '../../common/Content';
+import Card from '../../components/Card';
+import './css/Form.css';
 
 class ExperienceForm extends Component {
     constructor(props) {
@@ -36,23 +37,21 @@ class ExperienceForm extends Component {
 
     render() {
         return(
-            <div className='form'>
-                <div>
-                    <form onSubmit={this.handleNewExperience} >
-                        <p>{Content.forms.skill.note}</p>
-                        <h3>{Content.forms.skill.title}</h3>
-                        {this.props.alerts === ERROR && this.props.alerts.message && (
-                            <div className='alert alert-danger'>
-                                {this.props.alerts.message}
-                            </div>
-                        )}
-                        <label htmlFor='skill'>Skill:</label>
-                        <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill || ''} type='text' required />
-                        <button className='lumaki-btn ' type='submit'>{Content.forms.skill.buttonText}</button>
-                    </form>
-                    <button onClick={this.handleBackClick} className='return'>Go back</button>
-                </div>
-            </div>
+            <Card type='form inline'>
+                <form onSubmit={this.handleNewExperience} >
+                    <p className='subheader'>{Content.forms.skill.title}</p>
+                    <p>{Content.forms.skill.note}</p>
+                    {this.props.alerts === ERROR && this.props.alerts.message && (
+                        <div className='alert alert-danger'>
+                            {this.props.alerts.message}
+                        </div>
+                    )}
+                    <label htmlFor='skill'>Skill:</label>
+                    <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill || ''} type='text' required />
+                    <button className='lumaki-btn ' type='submit'>{Content.forms.skill.buttonText}</button>
+                </form>
+                <button onClick={this.handleBackClick} className='return'>Go back</button>
+            </Card>
         )
     }
 }

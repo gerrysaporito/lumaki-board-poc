@@ -3,12 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
-    margin: 20px;
-    padding: 20px;
-    background-color: rgb(60,60,60);
-    font-size:12px;
-    border-radius: 10px;
+    width: 100%;
 }
 
 .experience-list-item-area {

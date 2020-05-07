@@ -52,7 +52,7 @@ const EmployerProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
-}, {timestamp: true});
+}, {timestamps: true});
 
 const employer_profile = mongoose.model('employer_profile', EmployerProfileSchema);
 module.exports = employer_profile;

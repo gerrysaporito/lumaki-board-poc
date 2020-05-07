@@ -1,0 +1,46 @@
+.company-post-list-item {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.company-post-list-item-title {
+    padding: 0 20px !important;
+    margin: 50px 15px 0 15px!important;
+    background-color: rgba(0,0,0,0) !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.company-post-list-item .title-section {
+    width: 50%;
+}
+
+.company-post-list-item .date-section {
+    text-align: center;
+    width: 20%;
+}
+
+.company-post-list-item .applicants-section {
+    text-align: center;
+    width: 20%;
+}
+
+.company-post-list-item .link-section {
+    justify-self: flex-end;
+}
+
+.company-post-list-item .title {
+}
+
+.company-post-list-item a {
+    text-align: right;
+}
+
+.company-post-list-item p,
+.company-post-list-item a {
+    margin-bottom: 5px;
+    flex: 1 0 auto;
+}

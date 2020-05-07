@@ -5,6 +5,7 @@
     background-color: rgb(61,61,61);
     border-radius: 15px;
     padding: 5px 15px;
+    margin: 0 0 15px 0;
 }
 
 #posts-filter label,
@@ -17,7 +18,6 @@
 #posts-filter input,
 #posts-filter select {
     background-color: rgba(196,196,196, 0.3);
-    color: white;
     display: inline-block;
     width: auto;
     border-radius: 20px;

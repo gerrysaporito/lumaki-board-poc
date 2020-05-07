@@ -14,6 +14,7 @@ const SKILLS_ROUTES = require('./routes/skills');
 const POST_ROUTES = require('./routes/posts');
 const UNAUTH_ROUTES = require('./routes/unauth');
 const PROFILE_ROUTES = require('./routes/profiles');
+const USER_ROUTES = require('./routes/user');
 const app = express();
 
 app.use(cors());
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 // ROUTES
 app.use('/api/auth', AUTH_ROUTES);
 app.use('/api/posts', UNAUTH_ROUTES);
+app.use('/api/users/:_id', loginRequired, ensureCorrectUser, USER_ROUTES);
 app.use('/api/users/:_id/experiences', loginRequired, ensureCorrectUser, EXPERIENCES_ROUTES);
 app.use('/api/users/:_id/projects', loginRequired, ensureCorrectUser, PROJECTS_ROUTES);
 app.use('/api/users/:_id/skills', loginRequired, ensureCorrectUser, SKILLS_ROUTES);

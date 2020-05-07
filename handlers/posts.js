@@ -43,9 +43,51 @@ exports.getPost = async function(req, res, next) {
         let post = await db.post.findById(req.params.post_id);
         res.status(200).json(post);
     } catch(e) {
+        return next(e)
+    }
+};
+
+exports.getApplicantsFromPost = async function(req, res, next) {
+    try {
+        let post = await db.post.findById(req.params.post_id);
+        let userInfo = [];
+        let users = await db.user.find({
+            '_id': {
+                $in: post.applications
+            }
+        });
+        for(let user of users) {
+            let profile = await db[user.profile_type].findById(user.profile);
+            let experiences = await db.experience.find({
+                '_id': {
+                    $in: profile.experiences
+                }
+            });
+            let projects = await db.project.find({
+                '_id': {
+                    $in: profile.projects
+                }
+            });
+            let skills = await db.skill.find({
+                '_id': {
+                    $in: profile.skills
+                }
+            });
+            userInfo.push({
+                user: user,
+                profile: {
+                    ...profile._doc,
+                    experiences: experiences,
+                    projects: projects,
+                    skills: skills
+                },
+            });
+        };
+        res.status(200).json(userInfo);
+    } catch(e) {
         return next({
             status: 400,
-            message: await db.post.findById(req.params.post_id)
+            message: e.message,
         })
     }
 };

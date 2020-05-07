@@ -8,6 +8,7 @@ import { Content } from '../../common/Content';
 import { fetchPosts } from '../../store/actions/posts';
 import PostListItem from '../../components/items/PostListItem';
 import './css/EmployerRegister.css';
+import Card from '../../components/Card';
 
 class CompanyPosts extends Component {
     componentDidMount() {
@@ -32,17 +33,20 @@ class CompanyPosts extends Component {
         ));
 
         return(
-            <div className='mt-5' id='company-posts'>
+            <div id='company-posts'>
                 <div className='section'>
-                    <h3><strong>{Content.companyPosts.title}</strong></h3>
+                    <p className='header'><strong>{Content.companyPosts.title}</strong></p>
                     <p>{Content.companyPosts.subTitle}</p>
                     <div className='hr' />
                     <div className='section'>
                         <div className='post-list'>
                             {postList}
-                            <Link to={Routes.createPost.url} className='post-list-item add-card'>
-                                <i className='fa fa-plus' aria-hidden='true' />
-                            </Link>
+                            <Card type='mini'>
+                                <Link to={Routes.createPost.url} className='post-list-item add-card'>
+                                    <i className='fa fa-plus' aria-hidden='true' /><br />
+                                    Add Card
+                                </Link>
+                            </Card>
                         </div>
                     </div>
                 </div>

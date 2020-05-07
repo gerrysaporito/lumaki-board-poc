@@ -12,8 +12,8 @@ class FAQ extends Component {
             <FAQListItem key={i} {...faq} />
         ));
         return(
-            <div className='mt-5' id='faq'>
-                <h3 className='title'>{Content.faq.title}</h3>
+            <div id='faq'>
+                <p className='header'>{Content.faq.title}</p>
                 <div className='faq-list'>
                     {faqs}
                 </div>

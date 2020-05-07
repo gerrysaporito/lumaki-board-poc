@@ -16,6 +16,20 @@ class PostList extends Component {
                 editable
             />
         ));
+        if (posts.length % 4 !== 0) {
+            for(let i = 0; i < posts.length; ++i) {
+                postList.push(
+                    <div className='ghost'>
+                        <PostListItem
+                            key={posts.length + i}
+                            canAccess={currentUser.user._id === 0}
+                            currentUser={currentUser}
+                            ghost
+                        />
+                    </div>
+                )
+            }
+        }
         return(
             <div className='post-list'>
                 {postList}

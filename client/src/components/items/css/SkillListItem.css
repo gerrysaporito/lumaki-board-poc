@@ -2,12 +2,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    margin: 10px 20px;
-    padding: 15px 20px;
-    background-color: rgb(60,60,60);
-    font-size:12px;
-    border-radius: 10px;
+    width: 100%;
 }
 
 .skill-list-item-area {

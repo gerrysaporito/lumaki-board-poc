@@ -28,6 +28,14 @@ export const getPost = (post_id) => {
     };
 };
 
+export const getApplicantsFromPost = (user_id, post_id) => {
+    return dispatch => {
+        return apiCall('get', `/api/users/${user_id}/posts/${post_id}/applicants`)
+        .then(res => res)
+        .catch(e => addAlert(e.message, ERROR));
+    };
+};
+
 export const postNewPost = post => (dispatch, getState) => {
     let { currentUser } = getState();
     const user_id = currentUser.user._id;

@@ -32,10 +32,10 @@ class Profile extends Component {
             }
         }
         return(
-            <div className='mt-5' id='profile'>
-                <h4 className='mb-3'>
-                    {Content.profile.intro} <span className='name'>{currentUser.user.first_name}</span>!
-                </h4>
+            <div id='profile'>
+                <p className='mb-3 header'>
+                    {Content.profile.intro.student.register.header} <span className='name'>{currentUser.user.first_name}</span>!
+                </p>
                 {profile}
             </div>
         )

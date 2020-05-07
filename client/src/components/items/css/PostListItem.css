@@ -3,15 +3,14 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    width: 250px;
-    background-color: rgb(75,75,75);
-    border-radius: 20px;
-    font-size: 12px;
-    -webkit-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
-    margin: 30px;
+    border-radius: inherit;
+    padding-bottom: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.ghost {
+    visibility: hidden;
 }
 
 .post-industry-color-bar {
@@ -23,7 +22,9 @@
 }
 
 .post-list-item section {
-    padding: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 10px 0;
 }
 
 .post-list-item img {
@@ -31,23 +32,13 @@
     padding: 20px 0;
 }
 
-.post-list-item p,
-.post-list-item a {
-    margin: 0;
-    color: white;
-}
-
 .post-list-item .company a {
-    font-size: 16px;
     margin: 0;
     text-transform: uppercase;
 }
 
 .post-list-item .position-description {
-    font-weight: lighter;
-    color: white;
     flex: 1 0 auto;
-    width: 100%;
     margin: 10px 0;
 }
 
@@ -66,7 +57,6 @@
 
 .tag span {
     background-color: rgb(112,112,112);
-    font-size: 11px;
     border-radius: 5px;
     margin-left: 10px;
     padding: 5px 8px;
@@ -75,39 +65,51 @@
 .cta {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     text-align: right;
     padding: 10px 5px;
-    background-color: rgb(122,122,122);
-    border-radius: 0 0 20px 20px;
+    border-radius: inherit;
 }
 
-.cta a,
-.cta button,
-.cta .fa-trash-alt {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    font-weight: normal;
-    color: white;
+.cta a {
+    text-align: inherit;
+    padding-right: 20px;
+}
+
+.cta-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    margin: 0 3px;
-    padding: 0;
+    text-align: right;
+    padding: 7px 5px;
+    background-color: rgb(122,122,122);
+    overflow: hidden;
+    border-radius: inherit;
 }
 
-.cta .middle {
+.cta-edit a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-edit .middle {
     border-right: 1px solid white;
     border-left: 1px solid white;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .add-card {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 25px;
     color: rgb(121,121,121);
     text-decoration: none;
     transition: color .15s ease-in-out;

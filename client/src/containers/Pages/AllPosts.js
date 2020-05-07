@@ -9,7 +9,7 @@ import './css/AllPosts.css';
 class AllPosts extends Component {
     render() {
         return(
-            <div className='mt-5' id='all-posts'>
+            <div className='' id='all-posts'>
                 <PostsFilter />
                 <div className='section'>
                     <PostList />

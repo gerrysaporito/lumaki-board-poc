@@ -6,13 +6,14 @@ exports.signin = async function(req, res, next) {
         let user = await db.user.findOne({
             email: req.body.email
         });
-        let { _id, role, profile_type, first_name } = user;
+        let { _id, role, profile_type, first_name, last_name } = user;
         let isMatch = await user.comparePassword(req.body.password);
         if(isMatch) {
             let profile = await db[user.profile_type].findById(user.profile);
             let token = jwt.sign({
                 _id,
                 first_name,
+                last_name,
                 role,
                 profile_type,
                 profile: profile._doc,
@@ -20,6 +21,7 @@ exports.signin = async function(req, res, next) {
             return res.status(200).json({
                 _id,
                 first_name,
+                last_name,
                 role,
                 profile_type,
                 profile: profile._doc,
@@ -49,10 +51,11 @@ exports.signup = async function(req, res, next) {
                 profile: profile._id,
                 profile_type: req.body.profile_type,
             });
-            let { _id, role, profile_type, first_name } = user;
+            let { _id, role, profile_type, first_name, last_name } = user;
             let token = jwt.sign({
                 _id,
                 first_name,
+                last_name,
                 role,
                 profile_type,
                 profile: profile._doc,
@@ -60,6 +63,7 @@ exports.signup = async function(req, res, next) {
             return res.status(200).json({
                 _id,
                 first_name,
+                last_name,
                 role,
                 profile_type,
                 token,

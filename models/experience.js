@@ -7,7 +7,7 @@ const ExperienceSchema = new mongoose.Schema({
         required: true,
         maxLength: 150,
     },
-    role: {
+    position: {
         type: String,
         required: true,
         maxLength: 150,
@@ -29,7 +29,7 @@ const ExperienceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
-}, {timestamp: true});
+}, {timestamps: true});
 
 ExperienceSchema.pre('remove', async function(next) {
     try {

@@ -2,31 +2,31 @@ h3 {
     width: 100%;
 }
 
-.form {
+.form-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    align-self: center;
-    margin: auto;
-    text-align: left;
-    padding: 50px 0;
 }
 
-.form p {
-    font-size: 12px;
+.form-header .header {
+    width: auto;
 }
 
-.form form {
-    background-color: rgb(67,67,67);
+form.form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
     max-width: 600px;
     width: 100%;
-    padding: 10% 10% 10% 10%;
     text-align: left;
+}
+
+.form form .card {
+    padding: 50px;
 }
 
 .form-section {
@@ -49,7 +49,8 @@ h3 {
     min-height: 200px;
 }
 
-.form button.return {
+button.return {
+    width: 100%;
     text-align: left;
     transform: translateY(15px);
 }
@@ -66,14 +67,6 @@ h3 {
 .array-box button {
     margin: 0;
     margin-left: 10px;
-}
-
-.add-input {
-    padding: 5px 10px;
-    background-color: rgb(120,120,120);
-    border-radius: 10px;
-    font-size: 12px;
-    width: 150px
 }
 
 .form .lumaki-btn {

@@ -1,0 +1,35 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--lumaki-card);
+    width: 100%;
+    transition: transform .05s ease-in-out;
+    -webkit-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
+    margin: 15px 0;
+}
+
+.mini-card {
+    width: 22% !important;
+    min-width: 200px;
+    margin: 1.5% !important;
+}
+
+.bump-card:hover {
+    transform: scale(1.05);
+    transition: all .05s ease-in-out;
+}
+
+.inline-card {
+    display: inline-flex !important;
+    width: auto !important;
+}
+
+.form-card {
+    border-radius: 0 !important;
+}

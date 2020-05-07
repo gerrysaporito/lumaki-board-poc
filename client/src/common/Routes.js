@@ -44,12 +44,20 @@ export const Routes = {
         url: `/users/:user_id`,
         text: `Profile`,
     },
+    profileOverview: {
+        url: `/users/:user_id/overview`,
+        text: ``,
+    },
     companyPosts: {
         url: `/users/:user_id/posts/postings`,
         text: `My Postings`,
     },
     companyApplications: {
         url: `/users/:user_id/posts/postings/applicants`,
+        text: `My Applicants`,
+    },
+    companyApplicantApplications: {
+        url: `/users/:user_id/posts/postings/applicants/:post_id`,
         text: `My Applicants`,
     },
     studentApplications: {
