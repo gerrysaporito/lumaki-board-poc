@@ -2,16 +2,18 @@ const db = require('../models');
 
 exports.createSkill = async function(req, res, next) {
     try {
-        let skill = await db.skill.create({
-            ...req.body,
-            user: req.params._id,
-        });
         let user = await db.user.findById(req.params._id);
         let profile = await db[user.profile_type].findById(user.profile);
-        profile.skills.push(skill.id);
+        for(let s of req.body.skill) {
+            let skill = await db.skill.create({
+                ...req.body,
+                skill: s,
+                user: req.params._id,
+            });
+            profile.skills.push(skill.id);
+        }
         await profile.save();
-        let foundSkill = await db.skill.findById(skill._id)
-        return res.status(200).json(foundSkill);
+        return res.status(200).json(req.body.skill);
     } catch(e) {
         return next(e)
     }

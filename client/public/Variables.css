@@ -1,23 +1,4 @@
 :root {
-    /* Page */
-    --page-margin: 50px;
-    --page-font-size: 12px;
-
-    /* Button */
-    --btn-width: 150px;
-    --btn-border-radius: 10px;
-    --btn-padding: 7px 3px;
-    --btn-font-size: 12px;
-
-    /* Scrollbar */
-    --lumaki-scrollbar-track: rgba(113,113,113,0.0);
-    --lumaki-scrollbar-thumb: rgba(138,138,138,0.3);
-
-    /* Inputs */
-    --lumaki-input: rgb(196,196,196);
-    --input-border-radius: 3px;
-    --input-padding: 5px 8px;
-
     /* Backgorund Colors */
     --lumaki-body: rgb(50,50,50);
     --lumaki-card: rgb(75,75,75);
@@ -30,6 +11,27 @@
     --lumaki-primary-color: rgb(56,180,157);
     --lumaki-primary-font-color: rgb(255,255,255);
     --lumaki-secondary-font-color: rgb(50,50,50);
+
+    /* Page */
+    --page-margin: 50px;
+    --page-font-size: 12px;
+
+    /* Button */
+    --lumaki-btn-primary-background-color: rgb(56,180,157);
+    --lumaki-btn-secondary-background-color: rgb(120,120,120);
+    --btn-width: 150px;
+    --btn-border-radius: 10px;
+    --btn-padding: 7px 14px;
+    --btn-font-size: 12px;
+
+    /* Scrollbar */
+    --lumaki-scrollbar-track: rgba(113,113,113,0.0);
+    --lumaki-scrollbar-thumb: rgba(138,138,138,0.3);
+
+    /* Inputs */
+    --lumaki-input: rgb(196,196,196);
+    --input-border-radius: 3px;
+    --input-padding: 5px 8px;
 
 }
 

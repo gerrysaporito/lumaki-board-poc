@@ -10,7 +10,7 @@ class PostsFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            industry: '',
+            post_industry: '',
             duration: '',
         }
     }
@@ -18,7 +18,7 @@ class PostsFilter extends Component {
     componentDidMount(){
         this.props.fetchPosts({})
         .then(() => this.setState({
-            industry: '',
+            post_industry: '',
             duration: '',
         }))
         .catch(() => {});
@@ -31,8 +31,8 @@ class PostsFilter extends Component {
             }, function() {
                 let filterObj = {};
                 Object.keys(this.state)
-                    .filter(key => this.state[key] !== '')
-                    .forEach(key => filterObj[key] = this.state[key]);
+                .filter(key => this.state[key] !== '')
+                .forEach(key => filterObj[key] = this.state[key]);
                 this.props.fetchPosts(filterObj)
                     .then(() => {})
                     .catch(() => {})
@@ -42,22 +42,22 @@ class PostsFilter extends Component {
     }
 
     render() {
-        const {industry, duration} = this.state;
+        const {post_industry, duration} = this.state;
         return(
             <div id='posts-filter'>
                 <div className='filter'>
-                    <label htmlFor='industry'>Industry:</label>
-                    <select id='industry' name='industry' onChange={this.handleChange} value={industry} >
+                    <label htmlFor='post_industry'>Industry:</label>
+                    <select id='post_industry' name='post_industry' onChange={this.handleChange} value={post_industry} >
                         <option value=''>Any</option>
-                        {Object.values(IndustryValues).map((industry, i) => (
-                            <option key={i} value={industry || ''}>{industry}</option>
+                        {Object.values(IndustryValues).map((post_industry, i) => (
+                            <option key={i} value={post_industry || ''}>{post_industry}</option>
                         ))}
                     </select>
                 </div>
 
                 <div className='filter'>
                     <label htmlFor='duration'>Duration (weeks):</label>
-                    <input id='duration' name='duration' onChange={this.handleChange} value={duration || '16'} type='number' />
+                    <input id='duration' name='duration' onChange={this.handleChange} value={duration || 'any'} min='0' type='number' />
                 </div>
             </div>
         )

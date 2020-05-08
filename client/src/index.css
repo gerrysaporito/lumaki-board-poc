@@ -42,6 +42,10 @@ a, a:hover, div {
     color: var(--lumaki-primary-font-color);
 }
 
+a, a:hover, button, button:hover {
+    cursor: pointer;
+}
+
 .lumaki-btn {
     background-color: var(--lumaki-primary-color);
     color: white;
@@ -85,11 +89,12 @@ a, a:hover, div {
 }
 
 .add-btn {
+    align-self: flex-start;
     padding: var(--btn-padding);
-    background-color: var(--lumaki-primary-btn);
+    background-color: var(--lumaki-btn-secondary-background-color);
     border-radius: var(--btn-border-radius);
     min-width: var(--btn-width);
-    align-self: flex-start;
+    font-size: var(--page-font-size);
 }
 
 input, textarea, select {

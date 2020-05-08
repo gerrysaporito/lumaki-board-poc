@@ -13,10 +13,10 @@
 
 .skill-list-item .skill {
     padding: 0;
-    margin: 0;
+    margin: 0 10px 0 0;
     display: inline-block;
 }
 
-.skill-list-item button {
+.skill-list-item a {
     display: inline-block;
 }

@@ -43,7 +43,7 @@ class AuthForm extends Component {
                 }
                 case Profiles.employer: {
                     let route = authType === 'register' ?
-                        Routes.profile.url.replace(':user_id', user._id) : Routes.companyPosts.url;
+                        Routes.profile.url.replace(':user_id', user._id) : Routes.companyPosts.url.replace(':user_id', user._id);
                     this.props.history.push(route);
                     break;
                 }

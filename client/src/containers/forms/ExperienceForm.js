@@ -67,33 +67,33 @@ class ExperienceForm extends Component {
             Content.forms.experience.buttonText.edit : Content.forms.experience.buttonText.create;
         return(
             <Card type='form inline'>
-                    <form className='form' onSubmit={this.handleNewExperience} >
-                        <p className='subheader'>{Content.forms.experience.title}</p>
-                        <p>{Content.forms.experience.note}</p>
-                        {this.props.alerts === ERROR && this.props.alerts.message && (
-                            <div className='alert alert-danger'>
-                                {this.props.alerts.message}
-                            </div>
-                        )}
-                        <label htmlFor='company'>Company/Organization:</label>
-                        <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />
-                        <label htmlFor='position'>Position:</label>
-                        <input id='position' name='position' onChange={this.handleChange} value={this.state.position || ''} type='text' required />
-                        <div className='form-section mt-2'>
-                            <div className='form-section-item'>
-                                <label htmlFor='start_date'>Start Date:</label>
-                                <input id='start_date' name='start_date' onChange={this.handleChange} value={this.state.start_date || ''} type='date' required />
-                            </div>
-                            <div className='form-section-item'>
-                                <label htmlFor='end_date'>End Date:</label>
-                                <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date || ''} type='date' required />
-                            </div>
+                <form className='form' onSubmit={this.handleNewExperience} >
+                    <p className='subheader'>{Content.forms.experience.title}</p>
+                    <p>{Content.forms.experience.note}</p>
+                    {this.props.alerts === ERROR && this.props.alerts.message && (
+                        <div className='alert alert-danger'>
+                            {this.props.alerts.message}
                         </div>
-                        <label htmlFor='description'>Description:</label>
-                        <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />
-                        <button className='lumaki-btn ' type='submit'>{buttonText}</button>
-                    </form>
-                    <button onClick={this.handleBackClick} className='return'>Go back</button>
+                    )}
+                    <label htmlFor='company'>Company/Organization:</label>
+                    <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />
+                    <label htmlFor='position'>Position:</label>
+                    <input id='position' name='position' onChange={this.handleChange} value={this.state.position || ''} type='text' required />
+                    <div className='form-section mt-2'>
+                        <div className='form-section-item'>
+                            <label htmlFor='start_date'>Start Date:</label>
+                            <input id='start_date' name='start_date' onChange={this.handleChange} value={this.state.start_date || ''} type='date' required />
+                        </div>
+                        <div className='form-section-item'>
+                            <label htmlFor='end_date'>End Date:</label>
+                            <input id='end_date' name='end_date' onChange={this.handleChange} value={this.state.end_date || ''} type='date' required />
+                        </div>
+                    </div>
+                    <label htmlFor='description'>Description:</label>
+                    <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />
+                    <button className='lumaki-btn ' type='submit'>{buttonText}</button>
+                </form>
+                <button onClick={this.handleBackClick} className='return'>Go back</button>
             </Card>
         )
     }

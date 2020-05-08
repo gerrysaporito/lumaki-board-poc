@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../containers/forms/css/Form.css'
+import './css/Header.css'
 
 class Header extends Component {
     handleBackClick = e => {
@@ -10,7 +10,7 @@ class Header extends Component {
 
     render() {
         return(
-            <div className='form-header'>
+            <div className='page-header'>
                 <p className='header'>{this.props.header}</p>
                 <button onClick={this.handleBackClick} className='return'>Go back</button>
             </div>

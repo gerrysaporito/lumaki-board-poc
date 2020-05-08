@@ -9,7 +9,7 @@ const SkillListItem = ({skill, removeSkill, isCorrectUser}) => (
             <div className='skill-list-item-area'>
                 <p className='skill'>{skill}</p>
                 {isCorrectUser && (
-                    <button onClick={removeSkill}><i className='far fa-trash-alt' /></button>
+                    <a onClick={removeSkill}><i className='far fa-trash-alt' /></a>
                 )}
             </div>
         </div>

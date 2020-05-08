@@ -57,7 +57,7 @@ class ProjectForm extends Component {
             Content.forms.project.buttonText.edit : Content.forms.project.buttonText.create;
         return(
             <Card type='form inline'>
-                <form onSubmit={this.handleNewProject} >
+                <form className='form' onSubmit={this.handleNewProject} >
                     <p className='subheader'>{Content.forms.project.title}</p>
                     <p>{Content.forms.project.note}</p>
                     {this.props.alerts === ERROR && this.props.alerts.message && (

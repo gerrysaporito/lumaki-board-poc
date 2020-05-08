@@ -7,19 +7,23 @@ import { Content } from '../../common/Content';
 import Card from '../../components/Card';
 import './css/Form.css';
 
-class ExperienceForm extends Component {
+class SkillForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            skill: '',
+            skill: [],
         };
     };
 
-    handleNewExperience = e => {
+    handleNewSkill = e => {
         e.preventDefault();
-        this.props.postNewSkill({...this.state});
+
+        this.props.postNewSkill({
+            ...this.state,
+            skill: this.state.skill.split(','),
+        });
         this.setState({
-            skill: '',
+            skill: [],
         });
         this.props.history.goBack();
     };
@@ -38,7 +42,7 @@ class ExperienceForm extends Component {
     render() {
         return(
             <Card type='form inline'>
-                <form onSubmit={this.handleNewExperience} >
+                <form onSubmit={this.handleNewSkill} >
                     <p className='subheader'>{Content.forms.skill.title}</p>
                     <p>{Content.forms.skill.note}</p>
                     {this.props.alerts === ERROR && this.props.alerts.message && (
@@ -62,4 +66,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { postNewSkill })(ExperienceForm);
+export default connect(mapStateToProps, { postNewSkill })(SkillForm);

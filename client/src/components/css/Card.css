@@ -11,7 +11,7 @@
     -webkit-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
     box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
-    margin: 15px 0;
+    margin: 15px;
 }
 
 .mini-card {
@@ -31,5 +31,7 @@
 }
 
 .form-card {
+    /* max-width: 650px; */
+    align-self: center;
     border-radius: 0 !important;
 }
