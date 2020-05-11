@@ -2,31 +2,31 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { Content } from '../common/Content';
-import { Profiles } from '../common/Definitions';
-import { Routes } from '../common/Routes';
-import withAuth from '../hocs/WithAuth'
-import withoutAuth from '../hocs/WithoutAuth'
+import { Content } from '../../common/Content';
+import { Profiles } from '../../common/Definitions';
+import { Routes } from '../../common/Routes';
+import withAuth from '../../hocs/WithAuth'
+import withoutAuth from '../../hocs/WithoutAuth'
 // import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
 // Pages
-import Homepage from './pages/unauthenticated/Homepage';
-import FAQ from './pages/unauthenticated/FAQ';
-import Profile from './pages/general/Profile';
-import Contact from './pages/unauthenticated/Contact';
-import AllPosts from './pages/unauthenticated/AllPosts';
-import Post from './pages/unauthenticated/Post';
-import EmployerRegister from './pages/unauthenticated/EmployerRegister';
-import MyPostings from './pages/employer/MyPostings';
-import ViewApplicants from './pages/employer/ViewApplicants';
-import SinglePostApplicants from './pages/employer/SinglePostApplicants';
-import StudentProfileSummary from './pages/employer/StudentProfileSummary';
+import Homepage from '../pages/unauthenticated/Homepage';
+import FAQ from '../pages/unauthenticated/FAQ';
+import Profile from '../pages/general/Profile';
+import Contact from '../pages/unauthenticated/Contact';
+import AllPosts from '../pages/unauthenticated/AllPosts';
+import Post from '../pages/unauthenticated/Post';
+import EmployerRegister from '../pages/unauthenticated/EmployerRegister';
+import MyPostings from '../pages/employer/MyPostings';
+import ViewApplicants from '../pages/employer/ViewApplicants';
+import SinglePostApplicants from '../pages/employer/SinglePostApplicants';
+import StudentProfileSummary from '../pages/employer/StudentProfileSummary';
 // Forms
-import Auth from './pages/unauthenticated/Auth';
-import ExperienceForm from './forms/ExperienceForm';
-import ProjectForm from './forms/ProjectForm';
-import SkillForm from './forms/SkillForm';
-import PostForm from './forms/PostForm';
+import Auth from '../pages/unauthenticated/Auth';
+import ExperienceForm from '../forms/ExperienceForm';
+import ProjectForm from '../forms/ProjectForm';
+import SkillForm from '../forms/SkillForm';
+import PostForm from '../forms/PostForm';
 
 import './css/Main.css';
 

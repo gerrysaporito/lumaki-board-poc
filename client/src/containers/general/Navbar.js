@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions/auth';
 
-import { NavbarRoutes, Routes } from '../common/Routes';
+import { logout } from '../../store/actions/auth';
+import { NavbarRoutes, Routes } from '../../common/Routes';
 
-import LOGO from '../images/LumakiLabs_SmallLogo_W.png';
+import LOGO from '../../images/LumakiLabs_SmallLogo_W.png';
 import './css/Navbar.css';
 
 class Navbar extends Component {

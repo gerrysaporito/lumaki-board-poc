@@ -1,11 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import{ configureStore } from '../store';
+import{ configureStore } from '../../store';
 import jwtDecode from 'jwt-decode';
 
-import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
-import { setProfile } from '../store/actions/profiles';
+import { setAuthorizationToken, setCurrentUser } from '../../store/actions/auth';
+import { setProfile } from '../../store/actions/profiles';
 
 import Main from './Main';
 
