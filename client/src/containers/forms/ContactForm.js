@@ -4,7 +4,7 @@ import { ERROR } from '../../store/actionTypes';
 
 import { postNewExperience, getExperience, updateExperience } from '../../store/actions/experiences';
 import { Content } from '../../common/Content';
-import Card from '../../components/Card';
+import Card from '../../components/general/Card';
 import './css/Form.css';
 
 class ContactForm extends Component {

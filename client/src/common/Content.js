@@ -164,7 +164,7 @@ export const Content = {
             compensation: `What you get.`
         },
     },
-    companyApplications: {
+    ViewApplicants: {
         title: `View Applicants`,
         buttonText: {
             all: `All Applicants`,
@@ -172,7 +172,7 @@ export const Content = {
             pipeline: `Pipeline`,
         }
     },
-    companyPosts: {
+    MyPostings: {
         title: `My Postings`,
         subTitle: `Above each posting you will see the status of your job posting.
             This will indicate if the posting is live, pending, or offline.

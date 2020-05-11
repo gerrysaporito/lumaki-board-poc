@@ -5,8 +5,8 @@ import { ERROR } from '../../store/actionTypes';
 import { postNewPost, getPost, updatePost } from '../../store/actions/posts';
 import { Content } from '../../common/Content';
 import { IndustryValues } from '../../common/Definitions';
-import Card from '../../components/Card';
-import Header from '../../components/Header';
+import Card from '../../components/general/Card';
+import Header from '../../components/general/Header';
 import './css/Form.css'
 
 class PostForm extends Component {
@@ -178,7 +178,7 @@ class PostForm extends Component {
                                     <button name='responsibilities' type='button' onClick={this.handleRemoveFromArray(i)}>x</button>
                                 </div>
                             ))}
-                            <button className='add-to-array-btn' name='responsibilities' type='button' onClick={this.handleAddInput} className='add-btn'>Add Responsibility</button>
+                            <button className='add-to-array-btn add-btn' name='responsibilities' type='button' onClick={this.handleAddInput} >Add Responsibility</button>
 
                             {/* Responsibilities */}
                             <label htmlFor='requirements'>Requirements:</label>
@@ -188,7 +188,7 @@ class PostForm extends Component {
                                     <button name='requirements' type='button' onClick={this.handleRemoveFromArray(i)}>x</button>
                                 </div>
                             ))}
-                            <button className='add-to-array-btn' name='requirements' type='button' onClick={this.handleAddInput} className='add-btn'>Add Requirement</button>
+                            <button className='add-to-array-btn add-btn' name='requirements' type='button' onClick={this.handleAddInput} >Add Requirement</button>
 
                             {/* Responsibilities */}
                             <label htmlFor='compensation'>Compensation:</label>
@@ -198,7 +198,7 @@ class PostForm extends Component {
                                     <button name='compensation' type='button' onClick={this.handleRemoveFromArray(i)}>x</button>
                                 </div>
                             ))}
-                            <button className='add-to-array-btn' name='compensation' type='button' onClick={this.handleAddInput} className='add-btn'>Add Compensation</button>
+                            <button className='add-to-array-btn add-btn' name='compensation' type='button' onClick={this.handleAddInput} >Add Compensation</button>
 
                             {/* Submit */}
                             <button className='lumaki-btn ' type='submit'>{buttonText}</button>

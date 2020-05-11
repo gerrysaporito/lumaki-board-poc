@@ -5,7 +5,7 @@ import { ERROR } from '../../store/actionTypes';
 import { postNewProject, updateProject, getProject } from '../../store/actions/projects';
 import { Content } from '../../common/Content';
 import './css/Form.css';
-import Card from '../../components/Card';
+import Card from '../../components/general/Card';
 
 class ProjectForm extends Component {
     constructor(props) {

@@ -57,7 +57,7 @@ class PostsFilter extends Component {
 
                 <div className='filter'>
                     <label htmlFor='duration'>Duration (weeks):</label>
-                    <input id='duration' name='duration' onChange={this.handleChange} value={duration || 'any'} min='0' type='number' />
+                    <input id='duration' name='duration' onChange={this.handleChange} value={duration || ''} min='0' type='number' />
                 </div>
             </div>
         )

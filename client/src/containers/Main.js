@@ -10,18 +10,19 @@ import withoutAuth from '../hocs/WithoutAuth'
 // import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
 // Pages
-import Homepage from '../components/Homepage';
-import FAQ from './Pages/FAQ';
-import Profile from './Pages/Profile';
-import Contact from './Pages/Contact';
-import AllPosts from './Pages/AllPosts';
-import Post from './Pages/Post';
-import EmployerRegister from './Pages/EmployerRegister';
-import CompanyPosts from './Pages/CompanyPosts';
-import CompanyApplications from './Pages/CompanyApplications';
-import PostApplicants from './Pages/PostApplicants';
+import Homepage from './pages/unauthenticated/Homepage';
+import FAQ from './pages/unauthenticated/FAQ';
+import Profile from './pages/general/Profile';
+import Contact from './pages/unauthenticated/Contact';
+import AllPosts from './pages/unauthenticated/AllPosts';
+import Post from './pages/unauthenticated/Post';
+import EmployerRegister from './pages/unauthenticated/EmployerRegister';
+import MyPostings from './pages/employer/MyPostings';
+import ViewApplicants from './pages/employer/ViewApplicants';
+import SinglePostApplicants from './pages/employer/SinglePostApplicants';
+import StudentProfileSummary from './pages/employer/StudentProfileSummary';
 // Forms
-import AuthForm from './forms/AuthForm';
+import Auth from './pages/unauthenticated/Auth';
 import ExperienceForm from './forms/ExperienceForm';
 import ProjectForm from './forms/ProjectForm';
 import SkillForm from './forms/SkillForm';
@@ -38,10 +39,10 @@ const Main = props => {
                 <div className='content'>
                     <Switch>
                         {/* Wanderer */}
-                        <Route exact path={Routes.login.url} component={withoutAuth(AuthForm, Content.login)} />
-                        <Route exact path={Routes.register.url} component={withoutAuth(AuthForm, Content.register.student)} />
+                        <Route exact path={Routes.login.url} component={withoutAuth(Auth, Content.login)} />
+                        <Route exact path={Routes.register.url} component={withoutAuth(Auth, Content.register.student)} />
                         <Route exact path={Routes.employer.url} render={props => <EmployerRegister {...Content.register.employers} {...props} />} />
-                        <Route exact path={Routes.registerEmployer.url}  component={withoutAuth(AuthForm, Content.register.employers.register)} />
+                        <Route exact path={Routes.registerEmployer.url}  component={withoutAuth(Auth, Content.register.employers.register)} />
                         <Route exact path={Routes.home.url} render={props => <Homepage {...props} />} />
                         <Route exact path={Routes.allPosts.url} render={props => <AllPosts {...props} />} />
                         <Route exact path={Routes.singlePost.url} render={props => <Post {...props} />}  />
@@ -55,13 +56,13 @@ const Main = props => {
                         <Route exact path={Routes.editProject.url} component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
                         <Route exact path={Routes.createSkill.url} component={withAuth(SkillForm, profile_type === Profiles.student)}/>
                         <Route exact path={Routes.editSkill.url} component={withAuth(SkillForm, profile_type === Profiles.student)}/>
-                        <Route exact path={Routes.profileOverview.url} component={withAuth(SkillForm, profile_type === Profiles.employer)}/>
                         {/* Employer */}
                         <Route exact path={Routes.createPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
                         <Route exact path={Routes.editPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
-                        <Route exact path={Routes.companyPosts.url} component={withAuth(CompanyPosts, profile_type === Profiles.employer)}/>
-                        <Route exact path={Routes.companyApplications.url} component={withAuth(CompanyApplications, profile_type === Profiles.employer)}/>
-                        <Route exact path={Routes.companyApplicantApplications.url} component={withAuth(PostApplicants, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.MyPostings.url} component={withAuth(MyPostings, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.ViewApplicants.url} component={withAuth(ViewApplicants, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.SinglePostApplicants.url} component={withAuth(SinglePostApplicants, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.profileSummary.url} component={withAuth(StudentProfileSummary, profile_type === Profiles.employer)}/>
                     </Switch>
                 </div>
             </div>

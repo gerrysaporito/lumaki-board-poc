@@ -44,21 +44,21 @@ export const Routes = {
         url: `/users/:user_id`,
         text: `Profile`,
     },
-    profileOverview: {
+    profileSummary: {
         url: `/users/:user_id/overview`,
         text: ``,
     },
-    companyPosts: {
-        url: `/users/:user_id/posts/postings`,
+    MyPostings: {
+        url: `/users/:user_id/posts`,
         text: `My Postings`,
     },
-    companyApplications: {
-        url: `/users/:user_id/posts/postings/applicants`,
+    ViewApplicants: {
+        url: `/users/:user_id/posts/applicants`,
         text: `My Applicants`,
     },
-    companyApplicantApplications: {
-        url: `/users/:user_id/posts/postings/applicants/:post_id`,
-        text: `My Applicants`,
+    SinglePostApplicants: {
+        url: `/users/:user_id/posts/applicants/:post_id`,
+        text: ``,
     },
     studentApplications: {
         url: `/users/:user_id/posts/applications`,
@@ -110,14 +110,14 @@ export const NavbarRoutes = {
     [Profiles.employer]: [
         Routes.home,
         Routes.profile,
-        Routes.companyPosts,
-        Routes.companyApplications
+        Routes.MyPostings,
+        Routes.ViewApplicants
     ],
     [Profiles.admin]: [
         Routes.home,
         Routes.profile,
-        Routes.companyPosts,
-        Routes.companyApplications
+        Routes.MyPostings,
+        Routes.ViewApplicants
     ],
     default: [
         Routes.home,

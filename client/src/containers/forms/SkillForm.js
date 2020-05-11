@@ -4,7 +4,7 @@ import { ERROR } from '../../store/actionTypes';
 
 import { postNewSkill } from '../../store/actions/skills';
 import { Content } from '../../common/Content';
-import Card from '../../components/Card';
+import Card from '../../components/general/Card';
 import './css/Form.css';
 
 class SkillForm extends Component {

@@ -8,9 +8,9 @@ import { SUCCESS } from '../../store/actionTypes';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
 import { removeAlert } from '../../store/actions/alerts';
 
-import ExperienceList from '../lists/ExperienceList';
-import ProjectList from '../lists/ProjectList';
-import SkillList from '../lists/SkillList';
+import ExperienceList from '../../components/lists/ExperienceList';
+import ProjectList from '../../components/lists/ProjectList';
+import SkillList from '../../components/lists/SkillList';
 
 import './css/ProfileForm.css';
 
@@ -61,7 +61,7 @@ class StudentProfileForm extends Component {
 
     render() {
         const {school, program, graduation_date, gender, country, state, city} = this.state;
-        const {alerts, history, removeAlert, currentUser} = this.props;
+        const {alerts, history, removeAlert, currentUser, experiences, projects, skills} = this.props;
         history.listen(() => {
             removeAlert();
         });
@@ -99,19 +99,19 @@ class StudentProfileForm extends Component {
                 <div className='profile-section'>
                     <p className='subheader'>{Content.profile.student.experiences.title}</p>
                     <Link className='add-btn' to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.student.experiences.buttonText}</Link>
-                    <ExperienceList />
+                    <ExperienceList currentUser={currentUser} experiences={experiences} />
                 </div>
                 <div className='hr' />
                 <div className='profile-section'>
                     <p className='subheader'>{Content.profile.student.projects.title}</p>
                     <Link className='add-btn' to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.student.projects.buttonText}</Link>
-                    <ProjectList />
+                    <ProjectList currentUser={currentUser} projects={projects} />
                 </div>
                 <div className='hr' />
                 <div className='profile-section'>
                     <p className='subheader'>{Content.profile.student.skills.title}</p>
                     <Link className='add-btn' to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.student.skills.buttonText}</Link>
-                    <SkillList />
+                    <SkillList currentUser={currentUser} skills={skills} />
                 </div>
 
                 {/* Save Button */}
@@ -139,6 +139,9 @@ function mapStateToProps(state) {
     return {
         alerts: state.alerts,
         profile: state.profile,
+        experiences: state.experiences,
+        projects: state.projects,
+        skills: state.skills,
         currentUser: state.currentUser,
     }
 }
