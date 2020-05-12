@@ -44,11 +44,6 @@ class ContactForm extends Component {
                         <form onSubmit={this.handleNewExperience} >
                             <p className='subheader'>{title}</p>
                             <p>{subTitle}</p>
-                            {this.props.alerts === ERROR && this.props.alerts.message && (
-                                <div className='alert alert-danger'>
-                                    {this.props.alerts.message}
-                                </div>
-                            )}
                             <label htmlFor='company'>{subject}</label>
                             <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />
                             <label htmlFor='name'>{contactPerson}</label>

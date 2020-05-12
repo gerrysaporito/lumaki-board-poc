@@ -45,11 +45,6 @@ class SkillForm extends Component {
                 <form onSubmit={this.handleNewSkill} >
                     <p className='subheader'>{Content.forms.skill.title}</p>
                     <p>{Content.forms.skill.note}</p>
-                    {this.props.alerts === ERROR && this.props.alerts.message && (
-                        <div className='alert alert-danger'>
-                            {this.props.alerts.message}
-                        </div>
-                    )}
                     <label htmlFor='skill'>Skill:</label>
                     <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill || ''} type='text' required />
                     <button className='lumaki-btn ' type='submit'>{Content.forms.skill.buttonText}</button>

@@ -70,11 +70,6 @@ class ExperienceForm extends Component {
                 <form className='form' onSubmit={this.handleNewExperience} >
                     <p className='subheader'>{Content.forms.experience.title}</p>
                     <p>{Content.forms.experience.note}</p>
-                    {this.props.alerts === ERROR && this.props.alerts.message && (
-                        <div className='alert alert-danger'>
-                            {this.props.alerts.message}
-                        </div>
-                    )}
                     <label htmlFor='company'>Company/Organization:</label>
                     <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />
                     <label htmlFor='position'>Position:</label>

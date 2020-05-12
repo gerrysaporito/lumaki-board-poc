@@ -71,9 +71,6 @@ class EmployerProfileForm extends Component {
             <form onSubmit={this.handleSubmit} id='profileform'>
                 {/* Form */}
                 <div className='form'>
-                    {alerts.alert === SUCCESS && alerts.message && (
-                        <div className='alert alert-success'>{alerts.message}</div>
-                    )}
                     <label htmlFor='company'>Company *:</label>
                     <input id='company' name='company' onChange={this.handleChange} value={company || ''} type='text' required />
                     <label htmlFor='link'>Company Link *:</label>

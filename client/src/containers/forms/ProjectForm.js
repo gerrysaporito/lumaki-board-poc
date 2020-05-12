@@ -60,11 +60,6 @@ class ProjectForm extends Component {
                 <form className='form' onSubmit={this.handleNewProject} >
                     <p className='subheader'>{Content.forms.project.title}</p>
                     <p>{Content.forms.project.note}</p>
-                    {this.props.alerts === ERROR && this.props.alerts.message && (
-                        <div className='alert alert-danger'>
-                            {this.props.alerts.message}
-                        </div>
-                    )}
                     <label htmlFor='description'>Description:</label>
                     <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />
                     <button className='lumaki-btn ' type='submit'>{buttonText}</button>

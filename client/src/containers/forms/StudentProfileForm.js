@@ -69,9 +69,6 @@ class StudentProfileForm extends Component {
             <form onSubmit={this.handleSubmit} id='profileform'>
                 {/* Form */}
                 <div className='form'>
-                    {alerts.alert === SUCCESS && alerts.message && (
-                        <div className='alert alert-success'>{alerts.message}</div>
-                    )}
                     <label htmlFor='school'>School *:</label>
                     <input id='school' name='school' onChange={this.handleChange} value={school || ''} type='text' required />
                     <label htmlFor='program'>Program *:</label>

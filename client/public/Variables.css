@@ -4,8 +4,9 @@
     --lumaki-card: rgb(75,75,75);
 
     /* Color */
-    --colored-trash-can: rgb(216, 88, 68);
-    --colored-pencil: rgb(190, 188, 42);
+    --danger: rgb(248,215,218);
+    --warning: rgb(190, 188, 42);
+    --success: rgb(0, 121, 0);
 
     /* Color Scheme */
     --lumaki-primary-color: rgb(56,180,157);
@@ -17,8 +18,8 @@
     --page-font-size: 12px;
 
     /* Button */
-    --lumaki-btn-primary-background-color: rgb(56,180,157);
-    --lumaki-btn-secondary-background-color: rgb(120,120,120);
+    --btn-primary-background-color: rgb(56,180,157);
+    --btn-secondary-background-color: rgb(120,120,120);
     --btn-width: 150px;
     --btn-border-radius: 10px;
     --btn-padding: 7px 14px;

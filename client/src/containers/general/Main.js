@@ -9,6 +9,7 @@ import withAuth from '../../hocs/WithAuth'
 import withoutAuth from '../../hocs/WithoutAuth'
 // import withAdminAuth from '../hocs/WithAdminAuth';
 import Navbar from './Navbar';
+import SystemAlert from '../../components/general/SystemAlert';
 // Pages
 import Homepage from '../pages/unauthenticated/Homepage';
 import FAQ from '../pages/unauthenticated/FAQ';
@@ -31,12 +32,13 @@ import PostForm from '../forms/PostForm';
 import './css/Main.css';
 
 const Main = props => {
-    const {profile_type} = props;
+    const {profile_type, alerts} = props;
     return(
         <React.Fragment>
             <Navbar {...props} />
             <div className='main'>
                 <div className='content'>
+                    <SystemAlert {...alerts} />
                     <Switch>
                         {/* Wanderer */}
                         <Route exact path={Routes.login.url} component={withoutAuth(Auth, Content.login)} />
@@ -72,6 +74,7 @@ const Main = props => {
 
 function mapStateToProps(state) {
     return {
+        alerts: state.alerts,
         profile_type: state.currentUser.user.profile_type,
     }
 }

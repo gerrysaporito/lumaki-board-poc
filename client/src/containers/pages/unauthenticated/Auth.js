@@ -28,13 +28,6 @@ class Auth extends Component {
             <div id='auth'>
                 <img src={LOGO} alt='LumakiBoard Logo' />
                 <p className='mb-5 title'>{heading}</p>
-                {alerts.alert === ERROR && alerts.message && (
-                    <div className='error'>
-                        <div className='alert alert-danger'>
-                            {alerts.message.message}
-                        </div>
-                    </div>
-                )}
                 {form}
             </div>
         )

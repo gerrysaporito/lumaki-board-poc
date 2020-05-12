@@ -110,12 +110,6 @@ class PostForm extends Component {
                     <form onSubmit={this.handleNewPost} >
                         <Card type='form'>
                             <p>{subheader}</p>
-                            {/* Error Message */}
-                            {this.props.alerts === ERROR && this.props.alerts.message && (
-                                <div className='alert alert-danger'>
-                                    {this.props.alerts.message}
-                                </div>
-                            )}
 
                             {/* Company Name */}
                             {/* <label htmlFor='company'>Company/Organization:</label>

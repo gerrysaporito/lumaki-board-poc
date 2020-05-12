@@ -68,13 +68,6 @@ class Post extends Component {
                     <Card>
                         <div className='post-industry-color-bar' style={{backgroundColor: IndustryColorValues[this.state.post_industry]}} />
                         <div className='card-content'>
-                            {this.props.alerts.alert === ERROR && this.props.alerts.message && (
-                                <div className='error'>
-                                    <div className='alert alert-danger'>
-                                        {this.props.alerts.message}
-                                    </div>
-                                </div>
-                            )}
                             <img src={this.state.image} alt={`${this.state.company} Logo`} />
                             <p className='position'>{this.state.position}</p>
                             <p>{this.state.company}</p>

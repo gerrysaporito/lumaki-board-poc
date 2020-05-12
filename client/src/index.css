@@ -91,7 +91,7 @@ a, a:hover, button, button:hover {
 .add-btn {
     align-self: flex-start;
     padding: var(--btn-padding);
-    background-color: var(--lumaki-btn-secondary-background-color);
+    background-color: var(--btn-secondary-background-color);
     border-radius: var(--btn-border-radius);
     min-width: var(--btn-width);
     font-size: var(--page-font-size);
