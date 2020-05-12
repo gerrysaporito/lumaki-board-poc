@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Content } from '../../common/Content';
 import { Genders } from '../../common/Definitions';
-import { SUCCESS } from '../../store/actionTypes';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
-import { removeAlert } from '../../store/actions/alerts';
 
 import ExperienceList from '../../components/lists/ExperienceList';
 import ProjectList from '../../components/lists/ProjectList';
@@ -61,10 +59,7 @@ class StudentProfileForm extends Component {
 
     render() {
         const {school, program, graduation_date, gender, country, state, city} = this.state;
-        const {alerts, history, removeAlert, currentUser, experiences, projects, skills} = this.props;
-        history.listen(() => {
-            removeAlert();
-        });
+        const {currentUser, experiences, projects, skills} = this.props;
         return(
             <form onSubmit={this.handleSubmit} id='profileform'>
                 {/* Form */}
@@ -143,4 +138,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(StudentProfileForm);
+export default connect(mapStateToProps, { getProfile, updateProfile })(StudentProfileForm);

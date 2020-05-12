@@ -4,8 +4,10 @@ import { ERROR, SUCCESS } from '../../store/actionTypes';
 
 import './css/SystemAlert.css'
 
-const SystemAlert = ({message, alert}) => {
-    console.log(message, alert)
+const SystemAlert = ({message, alert, history, removeAlert}) => {
+    history.listen(() => {
+        removeAlert();
+    });
     switch(alert) {
         case ERROR: {
             return(

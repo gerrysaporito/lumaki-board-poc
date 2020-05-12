@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 
 import { Content } from '../../../common/Content';
 import { Profiles } from '../../../common/Definitions';
-import { removeAlert } from '../../../store/actions/alerts';
 
 import StudentProfileForm from '../../forms/StudentProfileForm';
-import EmployerProfileForm from '../../forms/EmployerProfileForm';
+import EmployerProfile from '../../pages/employer/EmployerProfile';
 import './css/Profile.css';
 
 class Profile extends Component {
     render() {
         const { currentUser, history } = this.props;
-        history.listen(() => {
-            removeAlert();
-        });
-
         let profile = '';
         switch(currentUser.user.profile_type) {
             case Profiles.student: {
@@ -23,7 +18,7 @@ class Profile extends Component {
                 break;
             }
             case Profiles.employer: {
-                profile =  (<EmployerProfileForm {...this.props} />);
+                profile =  (<EmployerProfile {...this.props} />);
                 break;
             }
             default: {

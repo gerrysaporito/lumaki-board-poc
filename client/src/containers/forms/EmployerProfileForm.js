@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { SUCCESS } from '../../store/actionTypes';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
-import { removeAlert } from '../../store/actions/alerts';
 import { IndustryValues, CompaySize } from '../../common/Definitions';
 import { Content } from '../../common/Content';
 
@@ -63,10 +61,6 @@ class EmployerProfileForm extends Component {
 
     render() {
         const {company, link, image, company_size, remote_internship_experience, company_industry, company_description, country,  state, city} = this.state;
-        const {alerts, history, removeAlert} = this.props;
-        history.listen(() => {
-            removeAlert();
-        });
         return(
             <form onSubmit={this.handleSubmit} id='profileform'>
                 {/* Form */}
@@ -129,4 +123,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getProfile, updateProfile, removeAlert })(EmployerProfileForm);
+export default connect(mapStateToProps, { getProfile, updateProfile })(EmployerProfileForm);

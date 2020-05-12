@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { ERROR } from '../../../store/actionTypes';
-import { removeAlert } from '../../../store/actions/alerts';
 import AuthForm from '../../forms/AuthForm';
 import LOGO from '../../../images/LumakiLabs_whitelogo.png';
 import './css/Auth.css';
 
 class Auth extends Component {
     render() {
-        const {history, removeAlert, heading, buttonText, alerts, register, employers} = this.props;
-        history.listen(() => {
-            removeAlert();
-        });
-
+        const {heading, buttonText, register, employers} = this.props;
 
         let form = '';
         if (!register) {
@@ -41,4 +36,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { removeAlert })(Auth);
+export default connect(mapStateToProps, {})(Auth);

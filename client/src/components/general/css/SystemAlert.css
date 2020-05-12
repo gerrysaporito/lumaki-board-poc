@@ -1,7 +1,7 @@
 #system-message {
-    position: absolute;
+    position: fixed;
     align-self: center;
-    top: 0;
+    top: 50px;
     z-index: 1;
     max-width: 600px;
     width: 95%;

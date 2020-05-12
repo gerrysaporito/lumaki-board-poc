@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Content } from '../../common/Content';
 import { Profiles } from '../../common/Definitions';
 import { Routes } from '../../common/Routes';
+import { removeAlert } from '../../store/actions/alerts';
+// HOCS
 import withAuth from '../../hocs/WithAuth'
 import withoutAuth from '../../hocs/WithoutAuth'
 // import withAdminAuth from '../hocs/WithAdminAuth';
@@ -32,13 +34,13 @@ import PostForm from '../forms/PostForm';
 import './css/Main.css';
 
 const Main = props => {
-    const {profile_type, alerts} = props;
+    const {profile_type, alerts, history, removeAlert} = props;
     return(
         <React.Fragment>
             <Navbar {...props} />
             <div className='main'>
                 <div className='content'>
-                    <SystemAlert {...alerts} />
+                    <SystemAlert {...alerts} history={history} removeAlert={removeAlert} />
                     <Switch>
                         {/* Wanderer */}
                         <Route exact path={Routes.login.url} component={withoutAuth(Auth, Content.login)} />
@@ -79,4 +81,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default withRouter(connect(mapStateToProps, {})(Main));
+export default withRouter(connect(mapStateToProps, {removeAlert})(Main));

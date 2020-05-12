@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { Profiles } from '../../common/Definitions';
 import { authUser } from '../../store/actions/auth';
-import { removeAlert } from '../../store/actions/alerts';
 import { Routes } from '../../common/Routes';
 
 import './css/AuthForm.css';
@@ -89,4 +88,4 @@ function mapStateToProps(state) {
     return {}
 }
 
-export default connect(mapStateToProps, { authUser, removeAlert })(AuthForm);
+export default connect(mapStateToProps, { authUser })(AuthForm);
