@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Routes } from '../common/Routes';
 
-export default function withAuth(ComponentToBeRendered, isAllowed) {
+export default function withAuth(ComponentToBeRendered, isAllowed, Content={}) {
     class Authenticate extends Component {
         componentDidMount(){
             if(!this.props.isAuthenticated) {
@@ -22,7 +22,7 @@ export default function withAuth(ComponentToBeRendered, isAllowed) {
         }
 
         render() {
-            return <ComponentToBeRendered {...this.props}/>;
+            return <ComponentToBeRendered {...this.props} {...Content} />;
         }
     }
 

@@ -19,9 +19,8 @@ class PostList extends Component {
         if (posts.length % 4 !== 0) {
             for(let i = 0; i < posts.length % 4; ++i) {
                 postList.push(
-                    <div className='ghost'>
+                    <div key={i} className='ghost'>
                         <PostItem
-                            key={i}
                             canAccess={currentUser.user._id === 0}
                             currentUser={currentUser}
                             ghost

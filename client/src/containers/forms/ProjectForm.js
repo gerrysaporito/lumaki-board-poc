@@ -52,12 +52,11 @@ class ProjectForm extends Component {
     }
 
     render() {
-        const buttonText = this.props.location.pathname.split('/').pop() === 'edit' ?
-            Content.forms.project.buttonText.edit : Content.forms.project.buttonText.create;
+        const {buttonText, subheader} = this.props;
         return(
             <Card type='form inline'>
                 <form className='form' onSubmit={this.handleNewProject} >
-                    <p className='subheader'>{Content.forms.project.title}</p>
+                    <p className='subheader'>{subheader}</p>
                     <p>{Content.forms.project.note}</p>
                     <label htmlFor='description'>Description:</label>
                     <textarea id='description' name='description' onChange={this.handleChange} value={this.state.description || ''} required />

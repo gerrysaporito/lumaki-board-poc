@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Content } from '../../common/Content';
-import { Profiles } from '../../common/Definitions';
+import { Profiles, Forms } from '../../common/Definitions';
 import { Routes } from '../../common/Routes';
 import { removeAlert } from '../../store/actions/alerts';
 // HOCS
@@ -26,12 +26,8 @@ import SinglePostApplicants from '../pages/employer/SinglePostApplicants';
 import StudentProfileSummary from '../pages/employer/StudentProfileSummary';
 // Forms
 import Auth from '../pages/unauthenticated/Auth';
-import ExperienceForm from '../forms/ExperienceForm';
-import ProjectForm from '../forms/ProjectForm';
-import SkillForm from '../forms/SkillForm';
-import PostForm from '../forms/PostForm';
-
 import './css/Main.css';
+import Form from '../pages/general/Form';
 
 const Main = props => {
     const {profile_type, alerts, history, removeAlert} = props;
@@ -54,15 +50,15 @@ const Main = props => {
                         <Route exact path={Routes.faq.url} render={props => <FAQ {...props} />}  />
                         {/* User */}
                         <Route exact path={Routes.profile.url}  component={withAuth(Profile, true)} />
-                        <Route exact path={Routes.createExperience.url} component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
-                        <Route exact path={Routes.editExperience.url} component={withAuth(ExperienceForm, profile_type === Profiles.student)}/>
-                        <Route exact path={Routes.createProject.url} component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
-                        <Route exact path={Routes.editProject.url} component={withAuth(ProjectForm, profile_type === Profiles.student)}/>
-                        <Route exact path={Routes.createSkill.url} component={withAuth(SkillForm, profile_type === Profiles.student)}/>
-                        <Route exact path={Routes.editSkill.url} component={withAuth(SkillForm, profile_type === Profiles.student)}/>
+                        <Route exact path={Routes.createExperience.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.experience})}/>
+                        <Route exact path={Routes.editExperience.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.experience})}/>
+                        <Route exact path={Routes.createProject.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.project})}/>
+                        <Route exact path={Routes.editProject.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.project})}/>
+                        <Route exact path={Routes.createSkill.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.skill})}/>
+                        <Route exact path={Routes.editSkill.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.skill})}/>
                         {/* Employer */}
-                        <Route exact path={Routes.createPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
-                        <Route exact path={Routes.editPost.url} component={withAuth(PostForm, profile_type === Profiles.employer)}/>
+                        <Route exact path={Routes.createPost.url} component={withAuth(Form, profile_type === Profiles.employer, {formType: Forms.post})}/>
+                        <Route exact path={Routes.editPost.url} component={withAuth(Form, profile_type === Profiles.employer, {formType: Forms.post})}/>
                         <Route exact path={Routes.MyPostings.url} component={withAuth(MyPostings, profile_type === Profiles.employer)}/>
                         <Route exact path={Routes.ViewApplicants.url} component={withAuth(ViewApplicants, profile_type === Profiles.employer)}/>
                         <Route exact path={Routes.SinglePostApplicants.url} component={withAuth(SinglePostApplicants, profile_type === Profiles.employer)}/>

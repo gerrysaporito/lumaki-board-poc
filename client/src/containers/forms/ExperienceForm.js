@@ -62,12 +62,11 @@ class ExperienceForm extends Component {
     }
 
     render() {
-        const buttonText = this.props.location.pathname.split('/').pop() === 'edit' ?
-            Content.forms.experience.buttonText.edit : Content.forms.experience.buttonText.create;
+        const {buttonText, subheader} = this.props;
         return(
             <Card type='form inline'>
                 <form className='form' onSubmit={this.handleNewExperience} >
-                    <p className='subheader'>{Content.forms.experience.title}</p>
+                    <p className='subheader'>{subheader}</p>
                     <p>{Content.forms.experience.note}</p>
                     <label htmlFor='company'>Company/Organization:</label>
                     <input id='company' name='company' onChange={this.handleChange} value={this.state.company || ''} type='text' required />

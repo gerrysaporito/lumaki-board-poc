@@ -39,14 +39,15 @@ class SkillForm extends Component {
     }
 
     render() {
+        const {buttonText, subheader} = this.props;
         return(
             <Card type='form inline'>
                 <form onSubmit={this.handleNewSkill} >
-                    <p className='subheader'>{Content.forms.skill.title}</p>
+                    <p className='subheader'>{subheader}</p>
                     <p>{Content.forms.skill.note}</p>
                     <label htmlFor='skill'>Skill:</label>
                     <input id='skill' name='skill' onChange={this.handleChange} value={this.state.skill || ''} type='text' required />
-                    <button className='lumaki-btn ' type='submit'>{Content.forms.skill.buttonText}</button>
+                    <button className='lumaki-btn ' type='submit'>{buttonText}</button>
                 </form>
                 <button onClick={this.handleBackClick} className='return'>Go back</button>
             </Card>

@@ -73,7 +73,7 @@ export const Content = {
                 login: {
                     header: `Welcome `,
                     subheader: ''
-                }
+                },
             },
             employer: {
                 register: {
@@ -83,7 +83,7 @@ export const Content = {
                 login: {
                     header: `Welcome `,
                     subheader: ''
-                }
+                },
             },
         },
         subheader: '',
@@ -122,25 +122,40 @@ export const Content = {
             },
         },
         experience: {
-            note: `Add details about your experience here. You will be redirected to the previous page with your experience(s) populated.`,
-            title: `EXPERIENCE`,
-            buttonText: {
-                create: `Add Experience`,
-                edit: `Update Experience`,
+            create: {
+                note: `Add details about your experience here. You will be redirected to the previous page with your experience(s) populated.`,
+                title: `EXPERIENCE`,
+                buttonText: `Add Experience`,
+            },
+            edit: {
+                note: `Add details about your experience here. You will be redirected to the previous page with your experience(s) populated.`,
+                title: `EXPERIENCE`,
+                buttonText: `Update Experience`,
             },
         },
         project: {
-            note: `Add details about your project here. You will be redirected to the previous page with your project(s) populated.`,
-            title: `PROJECT`,
-            buttonText: {
-                create: `Add Project`,
-                edit: `Update Project`,
+            create: {
+                note: `Add details about your project here. You will be redirected to the previous page with your project(s) populated.`,
+                title: `PROJECT`,
+                buttonText: `Add Project`,
+            },
+            edit: {
+                note: `Edit details about your project here. You will be redirected to the previous page with your project(s) populated.`,
+                title: `PROJECT`,
+                buttonText: `Update Project`,
             },
         },
         skill: {
-            note: `Add details about your skill here. You will be redirected to the previous page with your skill(s) populated.`,
-            title: `SKILL`,
-            buttonText: `Add Skill`,
+            create: {
+                note: `Add details about your skill here. You will be redirected to the previous page with your skill(s) populated.`,
+                title: `SKILL`,
+                buttonText: `Add Skill`,
+            },
+            edit: {
+                note: `Edit details about your skill here. You will be redirected to the previous page with your skill(s) populated.`,
+                title: `SKILL`,
+                buttonText: `Update Experience`,
+            },
         },
         contact: {
             employer: {

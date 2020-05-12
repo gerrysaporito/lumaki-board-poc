@@ -52,3 +52,12 @@ export const Months = [
     'November',
     'December',
 ]
+
+export const Forms = {
+    'auth': 'auth',
+    'contact': 'contact',
+    'experience': 'experience',
+    'project': 'project',
+    'skill': 'skill',
+    'post': 'post',
+}
