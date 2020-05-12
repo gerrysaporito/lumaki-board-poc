@@ -4,42 +4,40 @@ import { connect } from 'react-redux';
 import { Content } from '../../../common/Content';
 import { Profiles } from '../../../common/Definitions';
 
-import StudentProfileForm from '../../forms/StudentProfileForm';
+import StudentProfile from '../../pages/student/StudentProfile';
 import EmployerProfile from '../../pages/employer/EmployerProfile';
 import './css/Profile.css';
 
 class Profile extends Component {
     render() {
-        const { currentUser, history } = this.props;
+        const { currentUser } = this.props;
         let profile = '';
         switch(currentUser.user.profile_type) {
             case Profiles.student: {
-                profile =  (<StudentProfileForm {...this.props} />);
-                break;
+                return (
+                    <div id='profile'>
+                        <StudentProfile {...this.props} />
+                    </div>
+                );
             }
             case Profiles.employer: {
-                profile =  (<EmployerProfile {...this.props} />);
-                break;
+                return (
+                    <div id='profile'>
+                        <EmployerProfile {...this.props} />
+                    </div>
+                );
             }
             default: {
-                profile = null;
-                break;
+                return (<div id='profile' />);
             }
         }
-        return(
-            <div id='profile'>
-                <p className='mb-3 header'>
-                    {Content.profile.intro.student.register.header} <span className='name'>{currentUser.user.first_name}</span>!
-                </p>
-                {profile}
-            </div>
-        )
     }
 }
 
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
+        profile: state.profile
     }
 }
 

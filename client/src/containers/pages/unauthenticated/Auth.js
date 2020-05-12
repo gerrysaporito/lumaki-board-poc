@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { ERROR } from '../../../store/actionTypes';
 import AuthForm from '../../forms/AuthForm';
 import LOGO from '../../../images/LumakiLabs_whitelogo.png';
 import './css/Auth.css';

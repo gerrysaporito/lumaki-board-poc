@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ERROR } from '../../store/actionTypes';
 
 import { postNewSkill } from '../../store/actions/skills';
 import { Content } from '../../common/Content';

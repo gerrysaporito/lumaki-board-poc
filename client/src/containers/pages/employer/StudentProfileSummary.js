@@ -6,7 +6,6 @@ import { Content } from '../../../common/Content';
 import { Routes } from '../../../common/Routes';
 import { IndustryColorValues, Profiles } from '../../../common/Definitions';
 import { getProfile } from '../../../store/actions/profiles';
-import { ERROR } from '../../../store/actionTypes';
 import Card from '../../../components/general/Card';
 
 class StudentProfileSummary extends Component {

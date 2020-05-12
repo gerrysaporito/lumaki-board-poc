@@ -74,7 +74,17 @@ export const Content = {
                     header: `Welcome `,
                     subheader: ''
                 }
-            }
+            },
+            employer: {
+                register: {
+                    header: `Let's get to know more about `,
+                    subheader: ''
+                },
+                login: {
+                    header: `Welcome `,
+                    subheader: ''
+                }
+            },
         },
         subheader: '',
         student: {

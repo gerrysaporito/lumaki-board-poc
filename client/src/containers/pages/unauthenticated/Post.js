@@ -6,7 +6,6 @@ import { Content } from '../../../common/Content';
 import { Routes } from '../../../common/Routes';
 import { IndustryColorValues, Profiles } from '../../../common/Definitions';
 import { getPost, applyToPost } from '../../../store/actions/posts';
-import { ERROR } from '../../../store/actionTypes';
 import Card from '../../../components/general/Card';
 import './css/Post.css';
 

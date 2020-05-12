@@ -6,11 +6,11 @@ import EmployerProfileForm from '../../forms/EmployerProfileForm';
 
 class EmployerProfile extends Component {
     render() {
-        const {currentUser} = this.props;
+        const {profile} = this.props;
         return(
             <React.Fragment>
                 <p className='mb-3 header'>
-                    {Content.profile.intro.student.register.header} <span className='name'>{currentUser.user.first_name}</span>!
+                    {Content.profile.intro.employer.register.header} <span className='name'>{profile.company}</span>!
                 </p>
                 <EmployerProfileForm {...this.props} />
             </React.Fragment>
