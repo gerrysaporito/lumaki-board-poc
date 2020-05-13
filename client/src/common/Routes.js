@@ -33,7 +33,7 @@ export const Routes = {
     // /posts
     allPosts: {
         url: `/posts`,
-        text: `All Posts`,
+        text: `All Postings`,
     },
     singlePost: {
         url: `/posts/:post_id`,

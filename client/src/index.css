@@ -19,6 +19,7 @@
 
 ::-webkit-scrollbar-thumb {
     background-color: var(--lumaki-scrollbar-thumb);
+    border-radius: 5px;
 }
 
 .header {

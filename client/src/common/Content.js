@@ -77,11 +77,11 @@ export const Content = {
             },
             employer: {
                 register: {
-                    header: `Let's get to know more about `,
+                    header: `Welcome :name from :company!`,
                     subheader: ''
                 },
                 login: {
-                    header: `Welcome `,
+                    header: `Here's what we know about :company.`,
                     subheader: ''
                 },
             },
