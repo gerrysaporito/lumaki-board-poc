@@ -1,31 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { ERROR, SUCCESS } from '../../store/actionTypes';
 
 import './css/SystemAlert.css'
 
-const SystemAlert = ({message, alert, history, removeAlert}) => {
-    history.listen(() => {
-        removeAlert();
-    });
-    switch(alert) {
-        case ERROR: {
-            return(
-                <div id='system-message' className='danger'>
-                    <p className='subheader'>{message}</p>
-                </div>
-            )
+class SystemAlert extends Component {
+    closeAlert = e => {
+        e.preventDefault();
+        this.props.removeAlert();
+    }
+    render() {
+        const {message, alert, history, removeAlert} = this.props;
+        history.listen(() => {
+            removeAlert();
+        });
+        let color = '';
+        switch(alert) {
+            case ERROR: {
+                color += 'danger ';
+                break;
+            }
+            case SUCCESS: {
+                color += 'success ';
+                break;
+            }
+            default: {
+                return (<div />);
+            }
         }
-        case SUCCESS: {
-            return(
-                <div id='system-message' className='success'>
-                    <p className='subheader'>{message}</p>
-                </div>
-            )
-        }
-        default: {
-            return (<div />);
-        }
+        return (
+            <div id='system-alert' className={color}>
+                <p className='subheader'>{message}</p>
+                <button onClick={this.closeAlert}>x</button>
+            </div>
+        )
     }
 }
 

@@ -13,6 +13,7 @@
     align-self: flex-start;
     width: 100%;
     padding-bottom: 20px;
+    max-width: 100%;
 }
 
 #profileform .form {
@@ -21,18 +22,17 @@
     align-self: flex-start;
     margin: 0;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     padding: 10px 0;
 }
 
 .hr {
     border: 1px solid rgb(87,87,87);
     width: 100%;
-    margin: 20px 0;
+    margin: 50px 0;
 }
 
 .profile-section {
-    margin: 30px 0;
     flex: 1 0 auto;
     width: 100%;
 }

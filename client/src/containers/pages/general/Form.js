@@ -20,26 +20,24 @@ class Form extends Component {
         let props = {
             subheader: subheader,
             buttonText: buttonText,
-            location: location ,
-            history: history,
         };
 
         let form = '';
         switch(formType) {
             case Forms.experience: {
-                form = <ExperienceForm {...props} />
+                form = <ExperienceForm {...props} {...this.props} />
                 break;
             }
             case Forms.project: {
-                form = <ProjectForm {...props} />
+                form = <ProjectForm {...props} {...this.props} />
                 break;
             }
             case Forms.skill: {
-                form = <SkillForm {...props} />
+                form = <SkillForm {...props} {...this.props} />
                 break;
             }
             case Forms.post: {
-                form = <PostForm {...props} />
+                form = <PostForm {...props} {...this.props} />
                 break;
             }
             default: {
@@ -49,7 +47,7 @@ class Form extends Component {
         };
 
         return(
-            <div className='form'>
+            <div className='form' id='input-form'>
                 <Header header={header} history={this.props.history} />
                 <div className='hr' />
                 {form}

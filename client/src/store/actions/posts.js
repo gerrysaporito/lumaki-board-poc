@@ -64,6 +64,9 @@ export const applyToPost = post_id => (dispatch, getState) => {
     let { currentUser } = getState();
     const user_id = currentUser.user._id;
     return apiCall('get', `/api/users/${user_id}/posts/${post_id}/apply`)
-    .then(res => dispatch(addAlert('Successfully applied to post', SUCCESS)))
+    .then(res => {
+        console.log('Done')
+        dispatch(addAlert('Successfully applied to post', SUCCESS))
+    })
     .catch(e => dispatch(addAlert(e.message, ERROR)));
 }

@@ -101,8 +101,9 @@ class EmployerProfileForm extends Component {
                         <option value='yes'>Yes</option>
                         <option value='no'>No</option>
                     </select>
-
-                    <div className='hr' />
+                </div>
+                <div className='hr' />
+                <div className='form'>
                     <p className='subheader'>{Content.profile.employer.description.title}</p>
                     <label htmlFor='company_description'>{Content.profile.employer.description.subTitle}</label>
                     <textarea id='company_description' name='company_description' onChange={this.handleChange} value={company_description} required />

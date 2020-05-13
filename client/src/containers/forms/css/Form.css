@@ -5,12 +5,17 @@
     }
 }
 
+#input-form .hr {
+    margin-top: 25px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
     align-items: center;
     align-self: center;
     justify-self: center;
+    width: 100%;
 }
 
 h3 {
