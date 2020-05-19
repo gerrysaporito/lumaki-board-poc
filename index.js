@@ -1,11 +1,18 @@
+// ENVIRONMENT VARIABLES
 require('dotenv').config();
 
+// GLOBAL VARIABLES
+const PORT = process.env.PORT || 8081;
+
+// PACKAGES
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
+
+// MIDDLEWARE
 const errorHandler = require('./handlers/error');
 const { loginRequired, ensureCorrectUser, checkAdminRole } = require('./middleware/auth');
-const PORT = process.env.PORT || 8081;
+
 // ROUTES
 const AUTH_ROUTES = require('./routes/auth');
 const EXPERIENCES_ROUTES = require('./routes/experiences');
@@ -16,6 +23,7 @@ const UNAUTH_ROUTES = require('./routes/unauth');
 const PROFILE_ROUTES = require('./routes/profiles');
 const USER_ROUTES = require('./routes/user');
 const app = express();
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -39,6 +47,8 @@ app.use(function(req, res, next) {
 });
 app.use(errorHandler);
 
+
+// LISTENER
 app.listen(PORT, function() {
     let msg = `Express server listening on port ${this.address().port} in ${app.settings.env} mode.`;
     console.log(msg);

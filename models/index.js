@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const DB_CONNECTION = 'mongodb://localhost/lumaki-board';
 
+/*
+* Connection: Mongoose Connection to MongoDB.
+*/
 mongoose.set('debug', true);
 mongoose.Promise = Promise;
 mongoose.connect(DB_CONNECTION, {

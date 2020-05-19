@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 const db = require('./index');
 
+/*
+* Model: Describes a Job Posting.
+*
+* This model conatins information about a single job posting.
+*
+* Possible idea: remove information linked to a company and save company ID instead,
+* to save amount of data stored.
+*/
 const PostSchema = new mongoose.Schema({
     company: {
         type: String,
@@ -79,6 +87,9 @@ const PostSchema = new mongoose.Schema({
     },
 }, {timestamps: true});
 
+/*
+* Function: Remove Post id from all models referencing this Post.
+*/
 PostSchema.pre('remove', async function(next) {
     try {
         let user = await db.user.findById(this.user_id);
@@ -97,15 +108,10 @@ PostSchema.pre('remove', async function(next) {
         await profile.save();
         return next();
     } catch(e) {
-        next({
-            status: 400,
-            message: {
-                user: await db.user.findById(this.user_id),
-                message: e.message,
-            }
-        });
+        next(e);
     }
 });
 
 const Post = mongoose.model('post', PostSchema);
+
 module.exports = Post;

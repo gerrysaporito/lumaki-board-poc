@@ -1,6 +1,12 @@
 const db = require('../models');
 const jwt = require('jsonwebtoken');
 
+/*
+* Function: Logs a user in if they have an account.
+*
+* If successful, will return a token with their info.
+* If failed, will return an error to the client prompting them to check their credentials.
+*/
 exports.signin = async function(req, res, next) {
     try {
         let user = await db.user.findOne({
@@ -41,6 +47,12 @@ exports.signin = async function(req, res, next) {
     }
 }
 
+/*
+* Function: Registers a user.
+*
+* If successful, will create a user profile depending on what type of person is registering.
+* If failed, will return an error to the client prompting them to choose another email.
+*/
 exports.signup = async function(req, res, next) {
     try {
         let checkUserExists = await db.user.findOne({email: req.body.email});

@@ -1,5 +1,11 @@
 const db = require('../models');
 
+/*
+* Function: Get a single profile from one of the profile collections.
+*
+* If successful, will:
+*     - return the profile.
+*/
 exports.getProfile = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);
@@ -12,6 +18,13 @@ exports.getProfile = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Updates a profile and the relevent entities that depends on their profile
+*
+* If successful, will:
+*     - get the profile from the db.
+*     - if necessary, updates all the postings associated with the profile.
+*/
 exports.updateProfile = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);

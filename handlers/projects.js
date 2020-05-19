@@ -1,5 +1,12 @@
 const db = require('../models');
 
+/*
+* Function: Creates a project for a student_profile.
+*
+* If successful, will:
+*     - create the project and save to db.
+*     - add the project id to the user's student_profile.
+*/
 exports.createProject = async function(req, res, next) {
     try {
         let project = await db.project.create({
@@ -13,13 +20,18 @@ exports.createProject = async function(req, res, next) {
         let foundProject = await db.project.findById(project._id)
         return res.status(200).json(foundProject);
     } catch(e) {
-        return next({
-            status: 400,
-            message: e.message
-        })
+        return next(e)
     }
 };
 
+/*
+* Function: Returns all projects from an array of projects ids from a student_profile.
+*
+* If successful, will:
+*     - get the project ids array form the user's student_profile.
+*     - search the db for all projects using the array of project ids.
+*     - return an array of project.
+*/
 exports.fetchProjects = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);
@@ -35,6 +47,12 @@ exports.fetchProjects = async function(req, res, next) {
     }
 }
 
+/*
+* Function: Get a single project from the project collection.
+*
+* If successful, will:
+*     - return the project.
+*/
 exports.getProject = async function(req, res, next) {
     try {
         let project = await db.project.findById(req.params.project_id);
@@ -44,6 +62,14 @@ exports.getProject = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Updates a project from a student_profile.
+*
+* If successful, will:
+*     - get the project from the db.
+*     - update the project by iterating over the key terms of the body of the
+*       request and updating only those values.
+*/
 exports.updateProject = async function(req, res, next) {
     try {
         let project = await db.project.findById(req.params.project_id);
@@ -61,6 +87,14 @@ exports.updateProject = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Removes a project from a student_profile.
+*
+* If successful, will:
+*     - remove the project from the db.
+*     - remove the project id from the projects array in the user's profile
+*       (Done using the pre-remove hook in the project model).
+*/
 exports.deleteProject = async function(req, res, next) {
     try {
         let foundProject = await db.project.findById(req.params.project_id);

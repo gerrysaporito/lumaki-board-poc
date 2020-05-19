@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const db = require('./index');
 
+/*
+* Model: Describes a profile for an Employer.
+*
+* This model contains a list of attributes which holds details about the employer's company.
+*/
 const EmployerProfileSchema = new mongoose.Schema({
     company: {
         type: String,
@@ -55,4 +60,5 @@ const EmployerProfileSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 const employer_profile = mongoose.model('employer_profile', EmployerProfileSchema);
+
 module.exports = employer_profile;

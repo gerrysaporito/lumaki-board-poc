@@ -2,7 +2,13 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 
-// Authentication
+/*
+* Function: Checks to see if a user is logged in.
+* (Authentication)
+*
+* If successful, will allow the request to proceed.
+* If failed, will return an error to the client prompting them to login.
+*/
 exports.loginRequired = function(req, res, next) {
     try {
         const token = req.headers.authorization.split(' ')[1];
@@ -24,7 +30,14 @@ exports.loginRequired = function(req, res, next) {
     }
 };
 
-// Authorization
+/*
+* Function: Checks to see if the request is authorized.
+* In other words, ensures the request is from the real user and not an imposter.
+* (Authorization)
+*
+* If successful, will allow the request to proceed.
+* If failed, will return a vague error to the client.
+*/
 exports.ensureCorrectUser = function(req, res, next) {
     try {
         let token = req.headers.authorization.split(' ')[1];
@@ -52,7 +65,13 @@ exports.ensureCorrectUser = function(req, res, next) {
     }
 };
 
-// Admin
+/*
+* Function: Checks to see if the request came from an admin user.
+* (Authorization)
+*
+* If successful, will allow the request to proceed.
+* If failed, will return a vague error to the client.
+*/
 exports.checkAdminRole = async function(req, res, next) {
     try {
         let token = req.headers.authorization.split(' ')[1];
@@ -84,7 +103,13 @@ exports.checkAdminRole = async function(req, res, next) {
     }
 };
 
-// Super Admin
+/*
+* Function: Checks to see if the request came from an superadmin user.
+* (Authorization)
+*
+* If successful, will allow the request to proceed.
+* If failed, will return a vague error to the client.
+*/
 exports.checkSuperAdminRole = function(req, res, next) {
     try {
         let token = req.headers.authorization.split(' ')[1];
@@ -116,6 +141,12 @@ exports.checkSuperAdminRole = function(req, res, next) {
     }
 };
 
+/*
+* Function: Async functino to get a user by Id.
+*
+* @params id: string;
+* @return: user document from MongoDb;
+*/
 const getUserById = async function(id){
     return user = await db.user.findById(id);
 }

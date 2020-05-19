@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+/*
+* Model: Describes a User.
+*
+* This model is a general object which contains information about the user's account.
+* A user's profile is saved by ID, which can be looked up to find all of the personal
+* info/details about a user
+*/
 const UserSchema = new mongoose.Schema({
     first_name: {
         type: String,
@@ -33,8 +40,11 @@ const UserSchema = new mongoose.Schema({
         required: true,
         enum: ['student_profile', 'employer_profile']
     },
-});
+}, {timestamps: true});
 
+/*
+* Function: Checks to see if password is encrypted before saving.
+*/
 UserSchema.pre('save', async function(next) {
     try {
         if(!this.isModified('password')) {
@@ -49,6 +59,9 @@ UserSchema.pre('save', async function(next) {
     }
 });
 
+/*
+* Function: Checks to see if password is correct.
+*/
 UserSchema.methods.comparePassword = async function(candidatePassword, next) {
     try {
         let isMatch = await bcrypt.compare(candidatePassword, this.password);

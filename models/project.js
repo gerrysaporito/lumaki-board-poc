@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const db = require('./index');
 
+/*
+* Model: Describes a project a student's worked on.
+*
+* This model conatins information about a single project a user's worked on.
+*/
 const ProjectSchema = new mongoose.Schema({
     description: {
         type: String,
@@ -12,6 +17,9 @@ const ProjectSchema = new mongoose.Schema({
     },
 }, {timestamps: true});
 
+/*
+* Function: Removes the reference to this project from the user who created it.
+*/
 ProjectSchema.pre('remove', async function(next) {
     try {
         let user = await db.user.findById(this.user);
@@ -25,4 +33,5 @@ ProjectSchema.pre('remove', async function(next) {
 });
 
 const Project = mongoose.model('project', ProjectSchema);
+
 module.exports = Project;

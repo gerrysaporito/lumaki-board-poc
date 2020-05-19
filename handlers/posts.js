@@ -1,5 +1,13 @@
 const db = require('../models');
 
+/*
+* Function: Creates a new job posting.
+*
+* If successful, will:
+*     - create the new posting from the employer)_profile and body of
+*       body of the request and save to db.
+*     - add the posting id to the user's employer_profile.
+*/
 exports.createPost = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);
@@ -18,17 +26,20 @@ exports.createPost = async function(req, res, next) {
         let foundPost = await db.post.findById(post._id)
         return res.status(200).json(foundPost);
     } catch(e) {
-        return next({
-            status: 500,
-            message: {
-                message: e.message,
-                profile: copyProfile,
-                post: post
-            }
-        })
+        return next(e)
     }
 };
 
+
+/*
+* Function: Returns all job postings from an array of posting ids from an employer_profile.
+*
+* If successful, will:
+*     - get the posting ids array form the user's employer_profile.
+*     - search the db for all postings using filter parameters passed through the
+*       body of the request.
+*     - return an array of postings.
+*/
 exports.fetchPosts = async function(req, res, next) {
     try {
         let posts = await db.post.find({...req.body});
@@ -38,6 +49,12 @@ exports.fetchPosts = async function(req, res, next) {
     }
 }
 
+/*
+* Function: Get a single job posting from the postings collection.
+*
+* If successful, will:
+*     - return the posting.
+*/
 exports.getPost = async function(req, res, next) {
     try {
         let post = await db.post.findById(req.params.post_id);
@@ -47,6 +64,14 @@ exports.getPost = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Gets an array of applicants from a job posting.
+*
+* If successful, will:
+*     - get the post from the db.
+*     - create an array of users with their infromation populated.
+*     - return the array of users
+*/
 exports.getApplicantsFromPost = async function(req, res, next) {
     try {
         let post = await db.post.findById(req.params.post_id);
@@ -85,13 +110,18 @@ exports.getApplicantsFromPost = async function(req, res, next) {
         };
         res.status(200).json(userInfo);
     } catch(e) {
-        return next({
-            status: 400,
-            message: e.message,
-        })
+        return next(e)
     }
 };
 
+/*
+* Function: Updates a job posting from an employer_profile.
+*
+* If successful, will:
+*     - get the post from the db.
+*     - update the post by iterating over the key terms of the body of the
+*       request and updating only those values.
+*/
 exports.updatePost = async function(req, res, next) {
     try {
         let post = await db.post.findById(req.params.post_id);
@@ -110,6 +140,14 @@ exports.updatePost = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Removes an job posting from an employer_profile.
+*
+* If successful, will:
+*     - remove the posting from the db.
+*     - remove the posting id from the postings array in the user's profile
+*       (Done using the pre-remove hook in the posting model).
+*/
 exports.deletePost = async function(req, res, next) {
     try {
         let foundPost = await db.post.findById(req.params.post_id);
@@ -120,6 +158,15 @@ exports.deletePost = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Adds a user with a student_profile id to the job posting's applications.
+*
+* If successful, will:
+*     - get the user and posting from the db.
+*     - check to see if the user applied already.
+*     - add the user to the posting's application array or
+*       return an error notifying the user has already applied to this posting.
+*/
 exports.applyPost = async function(req, res, next) {
     try {
         let error = false;
@@ -157,6 +204,12 @@ exports.applyPost = async function(req, res, next) {
     }
 }
 
+/*
+* Function: Converts two seperate dates to number of weeks.
+*
+* If successful, will:
+*     - return the number of weeks between 2 dates.
+*/
 function dateToWeek(start_date, end_date) {
     let first = new Date(start_date);
     let second = new Date(end_date)

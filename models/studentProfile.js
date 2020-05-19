@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const db = require('./index');
 
+/*
+* Model: Describes a profile for an Student.
+*
+* This model contains a list of attributes which holds details about the
+* student's professional life.
+*/
 const StudentProfileSchema = new mongoose.Schema({
     school: {
         type: String,
@@ -55,7 +61,7 @@ const StudentProfileSchema = new mongoose.Schema({
             unique: true,
         }
     ],
-});
+}, {timestamps: true});
 
 const student_profile = mongoose.model('student_profile', StudentProfileSchema);
 

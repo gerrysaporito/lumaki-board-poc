@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const db = require('./index');
 
+/*
+* Model: Describes a skill a user's has.
+*
+* This model conatins information about a single skill a student has.
+*/
 const SkillSchema = new mongoose.Schema({
     skill: {
         type: String,
@@ -13,6 +18,9 @@ const SkillSchema = new mongoose.Schema({
     },
 }, {timestamps: true});
 
+/*
+* Function: Removes the reference to this skill from the user who created it.
+*/
 SkillSchema.pre('remove', async function(next) {
     try {
         let user = await db.user.findById(this.user);
@@ -26,4 +34,5 @@ SkillSchema.pre('remove', async function(next) {
 });
 
 const Skill = mongoose.model('skill', SkillSchema);
+
 module.exports = Skill;

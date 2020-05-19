@@ -1,5 +1,12 @@
 const db = require('../models');
 
+/*
+* Function: Creates a experience for a student_profile.
+*
+* If successful, will:
+*     - create the experience and save to db.
+*     - add the experience id to the user's student_profile.
+*/
 exports.createExperience = async function(req, res, next) {
     try {
         let experience = await db.experience.create({
@@ -17,6 +24,14 @@ exports.createExperience = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Returns all experiences from an array of experience ids from a student_profile.
+*
+* If successful, will:
+*     - get the experience ids array form the user's student_profile.
+*     - search the db for all experiences using the array of experience ids.
+*     - return an array of experiences.
+*/
 exports.fetchExperiences = async function(req, res, next) {
     try {
         let user = await db.user.findById(req.params._id);
@@ -32,6 +47,12 @@ exports.fetchExperiences = async function(req, res, next) {
     }
 }
 
+/*
+* Function: Get a single experience from the experience collection.
+*
+* If successful, will:
+*     - return the experience.
+*/
 exports.getExperience = async function(req, res, next) {
     try {
         let experience = await db.experience.findById(req.params.experience_id);
@@ -41,6 +62,14 @@ exports.getExperience = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Updates an experience from a student_profile.
+*
+* If successful, will:
+*     - get the experience from the db.
+*     - update the experience by iterating over the key terms of the body of the
+*       request and updating only those values.
+*/
 exports.updateExperience = async function(req, res, next) {
     try {
         let experience = await db.experience.findById(req.params.experience_id);
@@ -57,6 +86,14 @@ exports.updateExperience = async function(req, res, next) {
     }
 };
 
+/*
+* Function: Removes an experience from a student_profile.
+*
+* If successful, will:
+*     - remove the experience from the db.
+*     - remove the experience id from the experiences array in the user's profile
+*       (Done using the pre-remove hook in the experience model).
+*/
 exports.deleteExperience = async function(req, res, next) {
     try {
         let foundExperience = await db.experience.findById(req.params.experience_id);
