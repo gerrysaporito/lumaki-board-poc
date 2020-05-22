@@ -1,10 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { Content } from '../../../common/Content';
 import Card from '../../../components/general/Card';
 import './css/Homepage.css';
 
+/*
+* Page layout for the homepage.
+*/
 const Homepage = props => {
     if(props.currentUser.isAuthenticated) {
         return (
@@ -40,9 +44,7 @@ const Homepage = props => {
 }
 
 function mapStateToProps(state) {
-    return {
-        currentUser: state.currentUser,
-    }
+    return {}
 }
 
 export default connect(mapStateToProps, {})(Homepage);

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Routes } from '../../../common/Routes';
 import { Content } from '../../../common/Content';
+import { Routes } from '../../../common/Routes';
 import ContactForm from '../../forms/ContactForm';
 import './css/EmployerRegister.css';
 
+/*
+* Page layout for the employer portal before logging in.
+*/
 class EmployerRegister extends Component {
     render() {
         return(

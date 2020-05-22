@@ -8,6 +8,7 @@
     }
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 1em;
     height: 50%;
@@ -22,25 +23,7 @@
     border-radius: 5px;
 }
 
-.header {
-    font-size: 30px;
-    width: 100%;
-}
-
-.subheader {
-    font-size: 20px;
-    width: 100%;
-}
-
-.title {
-    font-size: 16px;
-    width: 100%;
-}
-
-.details {
-    font-size: 10px;
-}
-
+/* Site-wide Tags */
 p, li {
     font-size: 14px;
     width: 100%;
@@ -57,65 +40,17 @@ a, a:hover, button, button:hover {
     cursor: pointer;
 }
 
-.lumaki-btn {
-    background-color: var(--lumaki-primary-color);
-    color: white;
-    color: var(--lumaki-primary-font-color);
-    border: none;
-    text-transform: uppercase;
-    text-align: center;
-    padding: var(--btn-padding);
-    min-width: var(--btn-width);
-    margin: 30px 0;
-    border-radius: var(--btn-border-radius);
-    transition: all .15s ease-in-out;
-    text-decoration: none;
-}
-
-.lumaki-btn:hover {
-    color: var(--lumaki-body-color);
-    transition: all .15s ease-in-out;
-    text-decoration: none;
-}
-
-.lumaki-btn-outline {
-    background-color: rgba(0,0,0,0);
-    color: var(--lumaki-primary-color);
-    border: 1px solid var(--lumaki-primary-color);
-    text-transform: uppercase;
-    text-align: center;
-    padding: var(--btn-padding);
-    min-width: var(--btn-width);
-    margin: 30px 0;
-    border-radius: var(--btn-border-radius);
-    transition: all .15s ease-in-out;
-    text-decoration: none;
-}
-
-.lumaki-btn-outline:hover {
-    color: var(--lumaki-primary-font-color);
-    border: 1px solid var(--lumaki-primary-font-color);
-    transition: all .15s ease-in-out;
-    text-decoration: none;
-}
-
-.add-btn {
-    align-self: flex-start;
-    padding: var(--btn-padding);
-    background-color: var(--btn-secondary-background-color);
-    border-radius: var(--btn-border-radius);
-    min-width: var(--btn-width);
-    font-size: var(--page-font-size);
-}
-
 input, textarea, select {
     font-size: var(--page-font-size);
-    color: var(--lumaki-secondary-font-color);
-    background-color: var(--lumaki-input);
     border: none;
     border-radius: var(--input-border-radius);
     width: 100%;
     padding: var(--input-padding);
+}
+
+input, textarea, select {
+    color: var(--lumaki-secondary-font-color);
+    background-color: var(--lumaki-input);
 }
 
 label {
@@ -131,23 +66,4 @@ button {
     font-size: var(--btn-font-size);
     border: none;
     color: var(--lumaki-primary-font-color);
-}
-
-.fa-trash-alt {
-    color: var(--lumaki-primary-font-color);
-}
-
-.fa-pencil-alt {
-    color: var(--lumaki-primary-font-color);
-}
-
-.function-tools {
-    position: absolute;
-    top: 0;
-    display: inline-flex;
-    right: 0;
-}
-
-.function-tools i {
-    padding: 0 7px;
 }

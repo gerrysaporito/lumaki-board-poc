@@ -12,6 +12,7 @@ class SkillList extends Component {
 
     render() {
         const {skills, removeSkill, currentUser} = this.props;
+        console.log(skills)
         let skillList = skills.map(m => (
             <SkillItem
                 key={m._id}

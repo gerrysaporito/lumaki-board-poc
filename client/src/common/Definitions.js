@@ -60,4 +60,6 @@ export const Forms = {
     'project': 'project',
     'skill': 'skill',
     'post': 'post',
+    'studentProfile': 'studentProfile',
+    'employerProfile': 'employerProfile'
 }

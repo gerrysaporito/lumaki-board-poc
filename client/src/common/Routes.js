@@ -44,6 +44,14 @@ export const Routes = {
         url: `/users/:user_id`,
         text: `Profile`,
     },
+    CreateProfile: {
+        url: `/users/:user_id/new`,
+        text: ``,
+    },
+    EditProfile: {
+        url: `/users/:user_id/edit`,
+        text: ``,
+    },
     profileSummary: {
         url: `/users/:user_id/overview`,
         text: ``,

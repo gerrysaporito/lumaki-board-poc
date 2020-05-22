@@ -14,3 +14,95 @@
     height: 100vh;
     font-family: 'Open Sans', sans-serif;
 }
+
+/* Site-wide Dimensions / General Properties */
+.header {
+    font-size: 30px;
+    width: 100%;
+}
+
+.subheader {
+    font-size: 20px;
+    width: 100%;
+}
+
+.title {
+    font-size: 16px;
+    width: 100%;
+}
+
+.details {
+    font-size: 10px;
+}
+
+/* Entity Manipulation Tools */
+.function-tools {
+    position: absolute;
+    top: 0;
+    display: inline-flex;
+    right: 0;
+}
+
+.function-tools i {
+    padding: 0 7px;
+}
+
+/* Core Buttons */
+.lumaki-btn {
+    background-color: var(--lumaki-primary-color);
+    color: white;
+    color: var(--lumaki-primary-font-color);
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    padding: var(--btn-padding);
+    min-width: var(--btn-width);
+    margin: 30px 0;
+    border-radius: var(--btn-border-radius);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
+}
+
+.lumaki-btn:hover {
+    color: var(--lumaki-body-color);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
+}
+
+.lumaki-btn-outline {
+    background-color: rgba(0,0,0,0);
+    color: var(--lumaki-primary-color);
+    border: 1px solid var(--lumaki-primary-color);
+    text-transform: uppercase;
+    text-align: center;
+    padding: var(--btn-padding);
+    min-width: var(--btn-width);
+    margin: 30px 0;
+    border-radius: var(--btn-border-radius);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
+}
+
+.lumaki-btn-outline:hover {
+    color: var(--lumaki-primary-font-color);
+    border: 1px solid var(--lumaki-primary-font-color);
+    transition: all .15s ease-in-out;
+    text-decoration: none;
+}
+
+.add-btn {
+    align-self: flex-start;
+    padding: var(--btn-padding);
+    background-color: var(--btn-secondary-background-color);
+    border-radius: var(--btn-border-radius);
+    min-width: var(--btn-width);
+    font-size: var(--page-font-size);
+}
+
+.fa-trash-alt {
+    color: var(--lumaki-primary-font-color);
+}
+
+.fa-pencil-alt {
+    color: var(--lumaki-primary-font-color);
+}

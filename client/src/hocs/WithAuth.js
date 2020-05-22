@@ -28,8 +28,8 @@ export default function withAuth(ComponentToBeRendered, isAllowed, Content={}) {
 
     function mapStateToProps(state) {
         return {
+            ...state,
             isAuthenticated: state.currentUser.isAuthenticated,
-            profile: state.profile,
         }
     }
 

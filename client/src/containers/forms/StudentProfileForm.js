@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { Content } from '../../common/Content';
 import { Genders } from '../../common/Definitions';
 import { getProfile, updateProfile } from '../../store/actions/profiles';
-
-import ExperienceList from '../../components/lists/ExperienceList';
-import ProjectList from '../../components/lists/ProjectList';
-import SkillList from '../../components/lists/SkillList';
 
 import './css/ProfileForm.css';
 
@@ -59,7 +54,7 @@ class StudentProfileForm extends Component {
 
     render() {
         const {school, program, graduation_date, gender, country, state, city} = this.state;
-        const {currentUser, experiences, projects, skills} = this.props;
+        const {currentUser} = this.props;
         return(
             <form onSubmit={this.handleSubmit} id='profileform'>
                 {/* Form */}
@@ -85,29 +80,6 @@ class StudentProfileForm extends Component {
                     {/* Save Button */}
                     <button className='lumaki-btn' type='submit'>Save</button>
                 </div>
-
-                {/* Lists */}
-                <div className='hr' />
-                <div className='profile-section'>
-                    <p className='subheader'>{Content.profile.student.experiences.title}</p>
-                    <Link className='add-btn' to={`/users/${currentUser.user._id}/experiences/new`}>{Content.profile.student.experiences.buttonText}</Link>
-                    <ExperienceList currentUser={currentUser} experiences={experiences} />
-                </div>
-                <div className='hr' />
-                <div className='profile-section'>
-                    <p className='subheader'>{Content.profile.student.projects.title}</p>
-                    <Link className='add-btn' to={`/users/${currentUser.user._id}/projects/new`}>{Content.profile.student.projects.buttonText}</Link>
-                    <ProjectList currentUser={currentUser} projects={projects} />
-                </div>
-                <div className='hr' />
-                <div className='profile-section'>
-                    <p className='subheader'>{Content.profile.student.skills.title}</p>
-                    <Link className='add-btn' to={`/users/${currentUser.user._id}/skills/new`}>{Content.profile.student.skills.buttonText}</Link>
-                    <SkillList currentUser={currentUser} skills={skills} />
-                </div>
-
-                {/* Save Button */}
-                <button className='lumaki-btn' type='submit'>Save</button>
             </form>
         )
     }

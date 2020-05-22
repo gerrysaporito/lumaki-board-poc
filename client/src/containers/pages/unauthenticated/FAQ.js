@@ -5,6 +5,9 @@ import FAQItem from '../../../components/items/FAQItem';
 
 import './css/FAQ.css';
 
+/*
+* Page layout for the FAQs.
+*/
 class FAQ extends Component {
     render() {
         let faqs = Content.faq.content.map((faq, i) => (

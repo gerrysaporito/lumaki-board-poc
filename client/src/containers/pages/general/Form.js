@@ -8,6 +8,8 @@ import ExperienceForm from '../../forms/ExperienceForm';
 import ProjectForm from '../../forms/ProjectForm';
 import PostForm from '../../forms/PostForm';
 import SkillForm from '../../forms/SkillForm';
+import StudentProfileForm from '../../forms/StudentProfileForm';
+import EmployerProfileForm from '../../forms/EmployerProfileForm';
 
 class Form extends Component {
     render() {
@@ -21,6 +23,8 @@ class Form extends Component {
             subheader: subheader,
             buttonText: buttonText,
         };
+
+        console.log(this.props)
 
         let form = '';
         switch(formType) {
@@ -38,6 +42,14 @@ class Form extends Component {
             }
             case Forms.post: {
                 form = <PostForm {...props} {...this.props} />
+                break;
+            }
+            case Forms.studentProfile: {
+                form = <StudentProfileForm {...props} {...this.props} />
+                break;
+            }
+            case Forms.employerProfile: {
+                form = <EmployerProfileForm {...props} {...this.props} />
                 break;
             }
             default: {

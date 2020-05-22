@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { Content } from '../../../common/Content';
-import { Routes } from '../../../common/Routes';
 import { IndustryColorValues, Profiles } from '../../../common/Definitions';
-import { getPost, applyToPost } from '../../../store/actions/posts';
+import { Routes } from '../../../common/Routes';
 import Card from '../../../components/general/Card';
+import { getPost, applyToPost } from '../../../store/actions/posts';
 import './css/Post.css';
 
+/*
+* Page layout for a job posting.
+*/
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -116,6 +119,12 @@ class Post extends Component {
     }
 }
 
+/*
+* Formats the date in YYYY-MM-DD for date input value.
+*
+* @param date: string;
+* @return string;
+*/
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -130,6 +139,12 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+/*
+* Gets the difference in dates in terms of weeks.
+*
+* @param date: string;
+* @return string;
+*/
 function datediff(start_date, end_date) {
     let first = new Date(start_date);
     let second = new Date(end_date)
@@ -138,11 +153,7 @@ function datediff(start_date, end_date) {
 
 
 function mapStateToProps(state) {
-    return {
-        alerts: state.alerts,
-        currentUser: state.currentUser,
-        Content: Content,
-    }
+    return {}
 }
 
 export default connect(mapStateToProps, { getPost, applyToPost })(Post);

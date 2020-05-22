@@ -30,7 +30,7 @@ import './css/Main.css';
 import Form from '../pages/general/Form';
 
 const Main = props => {
-    const {profile_type, alerts, history, removeAlert} = props;
+    const {profile_type, alerts, history, removeAlert, currentUser} = props;
     return(
         <React.Fragment>
             <Navbar {...props} />
@@ -43,20 +43,24 @@ const Main = props => {
                         <Route exact path={Routes.register.url} component={withoutAuth(Auth, Content.register.student)} />
                         <Route exact path={Routes.employer.url} render={props => <EmployerRegister {...Content.register.employers} {...props} />} />
                         <Route exact path={Routes.registerEmployer.url}  component={withoutAuth(Auth, Content.register.employers.register)} />
-                        <Route exact path={Routes.home.url} render={props => <Homepage {...props} />} />
+                        <Route exact path={Routes.home.url} render={props => <Homepage {...props} currentUser={currentUser} />} />
                         <Route exact path={Routes.allPosts.url} render={props => <AllPosts {...props} />} />
-                        <Route exact path={Routes.singlePost.url} render={props => <Post {...props} />}  />
+                        <Route exact path={Routes.singlePost.url} render={props => <Post {...props} currentUser={currentUser} alerts={alerts} />}  />
                         <Route exact path={Routes.contact.url} render={props => <Contact {...props} />}  />
                         <Route exact path={Routes.faq.url} render={props => <FAQ {...props} />}  />
                         {/* User */}
                         <Route exact path={Routes.profile.url}  component={withAuth(Profile, true)} />
-                        <Route exact path={Routes.createExperience.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.experience})}/>
+                        {/* Student */}
+                        <Route exact path={Routes.CreateProfile.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.studentProfile})}/>
+                        <Route exact path={Routes.EditProfile.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.studentProfile})}/>
                         <Route exact path={Routes.editExperience.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.experience})}/>
                         <Route exact path={Routes.createProject.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.project})}/>
                         <Route exact path={Routes.editProject.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.project})}/>
                         <Route exact path={Routes.createSkill.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.skill})}/>
                         <Route exact path={Routes.editSkill.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.skill})}/>
                         {/* Employer */}
+                        <Route exact path={Routes.CreateProfile.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.employerProfile})}/>
+                        <Route exact path={Routes.EditProfile.url} component={withAuth(Form, profile_type === Profiles.student, {formType: Forms.employerProfile})}/>
                         <Route exact path={Routes.createPost.url} component={withAuth(Form, profile_type === Profiles.employer, {formType: Forms.post})}/>
                         <Route exact path={Routes.editPost.url} component={withAuth(Form, profile_type === Profiles.employer, {formType: Forms.post})}/>
                         <Route exact path={Routes.MyPostings.url} component={withAuth(MyPostings, profile_type === Profiles.employer)}/>
@@ -72,7 +76,7 @@ const Main = props => {
 
 function mapStateToProps(state) {
     return {
-        alerts: state.alerts,
+        ...state,
         profile_type: state.currentUser.user.profile_type,
     }
 }

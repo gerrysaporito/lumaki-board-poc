@@ -28,9 +28,12 @@ class SystemAlert extends Component {
                 return (<div />);
             }
         }
+        console.log(message)
         return (
             <div id='system-alert' className={color}>
-                <p className='subheader'>{message}</p>
+                <p className='subheader'>
+                    {typeof(message.message) === 'string' ? message.message : 'Something went wrong'}
+                </p>
                 <button onClick={this.closeAlert}>x</button>
             </div>
         )

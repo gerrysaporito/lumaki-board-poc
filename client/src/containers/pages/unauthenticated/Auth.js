@@ -5,6 +5,9 @@ import AuthForm from '../../forms/AuthForm';
 import LOGO from '../../../images/LumakiLabs_whitelogo.png';
 import './css/Auth.css';
 
+/*
+* Page layout for the login/signup forms.
+*/
 class Auth extends Component {
     render() {
         const {heading, buttonText, register, employers} = this.props;
@@ -28,11 +31,4 @@ class Auth extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        alerts: state.alerts,
-        currentUser: state.currentUser,
-    }
-}
-
-export default connect(mapStateToProps, {})(Auth);
+export default Auth;
